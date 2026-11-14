@@ -3,6 +3,19 @@
 [ext_resource type="Texture2D" uid="uid://b6463lhp65gd3" path="res://assets/art/test_arena.jpg" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://27eut258tv7t" path="res://scenes/player.tscn" id="2_0xm2m"]
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_2htkg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_0xm2m")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="SystemFont" id="SystemFont_chb2l"]
+
 [node name="Node3D" type="Node3D" unique_id=71333522]
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=342016900]
@@ -10,7 +23,8 @@ transform = Transform3D(1, 0, 0, 0, 0.34202015, 0.9396926, 0, -0.9396926, 0.3420
 fov = 70.0
 
 [node name="Sprite3D" type="Sprite3D" parent="." unique_id=261786251]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, -0.07299042)
+pixel_size = 0.1
 texture = ExtResource("1_ig7tw")
 
 [node name="CharacterBody3D" parent="." unique_id=879638660 instance=ExtResource("2_0xm2m")]
