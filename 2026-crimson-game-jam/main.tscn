@@ -58,7 +58,7 @@ pixel_size = 0.03
 billboard = 1
 render_priority = 1
 sprite_frames = SubResource("SpriteFrames_2htkg")
-frame_progress = 0.749324
+frame_progress = 0.830464
 
 [node name="ShotOrigin" type="Marker3D" parent="BossNode3D" unique_id=1987674758]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5751569, 0.10854626, -0.18424225)
