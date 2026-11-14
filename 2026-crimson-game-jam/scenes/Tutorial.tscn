@@ -99,7 +99,7 @@ font_size = 130
 outline_size = 15
 
 [node name="BulletEmitter" type="Node3D" parent="BossNode3D" unique_id=329600120]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.291748, 0, -0.30207062)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.291748, 0, 8.067406)
 script = ExtResource("6_y0w3d")
 pattern = ExtResource("7_y0w3d")
 
