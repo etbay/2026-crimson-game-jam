@@ -7,9 +7,8 @@ class_name RingPattern extends BulletPattern
 @export var spawn_radius: float = 0.0         # offset from emitter center
 @export var angle_step_deg: float = 0.0       # rotate each ring by this much to spiral out, keep going
 
-var _timer: float = 0.0
-var _rings_fired: int = 0
 var _current_offset: float = 0.0
+var _bullets_spawned: int = 0
 
 func increment_pattern(delta : float) -> void:
 	if not _active or _finished:
@@ -18,12 +17,12 @@ func increment_pattern(delta : float) -> void:
 	if _timer > fire_interval:
 		_fire_burst()
 		_timer = 0
-		if volley_count >= 0 and _rings_fired >= volley_count:
+		if volley_count >= 0 and _volleys_fired >= volley_count:
 			_active = false
 			_finished = true
 
 func _fire_burst():
-	_rings_fired += 1
+	_volleys_fired += 1
 	var start := deg_to_rad(start_angle_deg + _current_offset)
 	var arc := deg_to_rad(arc_deg)
 	# Full circle: divide by count so the last bullet doesn't overlap the first.
@@ -40,10 +39,9 @@ func _fire_burst():
 		b.define_bullet_from_data(bullet_data)
 		b.position = pos
 		b.angle = angle
+		_bullets_spawned += 1
+		if (_bullets_spawned % parryable_frequeuncy == 0):
+			b.parryable = true
+		b.update_sprite()
 
 	_current_offset += angle_step_deg
-
-func execute(position : Vector2):
-	if (not _active):
-		_active = true
-		_spawn_pos = position

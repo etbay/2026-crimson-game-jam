@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="LinePattern" format=3 uid="uid://dcmiwskrigadr"]
+
+[ext_resource type="Script" uid="uid://4q5s3c1ocpbh" path="res://scripts/bullets/line_pattern.gd" id="1_8oxwj"]
+[ext_resource type="Resource" uid="uid://s65e1s4721yu" path="res://bullet_resources/bullet_data/ring_test_bullet_data.tres" id="1_lte0e"]
+
+[resource]
+script = ExtResource("1_8oxwj")
+bullet_count = 31
+spacing = 0.4
+spread_deg = 50.0
+end_speed_multiplier = 2.0
+gap_enabled = true
+gap_size = 10
+random_gap = true
+bullet_data = ExtResource("1_lte0e")
+fire_interval = 1.0
+volley_count = 20
+parryable_frequeuncy = 5
+metadata/_custom_type_script = "uid://4q5s3c1ocpbh"

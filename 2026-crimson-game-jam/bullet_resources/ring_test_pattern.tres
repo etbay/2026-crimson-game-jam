@@ -1,14 +1,14 @@
 [gd_resource type="Resource" script_class="RingPattern" format=3 uid="uid://b3bbq60noqe05"]
 
-[ext_resource type="Resource" uid="uid://s65e1s4721yu" path="res://bullet_resources/ring_test_bullet_data.tres" id="1_mvnbu"]
+[ext_resource type="Resource" uid="uid://s65e1s4721yu" path="res://bullet_resources/bullet_data/ring_test_bullet_data.tres" id="1_mvnbu"]
 [ext_resource type="Script" uid="uid://bm6p0a3odsqfk" path="res://scripts/bullets/ring_pattern.gd" id="1_tuevl"]
 
 [resource]
 script = ExtResource("1_tuevl")
-bullet_count = 30
-arc_deg = 300.0
-angle_step_deg = 40.0
+bullet_count = 40
+arc_deg = 200.0
+angle_step_deg = 15.0
 bullet_data = ExtResource("1_mvnbu")
-fire_interval = 1.0
-volley_count = 5
+volley_count = 10
+parryable_frequeuncy = 8
 metadata/_custom_type_script = "uid://bm6p0a3odsqfk"
