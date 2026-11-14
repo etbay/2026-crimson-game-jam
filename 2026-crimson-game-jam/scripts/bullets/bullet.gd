@@ -21,6 +21,8 @@ var parryable : bool
 var _active : bool = false
 
 func _ready() -> void:
+	collision_layer = 0
+	set_collision_layer_value(2, true)
 	sprite = Sprite3D.new()
 	sprite.texture = TextureLibrary.BULLET_SPRITE
 	add_child(sprite)
@@ -59,17 +61,30 @@ func define_bullet_from_data(data : BulletData):
 	parryable = false
 	size = data.bullet_size
 	_active = true
-	update_sprite()
 
 func update_sprite():
+	var mat : StandardMaterial3D = StandardMaterial3D.new()
 	if (parryable):
-		sprite.texture = TextureLibrary.BULLET_PARRYABLE
+		sprite.texture = TextureLibrary.BULLET_PARRYABLE_2
+		sprite.modulate = Color("dfde10ff")
+		mat.emission_energy_multiplier = 3
 	else:
 		sprite.texture = TextureLibrary.BULLET_SPRITE
-	sprite.scale = Vector3(size, size, 1)
+		sprite.modulate = Color("af01f9ff")
+		mat.emission_energy_multiplier = 1.5
+	sprite.scale = Vector3(size / 60, size / 60, 1)
 	shape.shape.radius = size / 2
+	
+	# glow effect
+	mat.cull_mode = BaseMaterial3D.CULL_DISABLED
+	mat.albedo_texture = sprite.texture
+	mat.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
+	mat.emission_enabled = true
+	mat.emission_texture = sprite.texture
+	mat.emission = sprite.modulate
+	sprite.material_override = mat
 
-func _process(delta : float) -> void:
+func _physics_process(delta : float) -> void:
 	if (_active):
 		## update pos, and motion params
 		age += delta

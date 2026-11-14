@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="RingPattern" format=3 uid="uid://darowuklqtw3s"]
+
+[ext_resource type="Resource" uid="uid://bpup2wc6lsu4y" path="res://bullet_resources/bullet_data/parry_test_bullet.tres" id="1_ffhfb"]
+[ext_resource type="Script" uid="uid://bm6p0a3odsqfk" path="res://scripts/bullets/ring_pattern.gd" id="2_cvgum"]
+
+[resource]
+script = ExtResource("2_cvgum")
+bullet_count = 1
+bullet_data = ExtResource("1_ffhfb")
+volley_count = 100
+metadata/_custom_type_script = "uid://bm6p0a3odsqfk"
