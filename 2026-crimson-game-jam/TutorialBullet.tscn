@@ -7,6 +7,7 @@
 script = ExtResource("1_tuuan")
 start_speed = 19.0
 end_speed = 2.0
+slowdown_distance = 4.0
 stop_distance = 2.0
 
 [node name="Sprite3D" type="Sprite3D" parent="." unique_id=910332635]

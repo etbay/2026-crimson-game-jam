@@ -6,12 +6,15 @@ extends Node3D
 @onready var shot_origin: Marker3D = $ShotOrigin
 
 @export var parry_prompt: Label3D
+@export var wasd_prompt: Label3D
 
 
 @export var entrance_start: Marker3D
 @export var entrance_end: Marker3D
 @export var entrance_duration: float = 2.0
 @export var shoot_delay: float = 2.0
+@export var wasd_delay: float = 2.0
+@export var wasd_duration: float = 3.0
 
 var current_bullet: TutorialBullet
 var waiting_for_parry: bool = false
@@ -20,7 +23,8 @@ var waiting_for_parry: bool = false
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	parry_prompt.hide()
-
+	wasd_prompt.hide()
+	
 	# Lock player movement immediately
 	player.movement_locked = true
 
@@ -132,9 +136,22 @@ func parry_successful() -> void:
 	# Hide the prompt
 	parry_prompt.hide()
 
+
 	# Resume the game
 	get_tree().paused = false
 	player.movement_locked = false
+	show_wasd_tutorial()
 	print("Successful Parry!")
 
-	
+func show_wasd_tutorial() -> void:
+	# Wait before showing the WASD prompt
+	await get_tree().create_timer(wasd_delay).timeout
+
+	# Show the movement instructions
+	wasd_prompt.show()
+
+	# Keep them visible for a few seconds
+	await get_tree().create_timer(wasd_duration).timeout
+
+	# Hide the instructions
+	wasd_prompt.hide()

@@ -20,6 +20,8 @@ animations = [{
 [sub_resource type="SystemFont" id="SystemFont_chb2l"]
 subpixel_positioning = 0
 
+[sub_resource type="SystemFont" id="SystemFont_kmlok"]
+
 [node name="Node3D2" type="Node3D" unique_id=71333522]
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=342016900]
@@ -36,17 +38,20 @@ transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
 axis_lock_linear_y = true
 gravity_scale = 0.0
 
-[node name="BossNode3D" type="Node3D" parent="." unique_id=56610688 node_paths=PackedStringArray("player", "parry_prompt", "entrance_start", "entrance_end")]
+[node name="BossNode3D" type="Node3D" parent="." unique_id=56610688 node_paths=PackedStringArray("player", "parry_prompt", "wasd_prompt", "entrance_start", "entrance_end")]
 process_mode = 3
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -22.728)
 script = ExtResource("3_288ch")
 bullet_scene = ExtResource("4_u5f0c")
 player = NodePath("../CharacterBody3D")
 parry_prompt = NodePath("TutorialUI/ParryPrompt")
+wasd_prompt = NodePath("TutorialUI/WASDPrompt")
 entrance_start = NodePath("EntranceStart")
 entrance_end = NodePath("EntranceEnd")
 entrance_duration = 3.0
 shoot_delay = 0.5
+wasd_delay = 0.5
+wasd_duration = 3.5
 
 [node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="BossNode3D" unique_id=1166639677]
 process_mode = 1
@@ -76,5 +81,16 @@ render_priority = 2
 outline_render_priority = 0
 text = "Press Right Click to Parry!"
 font = SubResource("SystemFont_chb2l")
+font_size = 90
+outline_size = 15
+
+[node name="WASDPrompt" type="Label3D" parent="BossNode3D/TutorialUI" unique_id=1308168518]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.058826, 1.3828764, -12.66423)
+pixel_size = 0.01
+billboard = 1
+render_priority = 1
+outline_render_priority = 0
+text = "WASD to move!"
+font = SubResource("SystemFont_kmlok")
 font_size = 90
 outline_size = 15
