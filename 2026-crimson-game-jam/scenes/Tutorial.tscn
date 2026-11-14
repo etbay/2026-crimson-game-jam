@@ -1,0 +1,98 @@
+[gd_scene format=3 uid="uid://cp4b54l3n7jki"]
+
+[ext_resource type="Texture2D" uid="uid://b6463lhp65gd3" path="res://assets/art/test_arena.jpg" id="1_288ch"]
+[ext_resource type="PackedScene" uid="uid://27eut258tv7t" path="res://scenes/player.tscn" id="2_twv1b"]
+[ext_resource type="Script" uid="uid://c5lctqqcx3p2n" path="res://scripts/tutorialboss.gd" id="3_288ch"]
+[ext_resource type="PackedScene" uid="uid://4untts65i8q2" path="res://TutorialBullet.tscn" id="4_u5f0c"]
+[ext_resource type="Texture2D" uid="uid://dglwa448xf8hv" path="res://icon.svg" id="5_0g6v0"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2htkg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_0g6v0")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="SystemFont" id="SystemFont_chb2l"]
+subpixel_positioning = 0
+
+[sub_resource type="SystemFont" id="SystemFont_kmlok"]
+
+[node name="Node3D2" type="Node3D" unique_id=71333522]
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=342016900]
+transform = Transform3D(1, 0, 0, 0, 0.09094452, 0.9958559, 0, -0.9958559, 0.09094452, 1.3714342, 11.765142, -10.236075)
+fov = 104.1
+
+[node name="Sprite3D" type="Sprite3D" parent="." unique_id=261786251]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, -0.07299042)
+pixel_size = 0.1
+texture = ExtResource("1_288ch")
+
+[node name="CharacterBody3D" parent="." unique_id=743092864 instance=ExtResource("2_twv1b")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
+axis_lock_linear_y = true
+gravity_scale = 0.0
+
+[node name="BossNode3D" type="Node3D" parent="." unique_id=56610688 node_paths=PackedStringArray("player", "parry_prompt", "wasd_prompt", "entrance_start", "entrance_end")]
+process_mode = 3
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -22.728)
+script = ExtResource("3_288ch")
+bullet_scene = ExtResource("4_u5f0c")
+player = NodePath("../CharacterBody3D")
+parry_prompt = NodePath("TutorialUI/ParryPrompt")
+wasd_prompt = NodePath("TutorialUI/WASDPrompt")
+entrance_start = NodePath("EntranceStart")
+entrance_end = NodePath("EntranceEnd")
+entrance_duration = 3.0
+shoot_delay = 0.5
+wasd_delay = 0.5
+wasd_duration = 3.5
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="BossNode3D" unique_id=1166639677]
+process_mode = 1
+transform = Transform3D(1, 0, 0, 0, 0.7193398, 0.6946584, 0, -0.6946584, 0.7193398, 1.4163599, 0.23378849, 0)
+pixel_size = 0.03
+billboard = 1
+render_priority = 1
+sprite_frames = SubResource("SpriteFrames_2htkg")
+frame_progress = 0.749324
+
+[node name="ShotOrigin" type="Marker3D" parent="BossNode3D" unique_id=1987674758]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5751569, 0.10854626, -0.18424225)
+
+[node name="EntranceStart" type="Marker3D" parent="BossNode3D" unique_id=1474155035]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.278, 0, 32.216743)
+
+[node name="EntranceEnd" type="Marker3D" parent="BossNode3D" unique_id=2010386740]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2775478, 0, 21.067316)
+
+[node name="TutorialUI" type="CanvasLayer" parent="BossNode3D" unique_id=1687570447]
+
+[node name="ParryPrompt" type="Label3D" parent="BossNode3D/TutorialUI" unique_id=490987037]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.869041, 2.0612364, -4.4358964)
+pixel_size = 0.01
+billboard = 1
+render_priority = 2
+outline_render_priority = 0
+text = "Press Right Click to Parry!"
+font = SubResource("SystemFont_chb2l")
+font_size = 90
+outline_size = 15
+
+[node name="WASDPrompt" type="Label3D" parent="BossNode3D/TutorialUI" unique_id=1308168518]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.058826, 1.3828764, -12.66423)
+pixel_size = 0.01
+billboard = 1
+render_priority = 1
+outline_render_priority = 0
+text = "WASD to move!"
+font = SubResource("SystemFont_kmlok")
+font_size = 90
+outline_size = 15
+
+[node name="Bullet Emitter" type="Node3D" parent="BossNode3D" unique_id=329600120]
