@@ -1,10 +1,13 @@
 class_name Player extends CharacterBody3D
 
+const PLAYER_BULLET = preload("uid://cgs6fx8lp6hdl")
+
 @export var walk_speed: float = 5
 @export var beast_speed: float = 10
 @export var dash_length: float = 30
 
 @onready var player_sprite: PlayerSprite = $PlayerSprite
+@onready var bullet_spawn: Node3D = $BulletSpawn
 
 @onready var active_speed: float = walk_speed
 
@@ -41,8 +44,12 @@ func _update_mouse_dir() -> void:
 
 func _process_input() -> void:
 	if Input.is_action_just_pressed("shoot") and not beast_mode:
-		# TODO: Do shooting stuff
-		pass
+		# Shoot stuff
+		var bullet: Bullet = BulletPool.instance.get_bullet()
+		bullet.define_bullet_from_data(PLAYER_BULLET)
+		bullet.angle = mouse_dir.angle()
+		bullet.position = Vector3(bullet_spawn.global_position.x, 0, bullet_spawn.global_position.z)
+		bullet.update_sprite()
 	
 	if Input.is_action_just_pressed("parry") and not beast_mode:
 		# TODO: Parry stuff

@@ -74,6 +74,7 @@ func update_sprite():
 		mat.emission_energy_multiplier = 1.5
 	sprite.scale = Vector3(size / 60, size / 60, 1)
 	shape.shape.radius = size / 2
+	sprite.render_priority = 1
 	
 	# glow effect
 	mat.cull_mode = BaseMaterial3D.CULL_DISABLED
@@ -108,6 +109,7 @@ func activate() -> void:
 	_active = true
 
 func kill_bullet() -> void:
+	print("bullet killed")
 	define_bullet()
 	self.visible = false
 	_active = false

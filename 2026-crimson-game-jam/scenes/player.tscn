@@ -154,30 +154,28 @@ script = ExtResource("1_qhqgy")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=356517985]
 shape = SubResource("BoxShape3D_0xm2m")
 
+[node name="BulletSpawn" type="Node3D" parent="." unique_id=288038477]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.450581e-09, 0)
+
 [node name="PlayerSprite" type="Node3D" parent="." unique_id=2016360481 node_paths=PackedStringArray("player")]
 transform = Transform3D(1, 0, 0, 0, 0.34202015, 0.9396926, 0, -0.9396926, 0.34202015, 0, 0, 0)
 script = ExtResource("2_g2els")
 player = NodePath("..")
 
 [node name="BodySprite" type="AnimatedSprite3D" parent="PlayerSprite" unique_id=311546419]
+render_priority = 2
 sprite_frames = SubResource("SpriteFrames_g2els")
 
 [node name="ArmSprite" type="AnimatedSprite3D" parent="PlayerSprite" unique_id=2078459426]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.39090562, 0)
 billboard = 1
-render_priority = 1
+render_priority = 2
 sprite_frames = SubResource("SpriteFrames_qhqgy")
 animation = &"back_frame3"
 
 [node name="LegsSprite" type="AnimatedSprite3D" parent="PlayerSprite" unique_id=1964835705]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.3297838, 0)
 billboard = 1
-render_priority = 1
+render_priority = 2
 sprite_frames = SubResource("SpriteFrames_dqkch")
 animation = &"front_idle"
-
-[node name="Sprite3D" type="Sprite3D" parent="." unique_id=1927877123]
-visible = false
-billboard = 1
-render_priority = 1
-texture = ExtResource("2_dqkch")

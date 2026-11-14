@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://b6463lhp65gd3" path="res://assets/art/test_arena.jpg" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://27eut258tv7t" path="res://scenes/player.tscn" id="2_0xm2m"]
+[ext_resource type="Script" uid="uid://dbkj3qoa8l0kv" path="res://scripts/bullets/bullet_pool.gd" id="3_h2yge"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_0xm2m"]
 size = Vector3(1, 47.00003, 8.599243)
@@ -9,7 +10,7 @@ size = Vector3(1, 47.00003, 8.599243)
 [node name="Node3D" type="Node3D" unique_id=71333522]
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=342016900]
-transform = Transform3D(1, 0, 0, 0, 0.34202015, 0.9396926, 0, -0.9396926, 0.34202015, 0, 9.408904, 4.278859)
+transform = Transform3D(1, 0, 0, 0, 0.7782917, 0.62790287, 0, -0.62790287, 0.7782917, 0, 5.66748, 7.666792)
 fov = 70.0
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=601612357]
@@ -29,7 +30,12 @@ shape = SubResource("BoxShape3D_0xm2m")
 [node name="Sprite3D" type="Sprite3D" parent="." unique_id=261786251]
 transform = Transform3D(0.395, 0, 0, 0, -1.7265998e-08, -0.395, 0, 0.395, -1.7265998e-08, 0, 0, -0.07299042)
 pixel_size = 0.1
+render_priority = -100
 texture = ExtResource("1_ig7tw")
 
 [node name="CharacterBody3D" parent="." unique_id=879638660 instance=ExtResource("2_0xm2m")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.44269884, 0)
+
+[node name="BulletPool" type="Node3D" parent="." unique_id=1749775153]
+script = ExtResource("3_h2yge")
+metadata/_custom_type_script = "uid://dbkj3qoa8l0kv"
