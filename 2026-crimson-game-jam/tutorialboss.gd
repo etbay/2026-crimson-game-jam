@@ -5,11 +5,20 @@ extends Node3D
 
 @onready var shot_origin: Marker3D = $ShotOrigin
 
-func _ready() -> void:
-	# Wait one second before firing
-	await get_tree().create_timer(1.0).timeout
+@export var parry_prompt: Label3D
 
+var current_bullet: TutorialBullet
+var waiting_for_parry: bool = false
+
+func _ready() -> void:
+	process_mode = Node.PROCESS_MODE_ALWAYS
+
+	# Hide the prompt when the game starts
+	parry_prompt.hide()
+
+	await get_tree().create_timer(1.0).timeout
 	shoot()
+
 
 
 func shoot() -> void:
@@ -23,6 +32,9 @@ func shoot() -> void:
 		return
 	# Create the bullet
 	var bullet: TutorialBullet = bullet_scene.instantiate()
+	current_bullet = bullet
+	bullet.player = player
+	bullet.near_player.connect(_on_bullet_near_player)
 
 	# Add it to the main scene
 	get_tree().current_scene.add_child(bullet)
@@ -42,3 +54,41 @@ func shoot() -> void:
 
 	# Tell bullet which direction to travel
 	bullet.direction = direction
+	
+
+func _on_bullet_near_player() -> void:
+	waiting_for_parry = true
+	parry_prompt.show()
+	get_tree().paused = true
+
+
+
+
+
+func _input(event: InputEvent) -> void:
+	if not waiting_for_parry:
+		return
+
+	if event.is_action_pressed("parry"):
+		print("Right click detected!")
+
+		parry_successful()
+		get_viewport().set_input_as_handled()
+
+func parry_successful() -> void:
+	waiting_for_parry = false
+
+	# Delete the bullet
+	if is_instance_valid(current_bullet):
+		current_bullet.queue_free()
+		current_bullet = null
+
+	# Hide the prompt
+	parry_prompt.hide()
+
+	# Resume the game
+	get_tree().paused = false
+
+	print("Successful Parry!")
+
+	

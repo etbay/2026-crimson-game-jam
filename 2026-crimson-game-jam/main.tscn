@@ -18,6 +18,8 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="SystemFont" id="SystemFont_chb2l"]
+
 [node name="Node3D" type="Node3D" unique_id=71333522]
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=342016900]
@@ -41,20 +43,35 @@ texture = ExtResource("2_0xm2m")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D" unique_id=1995846905]
 shape = SubResource("BoxShape3D_0xm2m")
 
-[node name="BossNode3D" type="Node3D" parent="." unique_id=56610688 node_paths=PackedStringArray("player")]
+[node name="BossNode3D" type="Node3D" parent="." unique_id=56610688 node_paths=PackedStringArray("player", "parry_prompt")]
+process_mode = 3
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -22.728)
 script = ExtResource("3_1bvp3")
 bullet_scene = ExtResource("4_lquwl")
 player = NodePath("../CharacterBody3D")
+parry_prompt = NodePath("TutorialUI/ParryPrompt")
 
 [node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="BossNode3D" unique_id=1166639677]
-transform = Transform3D(1, 0, 0, 0, 0.7193398, 0.6946584, 0, -0.6946584, 0.7193398, 0, 0, 0)
-centered = false
+process_mode = 1
+transform = Transform3D(1, 0, 0, 0, 0.7193398, 0.6946584, 0, -0.6946584, 0.7193398, 1.4163599, 0.23378849, 0)
 pixel_size = 0.03
 billboard = 1
 render_priority = 1
 sprite_frames = SubResource("SpriteFrames_2htkg")
-frame_progress = 0.33529383
+frame_progress = 0.749324
 
 [node name="ShotOrigin" type="Marker3D" parent="BossNode3D" unique_id=1987674758]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.10854626, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5751569, 0.10854626, -0.18424225)
+
+[node name="TutorialUI" type="CanvasLayer" parent="BossNode3D" unique_id=1687570447]
+
+[node name="ParryPrompt" type="Label3D" parent="BossNode3D/TutorialUI" unique_id=490987037]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.324559, 2.0612364, -4.407683)
+pixel_size = 0.01
+billboard = 1
+render_priority = 2
+outline_render_priority = 0
+text = "Press Right Click to Parry!"
+font = SubResource("SystemFont_chb2l")
+font_size = 55
+outline_size = 15
