@@ -1,0 +1,1 @@
+class_name BulletPattern extends Resource

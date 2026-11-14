@@ -11,8 +11,13 @@ config_version=5
 [application]
 
 config/name="2026 Crimson Game Jam"
+run/main_scene="uid://cuq8w133uti0u"
 config/features=PackedStringArray("4.7", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+TextureLibrary="*uid://bfjt03kv37rx8"
 
 [display]
 
