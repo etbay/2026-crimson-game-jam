@@ -20,7 +20,7 @@ animations = [{
 
 [sub_resource type="SystemFont" id="SystemFont_chb2l"]
 
-[node name="Node3D" type="Node3D" unique_id=71333522]
+[node name="Node3D2" type="Node3D" unique_id=71333522]
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=342016900]
 transform = Transform3D(1, 0, 0, 0, 0.09094452, 0.9958559, 0, -0.9958559, 0.09094452, 1.3714342, 11.765142, -10.236075)
