@@ -5,6 +5,8 @@
 [ext_resource type="Script" uid="uid://c5lctqqcx3p2n" path="res://scripts/tutorialboss.gd" id="3_288ch"]
 [ext_resource type="PackedScene" uid="uid://4untts65i8q2" path="res://TutorialBullet.tscn" id="4_u5f0c"]
 [ext_resource type="Texture2D" uid="uid://dglwa448xf8hv" path="res://icon.svg" id="5_0g6v0"]
+[ext_resource type="Script" uid="uid://ch3umy8kkbesx" path="res://scripts/bullets/bullet_emitter.gd" id="6_y0w3d"]
+[ext_resource type="Script" uid="uid://bm6p0a3odsqfk" path="res://scripts/bullets/ring_pattern.gd" id="7_u5f0c"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_2htkg"]
 animations = [{
@@ -22,6 +24,10 @@ subpixel_positioning = 0
 
 [sub_resource type="SystemFont" id="SystemFont_kmlok"]
 
+[sub_resource type="Resource" id="Resource_288ch"]
+script = ExtResource("7_u5f0c")
+metadata/_custom_type_script = "uid://bm6p0a3odsqfk"
+
 [node name="Node3D2" type="Node3D" unique_id=71333522]
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=342016900]
@@ -36,7 +42,6 @@ texture = ExtResource("1_288ch")
 [node name="CharacterBody3D" parent="." unique_id=743092864 instance=ExtResource("2_twv1b")]
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
 axis_lock_linear_y = true
-gravity_scale = 0.0
 
 [node name="BossNode3D" type="Node3D" parent="." unique_id=56610688 node_paths=PackedStringArray("player", "parry_prompt", "wasd_prompt", "entrance_start", "entrance_end")]
 process_mode = 3
@@ -95,4 +100,7 @@ font = SubResource("SystemFont_kmlok")
 font_size = 90
 outline_size = 15
 
-[node name="Bullet Emitter" type="Node3D" parent="BossNode3D" unique_id=329600120]
+[node name="BulletEmitter" type="Node3D" parent="BossNode3D" unique_id=329600120]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.291748, 0, -0.30207062)
+script = ExtResource("6_y0w3d")
+pattern = SubResource("Resource_288ch")
