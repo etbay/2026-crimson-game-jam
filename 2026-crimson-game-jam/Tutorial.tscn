@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://cp4b54l3n7jki"]
+
+[ext_resource type="Texture2D" uid="uid://b6463lhp65gd3" path="res://assets/art/test_arena.jpg" id="1_5s8la"]
+[ext_resource type="Texture2D" uid="uid://dglwa448xf8hv" path="res://icon.svg" id="2_fr6qw"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0xm2m"]
+
+[node name="Node3D" type="Node3D" unique_id=71333522]
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=342016900]
+transform = Transform3D(1, 0, 0, 0, 0.7193398, 0.6946584, 0, -0.6946584, 0.7193398, 0, 3.2365835, 2.5061824)
+fov = 70.0
+
+[node name="Sprite3D" type="Sprite3D" parent="." unique_id=261786251]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
+texture = ExtResource("1_5s8la")
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="." unique_id=733875825]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.44269884, 0)
+
+[node name="Sprite3D2" type="Sprite3D" parent="CharacterBody3D" unique_id=955770921]
+transform = Transform3D(1, 0, 0, 0, 0.7193398, 0.6946584, 0, -0.6946584, 0.7193398, 0, 0, 0)
+render_priority = 1
+texture = ExtResource("2_fr6qw")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D" unique_id=1995846905]
+shape = SubResource("BoxShape3D_0xm2m")
