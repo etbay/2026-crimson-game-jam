@@ -17,6 +17,7 @@ var beast_mode: bool
 var beast_meter: float = 10
 var move_dir: Vector2
 var mouse_dir: Vector2
+var movement_locked: bool = false
 
 func _process(delta: float) -> void:
 	_update_move_dir(delta)
@@ -25,6 +26,9 @@ func _process(delta: float) -> void:
 	player_sprite.update_sprite()
 
 func _update_move_dir(delta: float) -> void:
+	if movement_locked:
+		move_dir = Vector2.ZERO
+		return
 	move_dir = Input.get_vector("left", "right", "up", "down") * delta * active_speed
 	position.z += move_dir.y
 	position.x += move_dir.x
