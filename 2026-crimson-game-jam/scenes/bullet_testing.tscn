@@ -6,6 +6,7 @@
 [ext_resource type="Resource" uid="uid://b3bbq60noqe05" path="res://bullet_resources/ring_test_pattern.tres" id="4_8l1mf"]
 [ext_resource type="Script" uid="uid://dbkj3qoa8l0kv" path="res://scripts/bullets/bullet_pool.gd" id="5_xdrvf"]
 [ext_resource type="Script" uid="uid://cyc51b1dtcaiv" path="res://scenes/fps_counter.gd" id="6_vklvw"]
+[ext_resource type="PackedScene" uid="uid://gvcpohym4184" path="res://scenes/bullet_prefab.tscn" id="7_djxwf"]
 
 [sub_resource type="Environment" id="Environment_djxwf"]
 glow_enabled = true
@@ -56,3 +57,6 @@ offset_bottom = 56.0
 theme_override_font_sizes/font_size = 80
 text = "FPS: 180"
 script = ExtResource("6_vklvw")
+
+[node name="BulletPrefab" parent="." unique_id=2043713101 instance=ExtResource("7_djxwf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.922188, 0, 0)
