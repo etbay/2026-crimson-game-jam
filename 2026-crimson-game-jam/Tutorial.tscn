@@ -19,6 +19,7 @@ animations = [{
 }]
 
 [sub_resource type="SystemFont" id="SystemFont_chb2l"]
+subpixel_positioning = 0
 
 [node name="Node3D2" type="Node3D" unique_id=71333522]
 
