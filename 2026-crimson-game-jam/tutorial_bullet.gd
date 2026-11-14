@@ -8,7 +8,7 @@ signal near_player
 @export var stop_distance: float = 1.5
 
 var direction: Vector3 = Vector3.ZERO
-var player: CharacterBody3D
+var player: Node3D
 var stopped: bool = false
 
 func _physics_process(delta: float) -> void:

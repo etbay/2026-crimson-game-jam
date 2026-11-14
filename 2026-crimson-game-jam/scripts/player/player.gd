@@ -18,6 +18,7 @@ var health: int
 var beast_meter: float = 10
 var move_dir: Vector2
 var mouse_dir: Vector2
+var movement_locked: bool = false
 
 func _physics_process(delta: float) -> void:
 	_update_move_dir(delta)
@@ -26,7 +27,9 @@ func _physics_process(delta: float) -> void:
 	player_sprite.update_sprite()
 
 func _update_move_dir(_delta: float) -> void:
-	if not dashing:
+	if movement_locked:
+		move_dir = Vector2.ZERO
+	elif not dashing:
 		move_dir = Input.get_vector("left", "right", "up", "down")
 	velocity = Vector3(move_dir.x, 0, move_dir.y) * active_speed
 	move_and_slide()
