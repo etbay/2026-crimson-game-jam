@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://bkmfs7ehf0hd8"]
+
+[ext_resource type="Texture2D" uid="uid://bhbi5njw5s6xr" path="res://assets/art/better_bullet.png" id="1_7mfin"]
+
+[node name="BulletSprite" type="Sprite3D" unique_id=930214343]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
+texture = ExtResource("1_7mfin")

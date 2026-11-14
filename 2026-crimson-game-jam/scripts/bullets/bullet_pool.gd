@@ -1,6 +1,7 @@
 class_name BulletPool extends Node3D
 
 static var instance : BulletPool = null
+var bullet_scene : PackedScene =  preload("uid://gvcpohym4184")
 var bullets : Array[Bullet]
 
 func _ready() -> void:
@@ -9,13 +10,13 @@ func _ready() -> void:
 	else:
 		queue_free()
 	for i in range(0, 100):
-		var bullet : Bullet = Bullet.new()
+		var bullet : Bullet = bullet_scene.instantiate()
 		bullets.append(bullet)
 		add_child(bullet)
 
 func get_bullet() -> Bullet:
 	if (bullets.is_empty()):
-		var bullet : Bullet = Bullet.new()
+		var bullet : Bullet = bullet_scene.instantiate()
 		add_child(bullet)
 		bullet.activate()
 		return bullet
