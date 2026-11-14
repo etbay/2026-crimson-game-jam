@@ -66,12 +66,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5751569, 0.10854626, -0.184
 [node name="TutorialUI" type="CanvasLayer" parent="BossNode3D" unique_id=1687570447]
 
 [node name="ParryPrompt" type="Label3D" parent="BossNode3D/TutorialUI" unique_id=490987037]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.324559, 2.0612364, -4.407683)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.869041, 2.0612364, -4.4358964)
 pixel_size = 0.01
 billboard = 1
 render_priority = 2
 outline_render_priority = 0
 text = "Press Right Click to Parry!"
 font = SubResource("SystemFont_chb2l")
-font_size = 55
+font_size = 90
 outline_size = 15
