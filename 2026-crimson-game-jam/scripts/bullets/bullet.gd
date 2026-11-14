@@ -65,8 +65,7 @@ func update_sprite():
 		sprite.texture = TextureLibrary.BULLET_SPRITE
 		sprite.modulate = Color("af01f9ff")
 		mat.emission_energy_multiplier = 1.5
-	sprite.scale = Vector3(size / 60, size / 60, 1)
-	shape.shape.radius = size / 2
+	scale = Vector3(size, 1, size)
 	
 	# glow effect
 	mat.cull_mode = BaseMaterial3D.CULL_DISABLED
