@@ -94,3 +94,5 @@ text = "WASD to move!"
 font = SubResource("SystemFont_kmlok")
 font_size = 90
 outline_size = 15
+
+[node name="Bullet Emitter" type="Node3D" parent="BossNode3D" unique_id=329600120]
