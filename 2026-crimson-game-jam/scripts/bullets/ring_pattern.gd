@@ -10,6 +10,7 @@ class_name RingPattern extends BulletPattern
 var _timer: float = 0.0
 var _rings_fired: int = 0
 var _current_offset: float = 0.0
+var _bullets_spawned: int = 0
 
 func increment_pattern(delta : float) -> void:
 	if not _active or _finished:
@@ -40,6 +41,10 @@ func _fire_burst():
 		b.define_bullet_from_data(bullet_data)
 		b.position = pos
 		b.angle = angle
+		_bullets_spawned += 1
+		if (_bullets_spawned % parryable_frequeuncy == 0):
+			b.parryable = true
+		b.update_sprite()
 
 	_current_offset += angle_step_deg
 
