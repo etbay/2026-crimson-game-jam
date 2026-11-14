@@ -9,7 +9,13 @@
 var _spawn_pos : Vector2 = Vector2.ZERO
 var _active: bool = false
 var _finished: bool = false
+var _volleys_fired: int = 0
+var _timer: float = 0.0
+
 
 @abstract func increment_pattern(delta : float) -> void
 
-@abstract func execute(position : Vector2) -> void
+func execute(position : Vector2) -> void:
+	if (not _active):
+		_active = true
+		_spawn_pos = position

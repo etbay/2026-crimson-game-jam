@@ -3,17 +3,25 @@
 [ext_resource type="Texture2D" uid="uid://b6463lhp65gd3" path="res://assets/art/test_arena.jpg" id="1_xh10j"]
 [ext_resource type="Texture2D" uid="uid://dglwa448xf8hv" path="res://icon.svg" id="2_dx6r6"]
 [ext_resource type="Script" uid="uid://ch3umy8kkbesx" path="res://scripts/bullets/bullet_emitter.gd" id="3_gpyi2"]
-[ext_resource type="Resource" uid="uid://b3bbq60noqe05" path="res://bullet_resources/ring_test_pattern.tres" id="4_8l1mf"]
-[ext_resource type="Resource" uid="uid://bqqly6p0sdtqn" path="res://bullet_resources/one_line.tres" id="4_xdrvf"]
+[ext_resource type="Resource" uid="uid://dcmiwskrigadr" path="res://bullet_resources/line_pat_test.tres" id="4_vklvw"]
 [ext_resource type="Script" uid="uid://dbkj3qoa8l0kv" path="res://scripts/bullets/bullet_pool.gd" id="5_xdrvf"]
 [ext_resource type="Script" uid="uid://cyc51b1dtcaiv" path="res://scenes/fps_counter.gd" id="6_vklvw"]
+
+[sub_resource type="Environment" id="Environment_djxwf"]
+glow_enabled = true
+glow_intensity = 1.2
+glow_bloom = 0.15
+glow_blend_mode = 0
+glow_hdr_threshold = 1.3
+glow_hdr_scale = 0.5
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_0xm2m"]
 
 [node name="Node3D" type="Node3D" unique_id=71333522]
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=342016900]
-transform = Transform3D(1, 0, 0, 0, 0.4606288, 0.8875929, 0, -0.8875929, 0.4606288, 0, 5.189821, 4.3034067)
+transform = Transform3D(1, 0, 0, 0, 0.4606288, 0.8875929, 0, -0.8875929, 0.4606288, 0, 3.9516134, 3.7419043)
+environment = SubResource("Environment_djxwf")
 fov = 70.0
 
 [node name="Sprite3D" type="Sprite3D" parent="." unique_id=261786251]
@@ -34,12 +42,7 @@ shape = SubResource("BoxShape3D_0xm2m")
 
 [node name="Node3D" type="Node3D" parent="." unique_id=555149507]
 script = ExtResource("3_gpyi2")
-pattern = ExtResource("4_xdrvf")
-
-[node name="Node3D2" type="Node3D" parent="." unique_id=1614975314]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9138134, 0, 0)
-script = ExtResource("3_gpyi2")
-pattern = ExtResource("4_8l1mf")
+pattern = ExtResource("4_vklvw")
 
 [node name="BulletPool" type="Node3D" parent="." unique_id=1718390170]
 script = ExtResource("5_xdrvf")

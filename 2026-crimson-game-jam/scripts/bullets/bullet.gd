@@ -63,13 +63,26 @@ func define_bullet_from_data(data : BulletData):
 	_active = true
 
 func update_sprite():
+	var mat : StandardMaterial3D = StandardMaterial3D.new()
 	if (parryable):
-		sprite.texture = TextureLibrary.BULLET_PARRYABLE
-		sprite.modulate = Color(0.084, 0.761, 0.0, 1.0)
+		sprite.texture = TextureLibrary.BULLET_PARRYABLE_2
+		sprite.modulate = Color("dfde10ff")
+		mat.emission_energy_multiplier = 3
 	else:
 		sprite.texture = TextureLibrary.BULLET_SPRITE
+		sprite.modulate = Color("af01f9ff")
+		mat.emission_energy_multiplier = 1.5
 	sprite.scale = Vector3(size / 60, size / 60, 1)
 	shape.shape.radius = size / 2
+	
+	# glow effect
+	mat.cull_mode = BaseMaterial3D.CULL_DISABLED
+	mat.albedo_texture = sprite.texture
+	mat.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
+	mat.emission_enabled = true
+	mat.emission_texture = sprite.texture
+	mat.emission = sprite.modulate
+	sprite.material_override = mat
 
 func _physics_process(delta : float) -> void:
 	if (_active):
