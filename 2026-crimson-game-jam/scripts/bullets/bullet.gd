@@ -66,8 +66,8 @@ func update_sprite():
 	var mat : StandardMaterial3D = StandardMaterial3D.new()
 	if (parryable):
 		sprite.texture = TextureLibrary.BULLET_PARRYABLE_2
-		sprite.modulate = Color("dfde10ff")
-		mat.emission_energy_multiplier = 3
+		sprite.modulate = Color("a99000ff")
+		mat.emission_energy_multiplier = 12
 	else:
 		sprite.texture = TextureLibrary.BULLET_SPRITE
 		sprite.modulate = Color("af01f9ff")
