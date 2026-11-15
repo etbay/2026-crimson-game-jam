@@ -16,6 +16,8 @@ extends Node3D
 @export var wasd_delay: float = 2.0
 @export var wasd_duration: float = 3.0
 
+@onready var bullet_emitter: BulletEmitter = $BulletEmitter
+
 var current_bullet: TutorialBullet
 var waiting_for_parry: bool = false
 
@@ -24,6 +26,10 @@ func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	parry_prompt.hide()
 	wasd_prompt.hide()
+	
+	# Prevent the emitter from shooting during the tutorial
+	bullet_emitter.process_mode = Node.PROCESS_MODE_PAUSABLE
+	bullet_emitter.set_process(false)
 	
 	# Lock player movement immediately
 	player.movement_locked = true
@@ -140,6 +146,8 @@ func parry_successful() -> void:
 	# Resume the game
 	get_tree().paused = false
 	player.movement_locked = false
+	print("ScreenShake triggered!")
+	ScreenShake.shake(.2, 0.3)
 	show_wasd_tutorial()
 	print("Successful Parry!")
 
@@ -149,6 +157,7 @@ func show_wasd_tutorial() -> void:
 
 	# Show the movement instructions
 	wasd_prompt.show()
+	bullet_emitter.set_process(true)
 
 	# Keep them visible for a few seconds
 	await get_tree().create_timer(wasd_duration).timeout
