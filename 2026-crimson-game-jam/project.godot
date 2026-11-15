@@ -19,6 +19,8 @@ config/icon="res://icon.svg"
 
 TextureLibrary="*uid://bfjt03kv37rx8"
 ScreenShake="*uid://br3tqete3uei6"
+MusicMan="*uid://dfts7fda4yr6o"
+AudioDict="*uid://cbdd1gjtfpftd"
 
 [display]
 
