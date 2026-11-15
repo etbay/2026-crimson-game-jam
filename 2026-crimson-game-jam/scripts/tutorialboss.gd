@@ -15,7 +15,7 @@ var entrance_start: Vector3
 @export var wasd_delay: float = 2.0
 @export var wasd_duration: float = 3.0
 
-@onready var bullet_emitter: Boss = $Boss
+@onready var bullet_emitter: Boss = $AnimatedSprite3D/Boss
 @onready var tutorial_trigger: Area3D = $"../TutorialTrigger"
 
 var current_bullet: TutorialBullet
@@ -42,28 +42,48 @@ func _on_tutorial_trigger(_area: Area3D) -> void:
 		start_tutorial()
 
 func start_tutorial() -> void:
-# Move player to the entrance starting position
-	entrance_start = player.global_position
-	
-	# Move the player into the arena
-	var tween = create_tween()
-	tween.tween_property(
-		player,
-		"global_position",
-		entrance_end.global_position,
-		entrance_duration
-	).set_trans(Tween.TRANS_LINEAR)
+	player.tutorial_movement = true
+	# Walk the player in using real physics frames
+	while true:
+		var to_target : Vector3 = entrance_end.global_position - player.global_position
+		to_target.y = 0.0
+		
+		player.input_override_dir = to_target.normalized()
+		# Stop when close, or if we'd overshoot this frame
+		var step: float = player.walk_speed * get_physics_process_delta_time()
+		if to_target.length() <= max(step, 0.05):
+			break
+		await get_tree().physics_frame
 
-	# Wait for entrance to finish
-	await tween.finished
+	# Stop and hand control back
+	player.input_override_dir = Vector3.ZERO
+	await get_tree().physics_frame
+	player.tutorial_movement = false
 
-# Check whether the player moves after the Tween
-	await get_tree().create_timer(1.0).timeout
-	#print("Player position 1 second later: ", player.global_position)
-
-	# Wait before the boss shoots
 	await get_tree().create_timer(shoot_delay).timeout
 	shoot()
+# Move player to the entrance starting position
+	#entrance_start = player.global_position
+	#
+	## Move the player into the arena
+	#var tween = create_tween()
+	#tween.tween_property(
+		#player,
+		#"global_position",
+		#entrance_end.global_position,
+		#entrance_duration
+	#).set_trans(Tween.TRANS_LINEAR)
+#
+	## Wait for entrance to finish
+	#await tween.finished
+#
+## Check whether the player moves after the Tween
+	#await get_tree().create_timer(1.0).timeout
+	##print("Player position 1 second later: ", player.global_position)
+#
+	## Wait before the boss shoots
+	#await get_tree().create_timer(shoot_delay).timeout
+	#shoot()
 
 func shoot() -> void:
 	#if player == null:
@@ -118,7 +138,6 @@ func parry_successful() -> void:
 	get_tree().paused = false
 	player.movement_locked = false
 	#print("ScreenShake triggered!")
-	ScreenShake.shake(.2, 0.3)
 	show_wasd_tutorial()
 	#print("Successful Parry!")
 

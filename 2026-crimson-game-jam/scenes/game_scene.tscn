@@ -30,17 +30,17 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="SystemFont" id="SystemFont_s76x2"]
-subpixel_positioning = 0
-
-[sub_resource type="SystemFont" id="SystemFont_77hjl"]
-subpixel_positioning = 0
-
 [sub_resource type="Resource" id="Resource_rvs2r"]
 script = ExtResource("5_tcjrq")
 patterns = Array[ExtResource("13_5ay1a")]([ExtResource("12_liy57")])
 pattern_positions = Array[Vector2]([Vector2(0, 0)])
 metadata/_custom_type_script = "uid://dyoedp32mh0ce"
+
+[sub_resource type="SystemFont" id="SystemFont_s76x2"]
+subpixel_positioning = 0
+
+[sub_resource type="SystemFont" id="SystemFont_77hjl"]
+subpixel_positioning = 0
 
 [node name="GameScene" type="Node3D" unique_id=962368027]
 
@@ -75,7 +75,7 @@ script = SubResource("GDScript_tqxxy")
 
 [node name="TutorialBossNode3D" type="Node3D" parent="." unique_id=274485581 node_paths=PackedStringArray("player", "parry_prompt", "wasd_prompt", "entrance_end")]
 process_mode = 3
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -34.012)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -6.973691)
 script = ExtResource("8_rvs2r")
 bullet_scene = ExtResource("9_tqxxy")
 player = NodePath("../CharacterBody3D")
@@ -88,18 +88,25 @@ wasd_duration = 3.5
 
 [node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="TutorialBossNode3D" unique_id=328339890]
 process_mode = 1
-transform = Transform3D(0.08, 0, 0, 0, 0.0771412, 0.021195156, 0, -0.021195156, 0.0771412, 0, 0.474, 26.583)
+transform = Transform3D(0.08, 0, 0, 0, 0.0771412, 0.021195156, 0, -0.021195156, 0.0771412, 0, 0.474, 0)
 render_priority = 1
 sprite_frames = SubResource("SpriteFrames_mwyo0")
 
+[node name="Boss" type="Node3D" parent="TutorialBossNode3D/AnimatedSprite3D" unique_id=294833269]
+transform = Transform3D(12.5, 0, 0, 0, 12.053312, -3.311743, 0, 3.311743, 12.053312, 0, 0, 0)
+script = ExtResource("4_mw25s")
+attacks = Array[ExtResource("5_tcjrq")]([SubResource("Resource_rvs2r")])
+_attack_delay = 3.0
+metadata/_custom_type_script = "uid://c1xw7eo4un7k8"
+
 [node name="ShotOrigin" type="Marker3D" parent="TutorialBossNode3D" unique_id=519351495]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.10494816, 0.10854626, 27.199917)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.10494816, 0.10854626, -0.1643629)
 
 [node name="EntranceEnd" type="Marker3D" parent="TutorialBossNode3D" unique_id=1120125022]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.123, 0, 31.555538)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4.191)
 
 [node name="ParryPrompt" type="Label3D" parent="TutorialBossNode3D" unique_id=2095669175]
-transform = Transform3D(1.31, 0, 0, 0, 1.31, 0, 0, 0, 1.31, 1.9741156, 0.674685, 29.446392)
+transform = Transform3D(1.31, 0, 0, 0, 1.31, 0, 0, 0, 1.31, 1.9741156, 0.674685, 2.6690712)
 pixel_size = 0.01
 billboard = 1
 render_priority = 2
@@ -110,7 +117,7 @@ font_size = 13
 outline_size = 15
 
 [node name="WASDPrompt" type="Label3D" parent="TutorialBossNode3D" unique_id=665860429]
-transform = Transform3D(1.47, 0, 0, 0, 1.47, 0, 0, 0, 1.47, 1.8549118, 0.674685, 28.647152)
+transform = Transform3D(1.47, 0, 0, 0, 1.47, 0, 0, 0, 1.47, 1.8549118, 0.674685, 1.8698311)
 pixel_size = 0.01
 billboard = 1
 render_priority = 1
@@ -119,10 +126,3 @@ text = "WASD to move!"
 font = SubResource("SystemFont_77hjl")
 font_size = 13
 outline_size = 15
-
-[node name="Boss" type="Node3D" parent="TutorialBossNode3D" unique_id=294833269]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 26.46262)
-script = ExtResource("4_mw25s")
-attacks = Array[ExtResource("5_tcjrq")]([SubResource("Resource_rvs2r")])
-_attack_delay = 3.0
-metadata/_custom_type_script = "uid://c1xw7eo4un7k8"
