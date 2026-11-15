@@ -14,6 +14,6 @@ gap_size = 10
 random_gap = true
 bullet_data = ExtResource("1_lte0e")
 fire_interval = 1.0
-volley_count = 20
+volley_count = 5
 parryable_frequeuncy = 5
 metadata/_custom_type_script = "uid://4q5s3c1ocpbh"

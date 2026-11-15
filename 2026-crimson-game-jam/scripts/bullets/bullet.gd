@@ -1,7 +1,7 @@
 class_name Bullet extends Area3D
 # Class references
-var shape : CollisionShape3D
-var sprite : Sprite3D
+@onready var shape : CollisionShape3D = $CollisionShape3D
+@onready var sprite : Sprite3D = $BulletSprite
 var size : float
 
 # Parameters for actions
@@ -23,15 +23,8 @@ var _active : bool = false
 func _ready() -> void:
 	collision_layer = 0
 	set_collision_layer_value(2, true)
-	sprite = Sprite3D.new()
 	sprite.texture = TextureLibrary.BULLET_SPRITE
-	add_child(sprite)
 	area_entered.connect(_on_area_entered)
-	sprite.rotation = Vector3(90, 0, 0)
-	
-	shape = CollisionShape3D.new()
-	shape.shape = CylinderShape3D.new()
-	add_child(shape)
 	update_sprite()
 	self.visible = false
 	_active = false
@@ -66,15 +59,13 @@ func update_sprite():
 	var mat : StandardMaterial3D = StandardMaterial3D.new()
 	if (parryable):
 		sprite.texture = TextureLibrary.BULLET_PARRYABLE_2
-		sprite.modulate = Color("dfde10ff")
-		mat.emission_energy_multiplier = 3
+		sprite.modulate = Color("a99000ff")
+		mat.emission_energy_multiplier = 12
 	else:
 		sprite.texture = TextureLibrary.BULLET_SPRITE
 		sprite.modulate = Color("af01f9ff")
 		mat.emission_energy_multiplier = 1.5
-	sprite.scale = Vector3(size / 60, size / 60, 1)
-	shape.shape.radius = size / 2
-	sprite.render_priority = 1
+	scale = Vector3(size, 1, size)
 	
 	# glow effect
 	mat.cull_mode = BaseMaterial3D.CULL_DISABLED
