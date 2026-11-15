@@ -1,13 +1,13 @@
 [gd_scene format=3 uid="uid://cp4b54l3n7jki"]
 
-[ext_resource type="Environment" uid="uid://bxt2rowih751w" path="res://bullet_resources/bullet_data/camera_env.tres" id="1_0g6v0"]
+[ext_resource type="Environment" uid="uid://bxt2rowih751w" path="res://scenes/camera_env.tres" id="1_0g6v0"]
 [ext_resource type="Texture2D" uid="uid://b6463lhp65gd3" path="res://assets/art/test_arena.jpg" id="1_288ch"]
 [ext_resource type="PackedScene" uid="uid://27eut258tv7t" path="res://scenes/player.tscn" id="2_twv1b"]
 [ext_resource type="Script" uid="uid://c5lctqqcx3p2n" path="res://scripts/tutorialboss.gd" id="3_288ch"]
 [ext_resource type="PackedScene" uid="uid://4untts65i8q2" path="res://TutorialBullet.tscn" id="4_u5f0c"]
 [ext_resource type="Texture2D" uid="uid://cva02g8cm4i2r" path="res://assets/art/Guardian_Sprite.png" id="5_u5f0c"]
 [ext_resource type="Script" uid="uid://ch3umy8kkbesx" path="res://scripts/bullets/bullet_emitter.gd" id="6_y0w3d"]
-[ext_resource type="Resource" uid="uid://b3bbq60noqe05" path="res://bullet_resources/ring_test_pattern.tres" id="7_y0w3d"]
+[ext_resource type="Resource" uid="uid://b3bbq60noqe05" path="res://bullet_resources/bullet_patterns/ring_test_pattern.tres" id="7_y0w3d"]
 [ext_resource type="Script" uid="uid://dbkj3qoa8l0kv" path="res://scripts/bullets/bullet_pool.gd" id="8_u5f0c"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_2htkg"]

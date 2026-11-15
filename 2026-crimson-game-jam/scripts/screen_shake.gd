@@ -18,7 +18,7 @@ func _ready() -> void:
 
 func shake(strength: float = 0.3, length: float = 0.25) -> void:
 	var active_camera = get_viewport().get_camera_3d()
-	print("Camera found: ", active_camera)
+	#print("Camera found: ", active_camera)
 
 	if active_camera == null:
 		push_warning("ScreenShake: No active Camera3D found!")
@@ -61,7 +61,7 @@ func _process(delta: float) -> void:
 	camera.v_offset = original_v_offset + randf_range(
 		-current_strength, current_strength
 	)
-	print("Camera shake offset: ", camera.h_offset, ", ", camera.v_offset)
+	#print("Camera shake offset: ", camera.h_offset, ", ", camera.v_offset)
 	# Return camera to its original position
 	if time_left <= 0.0:
 		reset_camera()

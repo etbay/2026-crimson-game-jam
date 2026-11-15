@@ -3,17 +3,17 @@ class_name Boss extends Node3D
 @export var attacks: Array[BulletAttack]
 
 var _attacking: bool = false
-var _attack_delay: float = 6
+@export var _attack_delay: float = 6
 var _current_attack: BulletAttack = null
 var _prev_attack: BulletAttack = null
-var _timer: float = 100;
+var _timer: float = 1000;
 var executer: BulletAttackExecution = null
 
 func _process(delta: float) -> void:
 	if(!_attacking):
 		_timer += delta
 	elif (_current_attack != null):
-		executer.increment_patterns(delta, Vector2(position.x, position.z))
+		executer.increment_patterns(delta, Vector2(global_position.x, global_position.z))
 		if (executer.finished):
 			executer.reset()
 			_attacking = false
@@ -28,4 +28,4 @@ func _process(delta: float) -> void:
 		_attacking = true
 		_current_attack = attacks.pop_front()
 		executer = BulletAttackExecution.new(_current_attack)
-		executer.execute_patterns(Vector2(position.x, position.z))
+		executer.execute_patterns(Vector2(global_position.x, global_position.z))

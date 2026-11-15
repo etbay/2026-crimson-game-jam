@@ -45,6 +45,8 @@ var move_dir: Vector2
 var mouse_dir: Vector2
 var laser_damage: float
 var movement_locked: bool = false
+var tutorial_movement: bool = false
+var input_override_dir : Vector3 = Vector3.ZERO
 
 var shoot_timer: Timer
 
@@ -113,8 +115,15 @@ func _on_aim_direction_changed(direction: String) -> void:
 			bullet_spawn.position.y = BULLET_SPAWN_100.y
 
 func _update_move_dir(_delta: float) -> void:
-	if movement_locked:
+	if tutorial_movement:
+		move_dir = Vector2(input_override_dir.x, input_override_dir.z)
+		velocity = input_override_dir * walk_speed
+		move_and_slide()
+		return
+	elif movement_locked:
 		move_dir = Vector2.ZERO
+		move_and_slide()
+		return
 	elif not dashing:
 		move_dir = Input.get_vector("left", "right", "up", "down")
 	velocity = Vector3(move_dir.x, 0, move_dir.y) * active_speed
@@ -126,6 +135,8 @@ func _update_mouse_dir() -> void:
 	mouse_dir = player_pos.direction_to(mouse_pos)
 
 func _process_input() -> void:
+	if (movement_locked):
+		return
 	if Input.is_action_just_pressed("shoot") and not beast_mode and not parrying and shoot_timer.is_stopped():
 		# Shoot stuff
 		var bullet: Bullet = BulletPool.instance.get_bullet()
@@ -167,6 +178,18 @@ func _execute_dash() -> void:
 		active_speed = walk_speed
 	dashing = false
 
+func tutorial_parry(b: TutorialBullet) -> void:
+	parry_curve.visible = true
+	Engine.time_scale = 0
+	# Set parry curve sprite to direction
+	var dir = Vector2(global_position.x, -global_position.z).direction_to(Vector2(b.global_position.x, -b.global_position.z))
+	parry_curve.rotation.z = dir.angle()
+	await get_tree().create_timer(0.1, true, false, true).timeout
+	ScreenShake.shake(.15, 0.3)
+	beast_meter += 10
+	Engine.time_scale = 1
+	parry_curve.visible = false
+
 func _execute_parry() -> void:
 	# Enter parry state
 	parrying = true
@@ -191,6 +214,7 @@ func _parry_bullet(bullet: Bullet) -> void:
 	parry_curve.rotation.z = dir.angle()
 	await get_tree().create_timer(0.1, true, false, true).timeout
 	bullet.kill_bullet()
+	ScreenShake.shake(.15, 0.3)
 	beast_meter += 10
 	Engine.time_scale = 1
 	parry_curve.visible = false

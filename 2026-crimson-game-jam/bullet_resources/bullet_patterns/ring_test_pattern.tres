@@ -10,5 +10,6 @@ angle_step_deg = 15.0
 bullet_data = ExtResource("1_mvnbu")
 fire_interval = 2.0
 volley_count = 20
-parryable_frequeuncy = 8
+parryable_frequeuncy = 10
+deterministic = false
 metadata/_custom_type_script = "uid://bm6p0a3odsqfk"
