@@ -22,6 +22,7 @@ var current_bullet: TutorialBullet
 var waiting_for_parry: bool = false
 var tutorial_started := false
 
+@onready var enemy: Enemy = $Enemy
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
@@ -33,6 +34,7 @@ func _ready() -> void:
 	bullet_emitter.set_process(false)
 	
 	# connect signal
+	enemy.dead.connect(_on_boss_dead)
 	tutorial_trigger.area_entered.connect(_on_tutorial_trigger)
 
 func _on_tutorial_trigger(_area: Area3D) -> void:
@@ -153,3 +155,8 @@ func show_wasd_tutorial() -> void:
 	await get_tree().create_timer(wasd_duration).timeout
 	# Hide the instructions
 	wasd_prompt.hide()
+
+func _on_boss_dead():
+	# spawn cthulhu
+	ScreenShake.shake(.5, 1)
+	queue_free()

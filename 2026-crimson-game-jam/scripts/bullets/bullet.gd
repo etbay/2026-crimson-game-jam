@@ -67,11 +67,14 @@ func update_sprite():
 	if (parryable):
 		sprite.texture = TextureLibrary.BULLET_PARRYABLE_2
 		sprite.modulate = Color("a99000ff")
-		mat.emission_energy_multiplier = 12
+		mat.emission_energy_multiplier = 10
 	else:
 		sprite.texture = TextureLibrary.BULLET_SPRITE
 		sprite.modulate = Color("af01f9ff")
-		mat.emission_energy_multiplier = 1.5
+		mat.emission_energy_multiplier = 1.2
+	if (bullet_owner == "Player"):
+		sprite.modulate = Color("00b5aaff")
+		mat.emission_energy_multiplier = 1.2
 	scale = Vector3(size, 1, size)
 
 	# glow effect

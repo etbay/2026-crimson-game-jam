@@ -1,5 +1,7 @@
 class_name Enemy extends Area3D
 
+signal dead
+
 @export var max_health: int = 1000
 @onready var hud: HUD = $"../../HUD"
 
@@ -8,8 +10,10 @@ var vulnerable: bool = true
 
 func damage() -> void:
 	if vulnerable:
-		health -= 100
+		health -= 1
 		hud.update_boss_health(health)
+		if (health <= 0):
+			dead.emit()
 
 func _ready() -> void:
 	health = max_health

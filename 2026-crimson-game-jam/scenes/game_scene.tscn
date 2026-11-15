@@ -13,6 +13,8 @@
 [ext_resource type="Texture2D" uid="uid://cva02g8cm4i2r" path="res://assets/art/Guardian_Sprite.png" id="10_5ay1a"]
 [ext_resource type="Resource" uid="uid://b3bbq60noqe05" path="res://bullet_resources/bullet_patterns/ring_test_pattern.tres" id="12_liy57"]
 [ext_resource type="Script" uid="uid://dayx2jy8tp802" path="res://scripts/bullets/bullet_pattern.gd" id="13_5ay1a"]
+[ext_resource type="Script" uid="uid://wk62nldfqpek" path="res://scenes/enemy.gd" id="14_5ay1a"]
+[ext_resource type="Script" uid="uid://c1jhef8xoh3j" path="res://scenes/cthulhu.gd" id="15_ldkr4"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_qi5dk"]
 size = Vector3(100, 20, 1)
@@ -42,6 +44,11 @@ subpixel_positioning = 0
 [sub_resource type="SystemFont" id="SystemFont_77hjl"]
 subpixel_positioning = 0
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_nkavf"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ldkr4"]
+size = Vector3(40, 10, 1)
+
 [node name="GameScene" type="Node3D" unique_id=962368027]
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1730521585]
@@ -52,7 +59,7 @@ script = ExtResource("2_mw25s")
 target_cam_position = Vector3(0, 7.479, -2.661)
 
 [node name="Sprite3D" type="Sprite3D" parent="." unique_id=393587440]
-transform = Transform3D(0.265, 0, 0, 0, -1.1583517e-08, -0.265, 0, 0.265, -1.1583517e-08, -0.31, 0, -0.073)
+transform = Transform3D(0.265, 0, 0, 0, -1.1583517e-08, -0.265, 0, 0.265, -1.1583517e-08, -0.44273525, 0, -0.073)
 pixel_size = 0.1
 render_priority = -100
 texture = ExtResource("1_kk2rg")
@@ -75,7 +82,7 @@ script = SubResource("GDScript_tqxxy")
 
 [node name="TutorialBossNode3D" type="Node3D" parent="." unique_id=274485581 node_paths=PackedStringArray("player", "parry_prompt", "wasd_prompt", "entrance_end")]
 process_mode = 3
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -6.973691)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -7.743883)
 script = ExtResource("8_rvs2r")
 bullet_scene = ExtResource("9_tqxxy")
 player = NodePath("../CharacterBody3D")
@@ -89,6 +96,7 @@ wasd_duration = 3.5
 [node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="TutorialBossNode3D" unique_id=328339890]
 process_mode = 1
 transform = Transform3D(0.08, 0, 0, 0, 0.0771412, 0.021195156, 0, -0.021195156, 0.0771412, 0, 0.474, 0)
+pixel_size = 0.025
 render_priority = 1
 sprite_frames = SubResource("SpriteFrames_mwyo0")
 
@@ -126,3 +134,23 @@ text = "WASD to move!"
 font = SubResource("SystemFont_77hjl")
 font_size = 13
 outline_size = 15
+
+[node name="Enemy" type="Area3D" parent="TutorialBossNode3D" unique_id=1137512781]
+script = ExtResource("14_5ay1a")
+max_health = 5
+metadata/_custom_type_script = "uid://wk62nldfqpek"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TutorialBossNode3D/Enemy" unique_id=441900840]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.41965604, -0.19181919)
+shape = SubResource("BoxShape3D_nkavf")
+
+[node name="Cthulhu" type="Node3D" parent="." unique_id=1164301019]
+script = ExtResource("15_ldkr4")
+
+[node name="Enemy" type="Area3D" parent="Cthulhu" unique_id=487097462]
+script = ExtResource("14_5ay1a")
+metadata/_custom_type_script = "uid://wk62nldfqpek"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Cthulhu/Enemy" unique_id=1281106283]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -17.400454)
+shape = SubResource("BoxShape3D_ldkr4")
