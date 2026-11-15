@@ -1,0 +1,68 @@
+[gd_resource type="Resource" script_class="BulletAttack" format=3 uid="uid://bxbsuw8kwbt02"]
+
+[ext_resource type="Script" uid="uid://dayx2jy8tp802" path="res://scripts/bullets/bullet_pattern.gd" id="1_lsv0m"]
+[ext_resource type="Script" uid="uid://dyoedp32mh0ce" path="res://scripts/bullets/bullet_attack.gd" id="2_7dq5v"]
+[ext_resource type="Resource" uid="uid://ci60dixq17lwl" path="res://bullet_resources/bullet_data/straight_line.tres" id="2_35omw"]
+[ext_resource type="Script" uid="uid://4q5s3c1ocpbh" path="res://scripts/bullets/line_pattern.gd" id="2_qeyhv"]
+
+[sub_resource type="Resource" id="Resource_yioco"]
+script = ExtResource("2_qeyhv")
+bullet_count = 18
+spacing = 0.3
+travel_angle_deg = 180.0
+spawn_distance = -5.0
+end_speed_multiplier = 0.0
+bullet_data = ExtResource("2_35omw")
+fire_interval = 1.5
+volley_count = 5
+parryable_frequeuncy = 20
+deterministic = false
+metadata/_custom_type_script = "uid://4q5s3c1ocpbh"
+
+[sub_resource type="Resource" id="Resource_qeyhv"]
+script = ExtResource("2_qeyhv")
+bullet_count = 18
+spacing = 0.3
+travel_angle_deg = 0.0
+spawn_distance = -5.0
+end_speed_multiplier = 0.0
+bullet_data = ExtResource("2_35omw")
+fire_interval = 1.5
+volley_count = 5
+parryable_frequeuncy = 20
+deterministic = false
+metadata/_custom_type_script = "uid://4q5s3c1ocpbh"
+
+[sub_resource type="Resource" id="Resource_35omw"]
+script = ExtResource("2_qeyhv")
+bullet_count = 18
+spacing = 0.3
+travel_angle_deg = 0.0
+spawn_distance = -5.0
+end_speed_multiplier = 0.0
+delay_time = 9.0
+bullet_data = ExtResource("2_35omw")
+fire_interval = 1.5
+volley_count = 4
+parryable_frequeuncy = 8
+metadata/_custom_type_script = "uid://4q5s3c1ocpbh"
+
+[sub_resource type="Resource" id="Resource_vq1u8"]
+script = ExtResource("2_qeyhv")
+bullet_count = 18
+spacing = 0.3
+travel_angle_deg = 180.0
+spawn_distance = -5.0
+end_speed_multiplier = 0.0
+delay_time = 9.0
+bullet_data = ExtResource("2_35omw")
+fire_interval = 1.5
+volley_count = 4
+parryable_frequeuncy = 8
+metadata/_custom_type_script = "uid://4q5s3c1ocpbh"
+
+[resource]
+script = ExtResource("2_7dq5v")
+patterns = Array[ExtResource("1_lsv0m")]([SubResource("Resource_yioco"), SubResource("Resource_qeyhv"), SubResource("Resource_35omw"), SubResource("Resource_vq1u8")])
+pattern_positions = Array[Vector2]([Vector2(4, -2.2), Vector2(-4, 2.2), Vector2(-4, -2.2), Vector2(4, 2.2)])
+metadata/_custom_type_script = "uid://dyoedp32mh0ce"

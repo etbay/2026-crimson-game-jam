@@ -1,0 +1,58 @@
+[gd_resource type="Resource" script_class="BulletAttack" format=3 uid="uid://dj3o8vn4hto8f"]
+
+[ext_resource type="Script" uid="uid://dayx2jy8tp802" path="res://scripts/bullets/bullet_pattern.gd" id="1_awrpq"]
+[ext_resource type="Script" uid="uid://c8s5d80ydvhv6" path="res://scripts/bullets/bullet_data.gd" id="2_txnwg"]
+[ext_resource type="Script" uid="uid://dyoedp32mh0ce" path="res://scripts/bullets/bullet_attack.gd" id="2_xvlvq"]
+[ext_resource type="Script" uid="uid://bm6p0a3odsqfk" path="res://scripts/bullets/ring_pattern.gd" id="3_1f4ad"]
+
+[sub_resource type="Resource" id="Resource_yioco"]
+script = ExtResource("2_txnwg")
+bullet_speed = 3.0
+bullet_size = 0.1
+bullet_lifetime = 8.0
+metadata/_custom_type_script = "uid://c8s5d80ydvhv6"
+
+[sub_resource type="Resource" id="Resource_lpvio"]
+script = ExtResource("3_1f4ad")
+bullet_count = 8
+start_angle_deg = 270.0
+arc_deg = 45.0
+angle_step_deg = 6.0
+max_inward_deg = 360.0
+bullet_data = SubResource("Resource_yioco")
+fire_interval = 0.07
+volley_count = 50
+parryable_frequeuncy = 20
+metadata/_custom_type_script = "uid://bm6p0a3odsqfk"
+
+[sub_resource type="Resource" id="Resource_txnwg"]
+script = ExtResource("3_1f4ad")
+bullet_count = 8
+start_angle_deg = 30.0
+arc_deg = 45.0
+angle_step_deg = 6.0
+max_inward_deg = 360.0
+bullet_data = SubResource("Resource_yioco")
+fire_interval = 0.07
+volley_count = 50
+parryable_frequeuncy = 20
+metadata/_custom_type_script = "uid://bm6p0a3odsqfk"
+
+[sub_resource type="Resource" id="Resource_1f4ad"]
+script = ExtResource("3_1f4ad")
+bullet_count = 9
+start_angle_deg = 150.0
+arc_deg = 45.0
+angle_step_deg = 6.0
+max_inward_deg = 360.0
+bullet_data = SubResource("Resource_yioco")
+fire_interval = 0.08
+volley_count = 50
+parryable_frequeuncy = 8
+metadata/_custom_type_script = "uid://bm6p0a3odsqfk"
+
+[resource]
+script = ExtResource("2_xvlvq")
+patterns = Array[ExtResource("1_awrpq")]([SubResource("Resource_lpvio"), SubResource("Resource_txnwg"), SubResource("Resource_1f4ad")])
+pattern_positions = Array[Vector2]([Vector2(0, 0), Vector2(0, 0), Vector2(0, 0)])
+metadata/_custom_type_script = "uid://dyoedp32mh0ce"
