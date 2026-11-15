@@ -53,6 +53,10 @@ func _process_input() -> void:
 	
 	if Input.is_action_just_pressed("parry") and not beast_mode:
 		# TODO: Parry stuff
+		
+		# Enter parry state
+		
+		
 		pass
 	
 	if Input.is_action_just_pressed("beast_mode") and beast_meter > 1:

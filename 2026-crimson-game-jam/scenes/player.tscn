@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://b7uwj5q7kevve" path="res://assets/animations/legs/Walk_002.png" id="5_l71n6"]
 [ext_resource type="Texture2D" uid="uid://co8hrl1g3mlcl" path="res://assets/animations/arms/gun45.png" id="6_31cv2"]
 [ext_resource type="Texture2D" uid="uid://b2dcy430vy0mo" path="res://assets/animations/legs/Walk_003.png" id="6_ke2ow"]
+[ext_resource type="Texture2D" uid="uid://c5nafbj80fsn0" path="res://assets/animations/arms/gun90.png" id="7_pf23h"]
 [ext_resource type="Texture2D" uid="uid://bsmu24exe8am5" path="res://assets/animations/legs/Walk_004.png" id="7_ujl30"]
 [ext_resource type="Texture2D" uid="uid://c4je3miw45laf" path="res://assets/animations/legs/Walk_005.png" id="8_31cv2"]
 [ext_resource type="Texture2D" uid="uid://dv7gdqr1c0fr2" path="res://assets/animations/legs/Walk_006.png" id="9_pf23h"]
@@ -62,6 +63,14 @@ animations = [{
 }],
 "loop": 1,
 "name": &"gun45",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_pf23h")
+}],
+"loop": 1,
+"name": &"gun90",
 "speed": 5.0
 }]
 
@@ -172,7 +181,7 @@ transform = Transform3D(0.04, 0, 0, 0, 0.04, -1.6556848e-09, 0, 1.6556848e-09, 0
 billboard = 1
 render_priority = 4
 sprite_frames = SubResource("SpriteFrames_qhqgy")
-animation = &"gun45"
+animation = &"gun90"
 
 [node name="LegsSprite" type="AnimatedSprite3D" parent="PlayerSprite" unique_id=1964835705]
 transform = Transform3D(0.04, 0, 0, 0, 0.039999995, 0, 0, 0, 0.039999995, 0, 0, 0)

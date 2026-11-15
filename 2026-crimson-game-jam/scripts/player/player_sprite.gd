@@ -38,6 +38,10 @@ func _update_arms() -> void:
 			direction_frame = "gun-45"
 		elif angle >= 150 and angle <= 180:
 			direction_frame = "gun0"
+		elif angle >= -200 and angle <= -120:
+			direction_frame = "gun45"
+		else:
+			direction_frame = "gun90"
 	else:
 		if angle >= -15 and angle <= 15:
 			direction_frame = "gun0"
@@ -45,8 +49,10 @@ func _update_arms() -> void:
 			direction_frame = "gun-45"
 		elif angle >= 70 and angle <= 90:
 			direction_frame = "gun-90"
-		elif angle <= -15 and angle >= -90:
+		elif angle <= -15 and angle >= -70:
 			direction_frame = "gun45"
+		else:
+			direction_frame = "gun90"
 	
 	# Flip the sprite if looking left, unflip if right
 	arm_sprite.flip_h = player.mouse_dir.x < 0 
