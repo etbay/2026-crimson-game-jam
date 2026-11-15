@@ -16,6 +16,7 @@ const BULLET_SPAWN_315 := Vector2(0.15,-0.22)
 @export var walk_speed: float = 3
 @export var beast_speed: float = 6
 @export var dash_length: float = 18
+@export var shoot_cooldown: float = 0.5
 
 @onready var player_sprite: PlayerSprite = $PlayerSprite
 @onready var bullet_spawn: Node3D = $BulletSpawn
@@ -38,6 +39,8 @@ var move_dir: Vector2
 var mouse_dir: Vector2
 var movement_locked: bool = false
 
+var shoot_timer: Timer
+
 func damage() -> void:
 	if vulnerable:
 		# Delete nearby bullets
@@ -49,6 +52,9 @@ func damage() -> void:
 func _ready() -> void:
 	parry_radius.area_entered.connect(_on_parry_area_entered)
 	player_sprite.aim_direction_changed.connect(_on_aim_direction_changed)
+	shoot_timer = Timer.new()
+	shoot_timer.one_shot = true
+	add_child(shoot_timer)
 
 func _physics_process(delta: float) -> void:
 	_update_move_dir(delta)
@@ -101,7 +107,7 @@ func _update_mouse_dir() -> void:
 	mouse_dir = player_pos.direction_to(mouse_pos)
 
 func _process_input() -> void:
-	if Input.is_action_just_pressed("shoot") and not beast_mode and not parrying:
+	if Input.is_action_just_pressed("shoot") and not beast_mode and not parrying and shoot_timer.is_stopped():
 		# Shoot stuff
 		var bullet: Bullet = BulletPool.instance.get_bullet()
 		bullet.define_bullet_from_data(PLAYER_BULLET)
@@ -110,6 +116,7 @@ func _process_input() -> void:
 		bullet.position = Vector3(bullet_spawn.global_position.x, 0, bullet_spawn.global_position.z)
 		bullet.update_sprite()
 		bullet.bullet_owner = self
+		shoot_timer.start(shoot_cooldown)
 	
 	if Input.is_action_just_pressed("parry") and not beast_mode and not parrying:
 		_execute_parry()
