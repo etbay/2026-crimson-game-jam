@@ -4,28 +4,11 @@
 [ext_resource type="PackedScene" uid="uid://27eut258tv7t" path="res://scenes/player.tscn" id="2_0xm2m"]
 [ext_resource type="Script" uid="uid://dbkj3qoa8l0kv" path="res://scripts/bullets/bullet_pool.gd" id="3_h2yge"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_0xm2m"]
-size = Vector3(1, 47.00003, 8.599243)
-
 [node name="Node3D" type="Node3D" unique_id=71333522]
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=342016900]
-transform = Transform3D(1, 0, 0, 0, 0.7782917, 0.62790287, 0, -0.62790287, 0.7782917, 0, 5.66748, 7.666792)
+transform = Transform3D(1, 0, 0, 0, 0.6229123, 0.7822917, 0, -0.7822917, 0.6229123, 0, 12.097124, 3.067864)
 fov = 70.0
-
-[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=601612357]
-transform = Transform3D(0.395, 0, 0, 0, -1.7265998e-08, -0.395, 0, 0.395, -1.7265998e-08, -3.2284918, 0, -0.07299042)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=1512975697]
-transform = Transform3D(0.99998325, 0, 0, 0, 0.99998325, 1.1368684e-13, 0, -1.1368684e-13, 0.99998325, 0, -8.926632, -2.9785378)
-shape = SubResource("BoxShape3D_0xm2m")
-
-[node name="StaticBody3D2" type="StaticBody3D" parent="." unique_id=1972197801]
-transform = Transform3D(0.395, 0, 0, 0, -1.7265998e-08, -0.395, 0, 0.395, -1.7265998e-08, 5.2621117, 0, -0.07299042)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D2" unique_id=1430391730]
-transform = Transform3D(0.99998325, 0, 0, 0, 0.99998325, 1.1368684e-13, 0, -1.1368684e-13, 0.99998325, 0, -8.926632, -2.9785378)
-shape = SubResource("BoxShape3D_0xm2m")
 
 [node name="Sprite3D" type="Sprite3D" parent="." unique_id=261786251]
 transform = Transform3D(0.395, 0, 0, 0, -1.7265998e-08, -0.395, 0, 0.395, -1.7265998e-08, 0, 0, -0.07299042)
