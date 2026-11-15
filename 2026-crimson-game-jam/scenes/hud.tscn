@@ -5,6 +5,37 @@
 [ext_resource type="Texture2D" uid="uid://mn0khmvw175f" path="res://assets/art/EmptyHeart.png" id="3_047uy"]
 [ext_resource type="Texture2D" uid="uid://dv7084iiv0e86" path="res://assets/art/BeastBar.png" id="4_5pdws"]
 [ext_resource type="Texture2D" uid="uid://bg6egdfhq8kr6" path="res://assets/art/BeastBarBroken.png" id="5_hd3ao"]
+[ext_resource type="Shader" uid="uid://dw4l8enejourc" path="res://assets/Shader/BeastBarGlow.gdshader" id="6_5pdws"]
+[ext_resource type="Shader" uid="uid://cl1uplqkiaalw" path="res://assets/Shader/BeastFill.gdshader" id="6_047uy"]
+[ext_resource type="Texture2D" uid="uid://cayiaf4vc2xgv" path="res://assets/art/BossBar.png" id="8_hd3ao"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kmlok"]
+shader = ExtResource("6_5pdws")
+shader_parameter/glow_color = Color(0.6, 0.2, 1, 0.4)
+shader_parameter/rect_size = Vector2(300, 60)
+shader_parameter/padding = 18.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_chb2l"]
+shader = ExtResource("6_047uy")
+shader_parameter/base_color = Color(0.55, 0.12, 0.85, 1)
+shader_parameter/glow_color = Color(1, 0.7, 1, 1)
+shader_parameter/overflowing = false
+shader_parameter/glow_speed = 244.78
+shader_parameter/glow_spacing = 50.42
+shader_parameter/glow_width = 15.0
+shader_parameter/glow_strength = 2.0
+shader_parameter/opacity = 0.7710000366225
+
+[sub_resource type="Gradient" id="Gradient_mphia"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_0i1j5"]
+gradient = SubResource("Gradient_mphia")
+width = 274
+height = 20
+fill_from = Vector2(0.011254019, 0.02165059)
+
+[sub_resource type="LabelSettings" id="LabelSettings_0i1j5"]
 
 [node name="HUD" type="CanvasLayer" unique_id=966798296]
 script = ExtResource("1_uo2fv")
@@ -12,8 +43,11 @@ full_heart = ExtResource("1_oo0fn")
 empty_heart = ExtResource("3_047uy")
 normal_frame = ExtResource("4_5pdws")
 broken_frame = ExtResource("5_hd3ao")
-max_beast = 500
-full_fill_width = 283.0
+full_fill_width = 340.0
+boss_normal_color = Color(0.72156864, 0.043137256, 0.24705882, 1)
+boss_damage_color = Color(0.9722031, 0.12455466, 0.35410625, 1)
+metadata/_edit_horizontal_guides_ = [500.0]
+metadata/_edit_vertical_guides_ = [575.0]
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=216912116]
 texture_filter = 1
@@ -25,49 +59,100 @@ size_flags_vertical = 0
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1991389448]
 layout_mode = 2
 
-[node name="Hearts" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=366524464]
+[node name="HeartArea" type="Control" parent="MarginContainer/VBoxContainer" unique_id=1264359208]
+custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
+size_flags_vertical = 3
 
-[node name="Heart1" type="TextureRect" parent="MarginContainer/VBoxContainer/Hearts" unique_id=1132380665]
+[node name="Hearts" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HeartArea" unique_id=366524464]
+layout_mode = 0
+offset_top = 4.0
+offset_right = 303.0
+offset_bottom = 36.0
+
+[node name="Heart1" type="TextureRect" parent="MarginContainer/VBoxContainer/HeartArea/Hearts" unique_id=1132380665]
 texture_filter = 1
-custom_minimum_size = Vector2(32, 32)
+custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 texture = ExtResource("1_oo0fn")
-expand_mode = 3
+expand_mode = 1
 stretch_mode = 5
 
-[node name="Heart2" type="TextureRect" parent="MarginContainer/VBoxContainer/Hearts" unique_id=2025830240]
+[node name="Heart2" type="TextureRect" parent="MarginContainer/VBoxContainer/HeartArea/Hearts" unique_id=2025830240]
 texture_filter = 1
-custom_minimum_size = Vector2(32, 32)
+custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 texture = ExtResource("1_oo0fn")
-expand_mode = 3
+expand_mode = 1
 stretch_mode = 5
 
-[node name="Heart3" type="TextureRect" parent="MarginContainer/VBoxContainer/Hearts" unique_id=91940270]
+[node name="Heart3" type="TextureRect" parent="MarginContainer/VBoxContainer/HeartArea/Hearts" unique_id=91940270]
 texture_filter = 1
-custom_minimum_size = Vector2(32, 32)
+custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 texture = ExtResource("1_oo0fn")
-expand_mode = 3
+expand_mode = 1
 stretch_mode = 5
 
 [node name="BeastBar" type="Control" parent="MarginContainer/VBoxContainer" unique_id=1410519564]
-custom_minimum_size = Vector2(303, 63)
+custom_minimum_size = Vector2(364, 76)
 layout_mode = 2
+
+[node name="Glow" type="ColorRect" parent="MarginContainer/VBoxContainer/BeastBar" unique_id=1836677042]
+material = SubResource("ShaderMaterial_kmlok")
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
 
 [node name="Frame" type="TextureRect" parent="MarginContainer/VBoxContainer/BeastBar" unique_id=1437487536]
 texture_filter = 1
-layout_mode = 0
-offset_right = 303.0
-offset_bottom = 63.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 texture = ExtResource("4_5pdws")
 expand_mode = 1
 
 [node name="Fill" type="ColorRect" parent="MarginContainer/VBoxContainer/BeastBar" unique_id=1692343248]
+material = SubResource("ShaderMaterial_chb2l")
 layout_mode = 1
-offset_left = 13.0
-offset_top = 25.0
-offset_right = 13.0
-offset_bottom = 39.0
+offset_left = 17.0
+offset_top = 32.0
+offset_right = 17.0
+offset_bottom = 47.0
 color = Color(0.9375355, 0.5024211, 0.94183695, 0.42745098)
+
+[node name="BossBarArea" type="Control" parent="." unique_id=1338775234]
+custom_minimum_size = Vector2(303, 63)
+layout_mode = 3
+anchors_preset = 0
+offset_left = 165.0
+offset_top = 411.97
+offset_right = 468.0
+offset_bottom = 474.97
+scale = Vector2(2.5, 2.5)
+
+[node name="BossHealthBar" type="TextureProgressBar" parent="BossBarArea" unique_id=1845353066]
+texture_filter = 1
+layout_mode = 0
+offset_left = 12.800001
+offset_top = 64.012
+offset_right = 315.8
+offset_bottom = 128.01198
+step = 0.0
+value = 100.0
+texture_over = ExtResource("8_hd3ao")
+texture_progress = SubResource("GradientTexture2D_0i1j5")
+texture_progress_offset = Vector2(13.7, 20.93)
+
+[node name="BossName" type="Label" parent="BossBarArea" unique_id=33410216]
+layout_mode = 0
+offset_left = 27.200003
+offset_top = 66.41201
+offset_right = 451.2
+offset_bottom = 91.722015
+scale = Vector2(0.65, 0.65)
+label_settings = SubResource("LabelSettings_0i1j5")
+horizontal_alignment = 1

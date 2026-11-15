@@ -7,5 +7,6 @@
 script = ExtResource("1_gh2mr")
 
 [node name="HUD" parent="." unique_id=966798296 instance=ExtResource("2_58o4j")]
-full_fill_width = 273.0
-overflow_pixels_per_point = 5.0
+full_fill_width = 328.0
+boss_normal_color = Color(0.694853, 0.040723987, 0.19189513, 1)
+boss_damage_color = Color(0.9846696, 0.18452373, 0.31879583, 1)
