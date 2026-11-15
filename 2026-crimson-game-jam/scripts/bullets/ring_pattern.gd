@@ -7,4 +7,4 @@ class_name RingPattern extends BulletPattern
 @export var spawn_radius: float = 0.0         # offset from emitter center
 @export var angle_step_deg: float = 0.0       # rotate each ring by this much to spiral out, keep going
 @export var heading_offset_deg: float = 0.0    # tilts each bullet's heading away from straight outward (+/- swirl)
-@export_range(0.0, 180.0) var max_inward_deg: float = 90.0
+@export_range(0.0, 360.0) var max_inward_deg: float = 90.0

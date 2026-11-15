@@ -5,10 +5,13 @@
 [ext_resource type="Texture2D" uid="uid://dglwa448xf8hv" path="res://icon.svg" id="2_dx6r6"]
 [ext_resource type="Script" uid="uid://dbkj3qoa8l0kv" path="res://scripts/bullets/bullet_pool.gd" id="5_xdrvf"]
 [ext_resource type="Script" uid="uid://cyc51b1dtcaiv" path="res://scripts/fps_counter.gd" id="6_vklvw"]
+[ext_resource type="Resource" uid="uid://dj3o8vn4hto8f" path="res://bullet_resources/bullet_attacks/chained_5.tres" id="8_lpvio"]
 [ext_resource type="Script" uid="uid://c1xw7eo4un7k8" path="res://scripts/boss/boss.gd" id="8_yioco"]
 [ext_resource type="Script" uid="uid://dyoedp32mh0ce" path="res://scripts/bullets/bullet_attack.gd" id="9_hf0s8"]
 [ext_resource type="Resource" uid="uid://wsw2i826fhlt" path="res://bullet_resources/bullet_attacks/chained_1.tres" id="9_s21tg"]
 [ext_resource type="Resource" uid="uid://c1r65thke3oe0" path="res://bullet_resources/bullet_attacks/chained_2.tres" id="9_yioco"]
+[ext_resource type="Resource" uid="uid://bxbsuw8kwbt02" path="res://bullet_resources/bullet_attacks/chained_3.tres" id="10_ww5pd"]
+[ext_resource type="Resource" uid="uid://cx4sjuqsb7osy" path="res://bullet_resources/bullet_attacks/chained_4.tres" id="11_s21tg"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_0xm2m"]
 
@@ -50,5 +53,5 @@ script = ExtResource("6_vklvw")
 
 [node name="Boss" type="Node3D" parent="." unique_id=1918362763]
 script = ExtResource("8_yioco")
-attacks = Array[ExtResource("9_hf0s8")]([ExtResource("9_yioco"), ExtResource("9_s21tg")])
+attacks = Array[ExtResource("9_hf0s8")]([ExtResource("8_lpvio"), ExtResource("11_s21tg"), ExtResource("10_ww5pd"), ExtResource("9_yioco"), ExtResource("9_s21tg")])
 metadata/_custom_type_script = "uid://c1xw7eo4un7k8"

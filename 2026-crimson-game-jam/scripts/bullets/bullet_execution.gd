@@ -68,7 +68,6 @@ func _line_burst(center: Vector2):
 		var t : float = float(i) / max(linepat.bullet_count - 1, 1)          # 0..1 across the line
 		var pos: Vector2 = start + axis * (linepat.spacing * i)
 		var angle: float = travel + deg_to_rad(linepat.spread_deg * (t - 0.5))
-		print("deg: %f" % (linepat.spread_deg * (t - 0.5)))
 		var pos2d := Vector2.from_angle(angle)
 		var b := BulletPool.instance.get_bullet()
 		b.define_bullet_from_data(linepat.bullet_data)
@@ -81,7 +80,9 @@ func _line_burst(center: Vector2):
 		else:
 			b.speed = (linepat.end_speed_multiplier * (abs((linepat.bullet_count / 2.0) - float(i)) / (linepat.bullet_count / 2)) + 1) * b.speed
 		_bullets_spawned += 1
-		if (_bullets_spawned % linepat.parryable_frequeuncy == 0):
+		if (linepat.deterministic and (_bullets_spawned + linepat.offset_frequency) % linepat.parryable_frequeuncy == 0):
+			b.parryable = true
+		elif (not linepat.deterministic and randi_range(0, linepat.parryable_frequeuncy) == 0):
 			b.parryable = true
 		b.update_sprite()
 
@@ -124,6 +125,8 @@ func _ring_burst(center: Vector2):
 		b._initial_angle = b.angle
 		b.max_angle_deg = ringpat.max_inward_deg
 		_bullets_spawned += 1
-		if (_bullets_spawned % ringpat.parryable_frequeuncy == 0):
+		if (ringpat.deterministic and (_bullets_spawned + ringpat.offset_frequency) % ringpat.parryable_frequeuncy == 0):
+			b.parryable = true
+		elif (not ringpat.deterministic and randi_range(0, ringpat.parryable_frequeuncy) == 0):
 			b.parryable = true
 		b.update_sprite()
