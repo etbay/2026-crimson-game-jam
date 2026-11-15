@@ -3,15 +3,16 @@
 [ext_resource type="Texture2D" uid="uid://b6463lhp65gd3" path="res://assets/art/test_arena.jpg" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://27eut258tv7t" path="res://scenes/player.tscn" id="2_0xm2m"]
 [ext_resource type="Script" uid="uid://dbkj3qoa8l0kv" path="res://scripts/bullets/bullet_pool.gd" id="3_h2yge"]
+[ext_resource type="PackedScene" uid="uid://dg4s3l487twfo" path="res://scenes/hud.tscn" id="4_1bvp3"]
 
 [node name="Node3D" type="Node3D" unique_id=71333522]
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=342016900]
-transform = Transform3D(1, 0, 0, 0, 0.6229123, 0.7822917, 0, -0.7822917, 0.6229123, 0, 12.097124, 3.067864)
+transform = Transform3D(1, 0, 0, 0, 0.4300552, 0.90280265, 0, -0.90280265, 0.4300552, -9.536743e-07, 10.09921, 0.2787857)
 fov = 70.0
 
 [node name="Sprite3D" type="Sprite3D" parent="." unique_id=261786251]
-transform = Transform3D(0.395, 0, 0, 0, -1.7265998e-08, -0.395, 0, 0.395, -1.7265998e-08, 0, 0, -0.07299042)
+transform = Transform3D(0.265, 0, 0, 0, -1.1583517e-08, -0.265, 0, 0.265, -1.1583517e-08, 0, 0, -0.07299042)
 pixel_size = 0.1
 render_priority = -100
 texture = ExtResource("1_ig7tw")
@@ -22,3 +23,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.44269884, 0)
 [node name="BulletPool" type="Node3D" parent="." unique_id=1749775153]
 script = ExtResource("3_h2yge")
 metadata/_custom_type_script = "uid://dbkj3qoa8l0kv"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=423568737]
+
+[node name="HUD" parent="CanvasLayer" unique_id=132391662 instance=ExtResource("4_1bvp3")]
