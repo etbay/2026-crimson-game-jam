@@ -1,0 +1,73 @@
+[gd_scene format=3 uid="uid://dg4s3l487twfo"]
+
+[ext_resource type="Texture2D" uid="uid://b4wk6ep1fdc0t" path="res://assets/art/heart_32x32.png" id="1_oo0fn"]
+[ext_resource type="Script" uid="uid://beabsmy6wbgy3" path="res://scenes/hud.gd" id="1_uo2fv"]
+[ext_resource type="Texture2D" uid="uid://mn0khmvw175f" path="res://assets/art/EmptyHeart.png" id="3_047uy"]
+[ext_resource type="Texture2D" uid="uid://dv7084iiv0e86" path="res://assets/art/BeastBar.png" id="4_5pdws"]
+[ext_resource type="Texture2D" uid="uid://bg6egdfhq8kr6" path="res://assets/art/BeastBarBroken.png" id="5_hd3ao"]
+
+[node name="HUD" type="CanvasLayer" unique_id=966798296]
+script = ExtResource("1_uo2fv")
+full_heart = ExtResource("1_oo0fn")
+empty_heart = ExtResource("3_047uy")
+normal_frame = ExtResource("4_5pdws")
+broken_frame = ExtResource("5_hd3ao")
+max_beast = 500
+full_fill_width = 283.0
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=216912116]
+texture_filter = 1
+offset_right = 40.0
+offset_bottom = 40.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1991389448]
+layout_mode = 2
+
+[node name="Hearts" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=366524464]
+layout_mode = 2
+
+[node name="Heart1" type="TextureRect" parent="MarginContainer/VBoxContainer/Hearts" unique_id=1132380665]
+texture_filter = 1
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture = ExtResource("1_oo0fn")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Heart2" type="TextureRect" parent="MarginContainer/VBoxContainer/Hearts" unique_id=2025830240]
+texture_filter = 1
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture = ExtResource("1_oo0fn")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Heart3" type="TextureRect" parent="MarginContainer/VBoxContainer/Hearts" unique_id=91940270]
+texture_filter = 1
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture = ExtResource("1_oo0fn")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="BeastBar" type="Control" parent="MarginContainer/VBoxContainer" unique_id=1410519564]
+custom_minimum_size = Vector2(303, 63)
+layout_mode = 2
+
+[node name="Frame" type="TextureRect" parent="MarginContainer/VBoxContainer/BeastBar" unique_id=1437487536]
+texture_filter = 1
+layout_mode = 0
+offset_right = 303.0
+offset_bottom = 63.0
+texture = ExtResource("4_5pdws")
+expand_mode = 1
+
+[node name="Fill" type="ColorRect" parent="MarginContainer/VBoxContainer/BeastBar" unique_id=1692343248]
+layout_mode = 1
+offset_left = 13.0
+offset_top = 25.0
+offset_right = 13.0
+offset_bottom = 39.0
+color = Color(0.9375355, 0.5024211, 0.94183695, 0.42745098)
