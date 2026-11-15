@@ -1,5 +1,7 @@
 class_name Player extends CharacterBody3D
 
+signal beast_mode_finished
+
 const PLAYER_BULLET = preload("uid://cgs6fx8lp6hdl")
 const BULLET_SPAWN_0 := Vector2(0.3,0.03)
 const BULLET_SPAWN_45 := Vector2(0.17,0.23)
@@ -9,8 +11,8 @@ const BULLET_SPAWN_135 := Vector2(-0.17,0.23)
 const BULLET_SPAWN_180 := Vector2(-0.3,0.03)
 
 const BULLET_SPAWN_225 := Vector2(-0.15,-0.22)
-const BULLET_SPAWN_250 := Vector2(-0.014,-0.31)
-const BULLET_SPAWN_260 := Vector2(0.014,-0.31)
+const BULLET_SPAWN_260 := Vector2(-0.014,-0.31)
+const BULLET_SPAWN_280 := Vector2(0.014,-0.31)
 const BULLET_SPAWN_315 := Vector2(0.15,-0.22)
 
 @export var walk_speed: float = 3
@@ -23,6 +25,7 @@ const BULLET_SPAWN_315 := Vector2(0.15,-0.22)
 @onready var parry_curve: Node3D = $ParryCurve
 @onready var parry_radius: Area3D = $ParryRadius
 @onready var hurtbox: PlayerHurtbox = $Hurtbox
+@onready var hud: HUD = $"../HUD"
 
 @onready var active_speed: float = walk_speed
 
@@ -34,9 +37,13 @@ var parrying: bool = false
 
 # Player values
 var health: int = 3
-var beast_meter: float = 10
+var beast_meter: float = 0:
+	set(value):
+		beast_meter = value
+		hud.set_beast(beast_meter)
 var move_dir: Vector2
 var mouse_dir: Vector2
+var laser_damage: float
 var movement_locked: bool = false
 
 var shoot_timer: Timer
@@ -48,6 +55,9 @@ func damage() -> void:
 		health -= 1
 		if health == 0:
 			get_tree().quit()
+		hud.set_health(health)
+	else:
+		laser_damage += 1
 
 func _ready() -> void:
 	parry_radius.area_entered.connect(_on_parry_area_entered)
@@ -55,6 +65,13 @@ func _ready() -> void:
 	shoot_timer = Timer.new()
 	shoot_timer.one_shot = true
 	add_child(shoot_timer)
+
+func _process(delta: float) -> void:
+	if beast_mode:
+		beast_meter -= 5 * delta
+		if beast_meter <= 0:
+			beast_mode = false
+			beast_mode_finished.emit()
 
 func _physics_process(delta: float) -> void:
 	_update_move_dir(delta)
@@ -65,7 +82,8 @@ func _physics_process(delta: float) -> void:
 func _on_aim_direction_changed(direction: String) -> void:
 	match(direction):
 		"gun-90_false":
-			pass
+			bullet_spawn.position.x = BULLET_SPAWN_280.x
+			bullet_spawn.position.y = BULLET_SPAWN_280.y
 		"gun-45_false":
 			bullet_spawn.position.x = BULLET_SPAWN_315.x
 			bullet_spawn.position.y = BULLET_SPAWN_315.y
@@ -79,7 +97,8 @@ func _on_aim_direction_changed(direction: String) -> void:
 			bullet_spawn.position.x = BULLET_SPAWN_80.x
 			bullet_spawn.position.y = BULLET_SPAWN_80.y
 		"gun-90_true":
-			pass
+			bullet_spawn.position.x = BULLET_SPAWN_260.x
+			bullet_spawn.position.y = BULLET_SPAWN_260.y
 		"gun-45_true":
 			bullet_spawn.position.x = BULLET_SPAWN_225.x
 			bullet_spawn.position.y = BULLET_SPAWN_225.y
@@ -122,7 +141,6 @@ func _process_input() -> void:
 		_execute_parry()
 	
 	if Input.is_action_just_pressed("beast_mode") and beast_meter > 1:
-		beast_meter = 0
 		_enter_beast_mode()
 	
 	if Input.is_action_just_pressed("dash") and beast_mode:
@@ -132,10 +150,11 @@ func _enter_beast_mode() -> void:
 	beast_mode = true
 	vulnerable = false
 	active_speed = beast_speed
-	await get_tree().create_timer(3).timeout
+	await beast_mode_finished
 	vulnerable = true
 	active_speed = walk_speed
 	beast_mode = false
+	laser_damage = 1
 
 func _execute_dash() -> void:
 	dashing = true
@@ -172,6 +191,7 @@ func _parry_bullet(bullet: Bullet) -> void:
 	parry_curve.rotation.z = dir.angle()
 	await get_tree().create_timer(0.1, true, false, true).timeout
 	bullet.kill_bullet()
+	beast_meter += 10
 	Engine.time_scale = 1
 	parry_curve.visible = false
 

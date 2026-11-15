@@ -29,6 +29,7 @@ func _ready() -> void:
 	set_collision_layer_value(2, true)
 	sprite.texture = TextureLibrary.BULLET_SPRITE
 	area_entered.connect(_on_area_entered)
+	body_entered.connect(_on_body_entered)
 	update_sprite()
 	self.visible = false
 	_active = false
@@ -99,10 +100,14 @@ func update_position(delta : float) -> void:
 	var direction : Vector2 = Vector2.from_angle(angle) * speed * delta
 	self.position += Vector3(direction.x, 0, direction.y)
 
-func _on_area_entered(area : Node3D) -> void:
+func _on_area_entered(area : Area3D) -> void:
 	if _active and area.owner is Player and area.owner != bullet_owner and area.name == "Hurtbox":
 		var player: Player = area.owner as Player
 		player.damage()
+		kill_bullet()
+
+func _on_body_entered(body: Node3D) -> void:
+	if body is not Player:
 		kill_bullet()
 
 func activate() -> void:

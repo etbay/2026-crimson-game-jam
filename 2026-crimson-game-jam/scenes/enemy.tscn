@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://dtj585chb8ulb"]
+
+[ext_resource type="Script" uid="uid://wk62nldfqpek" path="res://scenes/enemy.gd" id="1_7p1mj"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_7p1mj"]
+
+[node name="Enemy" type="Area3D" unique_id=433226092]
+script = ExtResource("1_7p1mj")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1360440068]
+shape = SubResource("CapsuleShape3D_7p1mj")
