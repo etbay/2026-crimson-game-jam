@@ -1,10 +1,16 @@
-extends Area3D
+class_name Enemy extends Area3D
 
+@export var max_health: int = 1000
+@onready var hud: HUD = $"../../HUD"
+
+var health: int
+var vulnerable: bool = true
 
 func damage() -> void:
-	pass
+	if vulnerable:
+		health -= 100
+		hud.update_boss_health(health)
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+func _ready() -> void:
+	health = max_health
+	hud.setup_boss(max_health, "Enemy")

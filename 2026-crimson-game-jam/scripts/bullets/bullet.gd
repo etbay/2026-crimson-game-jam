@@ -4,7 +4,7 @@ class_name Bullet extends Area3D
 @onready var sprite : Sprite3D = $BulletSprite
 var size : float
 
-var bullet_owner: Node3D
+var bullet_owner: String = "Enemy"
 
 # Parameters for actions
 # scalars
@@ -101,9 +101,13 @@ func update_position(delta : float) -> void:
 	self.position += Vector3(direction.x, 0, direction.y)
 
 func _on_area_entered(area : Area3D) -> void:
-	if _active and area.owner is Player and area.owner != bullet_owner and area.name == "Hurtbox":
-		var player: Player = area.owner as Player
+	if _active and area.owner is Player and bullet_owner != "Player" and area.name == "Hurtbox":
+		var player := area.owner as Player
 		player.damage()
+		kill_bullet()
+	elif _active and area is Enemy and bullet_owner != "Enemy":
+		var enemy := area as Enemy
+		enemy.damage()
 		kill_bullet()
 
 func _on_body_entered(body: Node3D) -> void:

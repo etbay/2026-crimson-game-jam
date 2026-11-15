@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://n0dm76gobhc2"]
+
+[ext_resource type="Shader" uid="uid://djserocxhfw2k" path="res://assets/laser/laser_shader.tres" id="1_0nn3u"]
+[ext_resource type="ArrayMesh" uid="uid://cqutheobxs7wd" path="res://assets/laser/laser_Cylinder.tres" id="1_xwsbm"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_58owb"]
+render_priority = 0
+shader = ExtResource("1_0nn3u")
+shader_parameter/Color = Color(0.95215327, 0.5569506, 0.8004791, 1)
+shader_parameter/Speed = Vector2(1, 1)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_0nn3u"]
+gravity = Vector3(0, 0, 0)
+use_scale_3d = true
+scale_3d_min = Vector3(0.5, 12, 0.5)
+scale_3d_max = Vector3(0.5, 12, 0.5)
+color = Color(0.9367416, 0.61379117, 1, 1)
+
+[node name="Node3D" type="Node3D" unique_id=565735223]
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="." unique_id=1338380953]
+material_override = SubResource("ShaderMaterial_58owb")
+amount = 1
+lifetime = 0.01
+fixed_fps = 0
+visibility_aabb = AABB(-4, -12.085, -4, 8, 24.165, 8)
+process_material = SubResource("ParticleProcessMaterial_0nn3u")
+draw_pass_1 = ExtResource("1_xwsbm")
