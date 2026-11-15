@@ -2,11 +2,10 @@
 
 [ext_resource type="Script" uid="uid://dyoedp32mh0ce" path="res://scripts/bullets/bullet_attack.gd" id="1_jvbe6"]
 [ext_resource type="Script" uid="uid://dayx2jy8tp802" path="res://scripts/bullets/bullet_pattern.gd" id="1_pwe7p"]
-[ext_resource type="Resource" uid="uid://dcmiwskrigadr" path="res://bullet_resources/bullet_patterns/line_pat_test.tres" id="3_mqp5e"]
 [ext_resource type="Resource" uid="uid://bqqly6p0sdtqn" path="res://bullet_resources/bullet_patterns/one_line.tres" id="4_mqp5e"]
 
 [resource]
 script = ExtResource("1_jvbe6")
-patterns = Array[ExtResource("1_pwe7p")]([ExtResource("4_mqp5e"), ExtResource("3_mqp5e"), ExtResource("4_mqp5e")])
+patterns = Array[ExtResource("1_pwe7p")]([ExtResource("4_mqp5e")])
 pattern_positions = Array[Vector2]([Vector2(2, 0), Vector2(0, 0), Vector2(-2, 0)])
 metadata/_custom_type_script = "uid://dyoedp32mh0ce"

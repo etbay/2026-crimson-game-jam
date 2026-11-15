@@ -7,5 +7,5 @@ script = ExtResource("1_shvhg")
 bullet_speed = 2.0
 bullet_accel = -0.2
 bullet_size = 0.1
-bullet_lifetime = 4.0
+bullet_lifetime = 12.0
 metadata/_custom_type_script = "uid://c8s5d80ydvhv6"

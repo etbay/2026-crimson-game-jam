@@ -1,5 +1,4 @@
-
-extends CanvasLayer
+class_name HUD extends CanvasLayer
 
 # Heart textures
 @export var full_heart: Texture2D
@@ -16,17 +15,16 @@ extends CanvasLayer
 @export var overflow_pixels_per_point: float = 10.0
 
 
-@onready var hearts: HBoxContainer = $MarginContainer/VBoxContainer/HeartArea/Hearts
-@onready var fill: ColorRect = $MarginContainer/VBoxContainer/BeastBar/Fill
-@onready var frame: TextureRect = $MarginContainer/VBoxContainer/BeastBar/Frame
-@onready var glow: ColorRect = $MarginContainer/VBoxContainer/BeastBar/Glow
+@onready var hearts: HBoxContainer = $Control/MarginContainer/VBoxContainer/HeartArea/Hearts
+@onready var fill: ColorRect = $Control/MarginContainer/VBoxContainer/BeastBar/Fill
+@onready var frame: TextureRect = $Control/MarginContainer/VBoxContainer/BeastBar/Frame
+@onready var glow: ColorRect = $Control/MarginContainer/VBoxContainer/BeastBar/Glow
 
 @export var glow_padding: float = 18.0
 
 # boss bar
-
-@onready var boss_health_bar: TextureProgressBar = $BossBarArea/BossHealthBar
-@onready var boss_name: Label = $BossBarArea/BossName
+@onready var boss_health_bar: TextureProgressBar = $Control/BossBarArea/BossHealthBar
+@onready var boss_name: Label = $Control/BossBarArea/BossName
 
 @export var boss_normal_color: Color = Color(0.7, 0.7, 0.7, 1.0)
 @export var boss_damage_color: Color = Color(1.0, 1.0, 1.0, 1.0)
@@ -69,8 +67,8 @@ func set_health(value: int) -> void:
 
 # BEAST BAR SYSTEM
 
-func set_beast(value: int, animate: bool = true) -> void:
-	var amount = maxi(value, 0)
+func set_beast(value: float, animate: bool = true) -> void:
+	var amount = maxf(value, 0)
 	var target_width: float
 
 	if amount <= normal_capacity:

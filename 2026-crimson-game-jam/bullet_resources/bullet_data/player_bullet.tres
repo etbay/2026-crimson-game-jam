@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="BulletData" format=3 uid="uid://cgs6fx8lp6hdl"]
+
+[ext_resource type="Script" uid="uid://c8s5d80ydvhv6" path="res://scripts/bullets/bullet_data.gd" id="1_8vft1"]
+
+[resource]
+script = ExtResource("1_8vft1")
+bullet_speed = 10.0
+bullet_size = 0.1
+metadata/_custom_type_script = "uid://c8s5d80ydvhv6"
