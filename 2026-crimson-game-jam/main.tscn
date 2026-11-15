@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://dbkj3qoa8l0kv" path="res://scripts/bullets/bullet_pool.gd" id="3_h2yge"]
 [ext_resource type="Script" uid="uid://c1xw7eo4un7k8" path="res://scripts/boss/boss.gd" id="4_7mycd"]
 [ext_resource type="Script" uid="uid://dyoedp32mh0ce" path="res://scripts/bullets/bullet_attack.gd" id="5_272bh"]
-[ext_resource type="Resource" uid="uid://cbvvrvt2es5c7" path="res://bullet_resources/test_attack.tres" id="6_5vw27"]
+[ext_resource type="Resource" uid="uid://cbvvrvt2es5c7" path="res://bullet_resources/bullet_attacks/test_attack.tres" id="6_5vw27"]
 
 [node name="Node3D" type="Node3D" unique_id=71333522]
 

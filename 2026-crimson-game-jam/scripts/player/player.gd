@@ -8,13 +8,17 @@ const PLAYER_BULLET = preload("uid://cgs6fx8lp6hdl")
 
 @onready var player_sprite: PlayerSprite = $PlayerSprite
 @onready var bullet_spawn: Node3D = $BulletSpawn
+@onready var parry_curve: Node3D = $ParryCurve
+@onready var parry_radius: Area3D = $ParryRadius
+@onready var hurtbox: PlayerHurtbox = $Hurtbox
 
 @onready var active_speed: float = walk_speed
 
 # State bools
-var dashing: bool
-var beast_mode: bool
+var dashing: bool = false
+var beast_mode: bool = false
 var vulnerable: bool = true
+var parrying: bool = false
 
 # Player values
 var health: int = 3
@@ -30,6 +34,10 @@ func damage() -> void:
 		health -= 1
 		if health == 0:
 			get_tree().quit()
+
+func _ready() -> void:
+	parry_curve.visible = false
+	parry_radius.area_entered.connect(_on_parry_area_entered)
 
 func _physics_process(delta: float) -> void:
 	_update_move_dir(delta)
@@ -51,21 +59,18 @@ func _update_mouse_dir() -> void:
 	mouse_dir = player_pos.direction_to(mouse_pos)
 
 func _process_input() -> void:
-	if Input.is_action_just_pressed("shoot") and not beast_mode:
+	if Input.is_action_just_pressed("shoot") and not beast_mode and not parrying:
 		# Shoot stuff
 		var bullet: Bullet = BulletPool.instance.get_bullet()
 		bullet.define_bullet_from_data(PLAYER_BULLET)
+		bullet._initial_angle = mouse_dir.angle()
 		bullet.angle = mouse_dir.angle()
 		bullet.position = Vector3(bullet_spawn.global_position.x, 0, bullet_spawn.global_position.z)
 		bullet.update_sprite()
 		bullet.bullet_owner = self
 	
-	if Input.is_action_just_pressed("parry") and not beast_mode:
-		# TODO: Parry stuff
-		
-		# Enter parry state
-		
-		pass
+	if Input.is_action_just_pressed("parry") and not beast_mode and not parrying:
+		_execute_parry()
 	
 	if Input.is_action_just_pressed("beast_mode") and beast_meter > 1:
 		beast_meter = 0
@@ -93,3 +98,34 @@ func _execute_dash() -> void:
 	else:
 		active_speed = walk_speed
 	dashing = false
+
+func _execute_parry() -> void:
+	# Enter parry state
+	parrying = true
+	# TODO: Set parry sprite
+	# If there's bullets in range, kill them
+	for i in parry_radius.get_overlapping_areas():
+		if i is Bullet:
+			var bullet: Bullet = i as Bullet
+			if bullet._active and bullet.parryable:
+				_parry_bullet(bullet)
+	# Play the parry for a short time
+	await get_tree().create_timer(0.3).timeout
+	# TODO: Reset to normal sprite
+	parrying = false
+
+func _parry_bullet(bullet: Bullet) -> void:
+	# TODO: Play parry sfx
+	parry_curve.visible = true
+	Engine.time_scale = 0
+	# Set parry curve sprite to direction
+	var dir = Vector2(global_position.x, -global_position.z).direction_to(Vector2(bullet.global_position.x, -bullet.global_position.z))
+	parry_curve.rotation.z = dir.angle()
+	await get_tree().create_timer(0.1, true, false, true).timeout
+	bullet.kill_bullet()
+	Engine.time_scale = 1
+	parry_curve.visible = false
+
+func _on_parry_area_entered(area: Area3D) -> void:
+	if parrying and area is Bullet and (area as Bullet)._active and (area as Bullet).parryable:
+		_parry_bullet(area as Bullet)

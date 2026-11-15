@@ -20,6 +20,8 @@
 [ext_resource type="Texture2D" uid="uid://dsvry2i5vt1hi" path="res://assets/animations/legs/Walk clean_010.png" id="17_dt7fs"]
 [ext_resource type="Texture2D" uid="uid://4i4lipffa3kc" path="res://assets/animations/legs/Walk clean_011.png" id="18_wqfne"]
 [ext_resource type="Texture2D" uid="uid://ojvq2xf7yd0k" path="res://assets/animations/legs/Walk clean_012.png" id="19_wnwbv"]
+[ext_resource type="Texture2D" uid="uid://7ejo5yebx6m0" path="res://assets/art/parry_curve.png" id="21_i4ail"]
+[ext_resource type="Script" uid="uid://cjguahoyl58xu" path="res://scenes/player_hurtbox.gd" id="22_a38lo"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_7mycd"]
 radius = 0.41259766
@@ -131,6 +133,10 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_i4ail"]
+radius = 0.84375
+height = 1.9918599
+
 [node name="CharacterBody3D" type="CharacterBody3D" unique_id=32883367]
 script = ExtResource("1_qhqgy")
 walk_speed = 3.0
@@ -139,6 +145,7 @@ dash_length = 18.0
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=356517985]
 transform = Transform3D(1, 0, 0, 0, 0.34202015, 0.9396926, 0, -0.9396926, 0.34202015, -0.08648664, -0.05487658, 0.19735369)
 shape = SubResource("CapsuleShape3D_7mycd")
+disabled = true
 
 [node name="BulletSpawn" type="Node3D" parent="." unique_id=288038477]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.450581e-09, 0)
@@ -169,3 +176,24 @@ transform = Transform3D(0.04, 0, 0, 0, 0.039999995, 0, 0, 0, 0.039999995, 0, 0, 
 billboard = 1
 render_priority = 2
 sprite_frames = SubResource("SpriteFrames_g2els")
+
+[node name="ParryCurve" type="Node3D" parent="." unique_id=1024954468]
+transform = Transform3D(1, 0, 0, 0, 0.25881907, 0.9659258, 0, -0.9659258, 0.25881907, 0, 0, 0)
+
+[node name="Sprite3D" type="Sprite3D" parent="ParryCurve" unique_id=939234199]
+transform = Transform3D(0.05821583, 0.06193477, 0, -0.061934777, 0.058215827, 0, 0, 0, 0.08499999, 0.6393322, 0.12906687, -1.2141533e-07)
+texture = ExtResource("21_i4ail")
+
+[node name="Hurtbox" type="Area3D" parent="." unique_id=788675729]
+script = ExtResource("22_a38lo")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtbox" unique_id=2006309882]
+transform = Transform3D(1, 0, 0, 0, 0.34202015, 0.9396926, 0, -0.9396926, 0.34202015, -0.08648664, -0.05487658, 0.19735369)
+shape = SubResource("CapsuleShape3D_7mycd")
+
+[node name="ParryRadius" type="Area3D" parent="." unique_id=1040401282]
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ParryRadius" unique_id=417462351]
+transform = Transform3D(1, 0, 0, 0, 0.34202015, 0.9396926, 0, -0.9396926, 0.34202015, -0.08648664, 0.018539488, -0.004355274)
+shape = SubResource("CapsuleShape3D_i4ail")
