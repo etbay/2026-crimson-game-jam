@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://b6463lhp65gd3" path="res://assets/art/test_arena.jpg" id="1_xh10j"]
 [ext_resource type="Texture2D" uid="uid://dglwa448xf8hv" path="res://icon.svg" id="2_dx6r6"]
 [ext_resource type="Script" uid="uid://ch3umy8kkbesx" path="res://scripts/bullets/bullet_emitter.gd" id="3_gpyi2"]
-[ext_resource type="Resource" uid="uid://dcmiwskrigadr" path="res://bullet_resources/line_pat_test.tres" id="4_vklvw"]
+[ext_resource type="Resource" uid="uid://b3bbq60noqe05" path="res://bullet_resources/ring_test_pattern.tres" id="4_vklvw"]
 [ext_resource type="Script" uid="uid://dbkj3qoa8l0kv" path="res://scripts/bullets/bullet_pool.gd" id="5_xdrvf"]
 [ext_resource type="Script" uid="uid://cyc51b1dtcaiv" path="res://scenes/fps_counter.gd" id="6_vklvw"]
 

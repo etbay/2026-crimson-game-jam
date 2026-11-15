@@ -3,7 +3,8 @@
 [ext_resource type="Texture2D" uid="uid://b6463lhp65gd3" path="res://assets/art/test_arena.jpg" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://27eut258tv7t" path="res://scenes/player.tscn" id="2_0xm2m"]
 [ext_resource type="Script" uid="uid://dbkj3qoa8l0kv" path="res://scripts/bullets/bullet_pool.gd" id="3_h2yge"]
-[ext_resource type="PackedScene" uid="uid://dg4s3l487twfo" path="res://scenes/hud.tscn" id="4_1bvp3"]
+[ext_resource type="Script" uid="uid://ch3umy8kkbesx" path="res://scripts/bullets/bullet_emitter.gd" id="5_7mycd"]
+[ext_resource type="Resource" uid="uid://b3bbq60noqe05" path="res://bullet_resources/ring_test_pattern.tres" id="6_272bh"]
 
 [node name="Node3D" type="Node3D" unique_id=71333522]
 
@@ -24,6 +25,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.44269884, 0)
 script = ExtResource("3_h2yge")
 metadata/_custom_type_script = "uid://dbkj3qoa8l0kv"
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=423568737]
-
-[node name="HUD" parent="CanvasLayer" unique_id=132391662 instance=ExtResource("4_1bvp3")]
+[node name="Node3D" type="Node3D" parent="." unique_id=1885783356]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.41197014, 0, -6.3579187)
+script = ExtResource("5_7mycd")
+pattern = ExtResource("6_272bh")
