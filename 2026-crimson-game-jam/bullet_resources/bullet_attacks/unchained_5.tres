@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="BulletAttack" format=3 uid="uid://0b512vqwlsrk"]
+
+[ext_resource type="Script" uid="uid://dayx2jy8tp802" path="res://scripts/bullets/bullet_pattern.gd" id="1_d0cdd"]
+[ext_resource type="Script" uid="uid://dyoedp32mh0ce" path="res://scripts/bullets/bullet_attack.gd" id="2_n0o4b"]
+
+[resource]
+script = ExtResource("2_n0o4b")
+metadata/_custom_type_script = "uid://dyoedp32mh0ce"

@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://mhs6smi8owcq"]
+
+[ext_resource type="Script" uid="uid://jsstwrj5n81k" path="res://scenes/hudtest.gd" id="1_gh2mr"]
+[ext_resource type="PackedScene" uid="uid://dg4s3l487twfo" path="res://scenes/hud.tscn" id="2_58o4j"]
+
+[node name="Node" type="Node" unique_id=1866593348]
+script = ExtResource("1_gh2mr")
+
+[node name="HUD" parent="." unique_id=966798296 instance=ExtResource("2_58o4j")]
+full_fill_width = 328.0
+boss_normal_color = Color(0.694853, 0.040723987, 0.19189513, 1)
+boss_damage_color = Color(0.9846696, 0.18452373, 0.31879583, 1)
