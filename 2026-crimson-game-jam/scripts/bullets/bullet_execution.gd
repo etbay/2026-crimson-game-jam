@@ -47,7 +47,7 @@ func _fire_burst(center: Vector2):
 	if (pat is LinePattern):
 		_line_burst(center)
 
-func _line_burst(center: Vector2):
+func _line_burst(_center: Vector2):
 	var linepat = pat as LinePattern
 	var travel: float = deg_to_rad(linepat.travel_angle_deg + linepat.angle_step_deg * _volleys_fired)
 	var forward := Vector2.from_angle(travel)
@@ -68,7 +68,7 @@ func _line_burst(center: Vector2):
 		var t : float = float(i) / max(linepat.bullet_count - 1, 1)          # 0..1 across the line
 		var pos: Vector2 = start + axis * (linepat.spacing * i)
 		var angle: float = travel + deg_to_rad(linepat.spread_deg * (t - 0.5))
-		var pos2d := Vector2.from_angle(angle)
+		#var pos2d := Vector2.from_angle(angle)
 		var b := BulletPool.instance.get_bullet()
 		b.define_bullet_from_data(linepat.bullet_data)
 		b.position = Vector3(pos.x, 0.5, pos.y)
@@ -87,13 +87,13 @@ func _line_burst(center: Vector2):
 		b.update_sprite()
 
 
-func _gap_start(_volleys_fired: int) -> int:
+func _gap_start(_v_fired: int) -> int:
 	var linepat = pat as LinePattern
 	if linepat.random_gap:
 		var rng := RandomNumberGenerator.new()
-		rng.seed = linepat.random_seed + _volleys_fired                    # deterministic per shot
+		rng.seed = linepat.random_seed + _v_fired                    # deterministic per shot
 		return rng.randi_range(0, max(linepat.bullet_count - linepat.gap_size, 0))
-	return linepat.gap_start_index + linepat.gap_step * _volleys_fired
+	return linepat.gap_start_index + linepat.gap_step * _v_fired
 
 
 func _in_gap(i: int, gap_from: int) -> bool:
@@ -102,7 +102,7 @@ func _in_gap(i: int, gap_from: int) -> bool:
 	var wrapped := posmod(i - gap_from, linepat.bullet_count)
 	return wrapped < linepat.gap_size
 	
-func _ring_burst(center: Vector2):
+func _ring_burst(_center: Vector2):
 	var ringpat = pat as RingPattern
 	var start := deg_to_rad(ringpat.start_angle_deg + (ringpat.angle_step_deg * _volleys_fired))
 	var arc := deg_to_rad(ringpat.arc_deg)

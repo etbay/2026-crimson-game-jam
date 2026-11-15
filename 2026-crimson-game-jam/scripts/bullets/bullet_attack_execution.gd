@@ -16,7 +16,7 @@ func execute_patterns(center: Vector2) -> void:
 		executer.execute()
 		i += 1
 
-func increment_patterns(delta: float, center: Vector2):
+func increment_patterns(delta: float, _center: Vector2):
 	_timer += delta
 	finished = true
 	var i: int = 0

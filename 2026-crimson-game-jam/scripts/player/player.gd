@@ -126,6 +126,8 @@ func _update_mouse_dir() -> void:
 	mouse_dir = player_pos.direction_to(mouse_pos)
 
 func _process_input() -> void:
+	if (movement_locked):
+		return
 	if Input.is_action_just_pressed("shoot") and not beast_mode and not parrying and shoot_timer.is_stopped():
 		# Shoot stuff
 		var bullet: Bullet = BulletPool.instance.get_bullet()
@@ -166,6 +168,17 @@ func _execute_dash() -> void:
 	else:
 		active_speed = walk_speed
 	dashing = false
+
+func tutorial_parry(b: TutorialBullet) -> void:
+	parry_curve.visible = true
+	Engine.time_scale = 0
+	# Set parry curve sprite to direction
+	var dir = Vector2(global_position.x, -global_position.z).direction_to(Vector2(b.global_position.x, -b.global_position.z))
+	parry_curve.rotation.z = dir.angle()
+	await get_tree().create_timer(0.1, true, false, true).timeout
+	beast_meter += 10
+	Engine.time_scale = 1
+	parry_curve.visible = false
 
 func _execute_parry() -> void:
 	# Enter parry state

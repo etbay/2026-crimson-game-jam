@@ -1,7 +1,7 @@
 extends Node3D
 
 @export var bullet_scene: PackedScene
-@export var player: Node3D
+@export var player: Player
 
 @onready var shot_origin: Marker3D = $ShotOrigin
 
@@ -35,7 +35,7 @@ func _ready() -> void:
 	# connect signal
 	tutorial_trigger.area_entered.connect(_on_tutorial_trigger)
 
-func _on_tutorial_trigger(area: Area3D) -> void:
+func _on_tutorial_trigger(_area: Area3D) -> void:
 	if (!tutorial_started):
 		tutorial_started = true
 		player.movement_locked = true
@@ -77,18 +77,12 @@ func shoot() -> void:
 	current_bullet = bullet
 	bullet.player = player
 	bullet.near_player.connect(_on_bullet_near_player)
-
-	# Add it to the main scene
 	get_tree().current_scene.add_child(bullet)
-
-	# Spawn at the statue's ShotOrigin
 	bullet.global_position = shot_origin.global_position
 
 	# Calculate direction toward player
 	var target_position = player.global_position
-	# Keep bullet at the same height
 	target_position.y = shot_origin.global_position.y
-
 	var direction = (
 		target_position - shot_origin.global_position
 	).normalized()
@@ -111,7 +105,7 @@ func _input(event: InputEvent) -> void:
 
 func parry_successful() -> void:
 	waiting_for_parry = false
-
+	player.tutorial_parry(current_bullet)
 	# Delete the bullet
 	if is_instance_valid(current_bullet):
 		current_bullet.queue_free()
@@ -123,10 +117,10 @@ func parry_successful() -> void:
 	# Resume the game
 	get_tree().paused = false
 	player.movement_locked = false
-	print("ScreenShake triggered!")
+	#print("ScreenShake triggered!")
 	ScreenShake.shake(.2, 0.3)
 	show_wasd_tutorial()
-	print("Successful Parry!")
+	#print("Successful Parry!")
 
 func show_wasd_tutorial() -> void:
 	# Wait before showing the WASD prompt

@@ -1,4 +1,3 @@
-
 extends Node3D
 class_name TutorialBullet
 
@@ -7,13 +6,12 @@ signal near_player
 @export var start_speed: float = 18.0
 @export var end_speed: float = 1.5
 @export var slowdown_distance: float = 6.0
-@export var stop_distance: float = 1.5
+@export var stop_distance: float = 2.2
 
 var current_speed: float
 var direction: Vector3 = Vector3.ZERO
 var player: Player
 var stopped: bool = false
-
 
 func _ready() -> void:
 	current_speed = start_speed
@@ -35,7 +33,7 @@ func _physics_process(delta: float) -> void:
 		))
 
 		# Stop when close enough to parry
-		if distance <= stop_distance:
+		if distance <= stop_distance + 0.0001:
 			stopped = true
 			near_player.emit()
 			return
