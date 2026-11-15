@@ -7,6 +7,7 @@ var size : float
 # Parameters for actions
 # scalars
 var angle : float
+var _initial_angle: float
 var speed : float
 # over time changes
 var acceleration : float
@@ -15,6 +16,7 @@ var turn_rate_accel : float
 var lifetime : float # fade away or -1 for infinite
 var age : float
 var parryable : bool
+var max_angle_deg: float = 90
 
 #var homing : bool
 
@@ -34,6 +36,7 @@ func _init(_size : float = 1, _angle : float = 0, _speed : float = 0, _accel : f
 
 func define_bullet(_size : float = 1, _angle : float = 0, _speed : float = 0, _accel : float = 0, _turn_rate : float = 0, _turn_rate_accel : float = 0, _lifetime : float = -1, _parryable : bool = false) -> void:
 	angle = _angle
+	_initial_angle = _angle
 	speed = _speed
 	acceleration = _accel
 	turn_rate = _turn_rate
@@ -66,7 +69,7 @@ func update_sprite():
 		sprite.modulate = Color("af01f9ff")
 		mat.emission_energy_multiplier = 1.5
 	scale = Vector3(size, 1, size)
-	
+
 	# glow effect
 	mat.cull_mode = BaseMaterial3D.CULL_DISABLED
 	mat.albedo_texture = sprite.texture
@@ -84,12 +87,12 @@ func _physics_process(delta : float) -> void:
 			kill_bullet()
 		speed += acceleration * delta
 		turn_rate += turn_rate_accel * delta
-		angle += turn_rate * delta
+		angle = clampf(angle + turn_rate * delta, _initial_angle - (max_angle_deg * PI/180), _initial_angle + (max_angle_deg * PI/180))
 		update_position(delta)
 
 func update_position(delta : float) -> void:
 	var direction : Vector2 = Vector2.from_angle(angle) * speed * delta
-	self.position += Vector3(direction.x, 0, direction.y)	
+	self.position += Vector3(direction.x, 0, direction.y)
 
 func _on_area_entered(area : Area3D) -> void:
 	if (_active):

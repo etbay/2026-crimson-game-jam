@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="BulletAttack" format=3 uid="uid://wsw2i826fhlt"]
+
+[ext_resource type="Script" uid="uid://dayx2jy8tp802" path="res://scripts/bullets/bullet_pattern.gd" id="1_ma7kt"]
+[ext_resource type="Script" uid="uid://dyoedp32mh0ce" path="res://scripts/bullets/bullet_attack.gd" id="2_2kqpq"]
+[ext_resource type="Resource" uid="uid://d1g8rlb0r6ho2" path="res://bullet_resources/bullet_patterns/unchained_1_clockwise.tres" id="2_afgob"]
+[ext_resource type="Resource" uid="uid://dejncsk5cqf3g" path="res://bullet_resources/bullet_patterns/unchained_1_counterclockwise.tres" id="3_c0ml6"]
+
+[resource]
+script = ExtResource("2_2kqpq")
+patterns = Array[ExtResource("1_ma7kt")]([ExtResource("2_afgob"), ExtResource("3_c0ml6")])
+pattern_positions = Array[Vector2]([Vector2(0, 0), Vector2(0, 0)])
+metadata/_custom_type_script = "uid://dyoedp32mh0ce"

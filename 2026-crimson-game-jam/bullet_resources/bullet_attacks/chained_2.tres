@@ -1,0 +1,67 @@
+[gd_resource type="Resource" script_class="BulletAttack" format=3 uid="uid://c1r65thke3oe0"]
+
+[ext_resource type="Script" uid="uid://dayx2jy8tp802" path="res://scripts/bullets/bullet_pattern.gd" id="1_gsomk"]
+[ext_resource type="Resource" uid="uid://btld8etx6hcqe" path="res://bullet_resources/bullet_data/chained_2_downwards.tres" id="2_4kmlp"]
+[ext_resource type="Script" uid="uid://4q5s3c1ocpbh" path="res://scripts/bullets/line_pattern.gd" id="2_8mf88"]
+[ext_resource type="Script" uid="uid://dyoedp32mh0ce" path="res://scripts/bullets/bullet_attack.gd" id="2_w7arv"]
+[ext_resource type="Resource" uid="uid://dhwiql1r0ebqh" path="res://bullet_resources/bullet_data/chained_2_sideways.tres" id="4_4kmlp"]
+[ext_resource type="Resource" uid="uid://3x0t3c5ca24s" path="res://bullet_resources/bullet_data/chained_2_sideways_right.tres" id="5_vw5s2"]
+
+[sub_resource type="Resource" id="Resource_lpvio"]
+script = ExtResource("2_8mf88")
+bullet_count = 6
+spacing = 0.2
+spread_deg = 110.0
+end_speed_multiplier = 0.0
+bullet_data = ExtResource("2_4kmlp")
+fire_interval = 1.6
+volley_count = 10
+parryable_frequeuncy = 10
+metadata/_custom_type_script = "uid://4q5s3c1ocpbh"
+
+[sub_resource type="Resource" id="Resource_amrvv"]
+script = ExtResource("2_8mf88")
+bullet_count = 9
+spacing = 0.2
+spread_deg = 110.0
+end_speed_multiplier = 0.0
+delay_time = 0.8
+bullet_data = ExtResource("2_4kmlp")
+fire_interval = 1.6
+volley_count = 10
+parryable_frequeuncy = 10
+metadata/_custom_type_script = "uid://4q5s3c1ocpbh"
+
+[sub_resource type="Resource" id="Resource_vw5s2"]
+script = ExtResource("2_8mf88")
+bullet_count = 8
+spacing = 0.1
+travel_angle_deg = 0.0
+spread_deg = 90.0
+spawn_distance = -1.0
+end_speed_multiplier = 0.0
+delay_time = 2.4
+bullet_data = ExtResource("4_4kmlp")
+fire_interval = 3.2
+parryable_frequeuncy = 7
+metadata/_custom_type_script = "uid://4q5s3c1ocpbh"
+
+[sub_resource type="Resource" id="Resource_cmpir"]
+script = ExtResource("2_8mf88")
+bullet_count = 8
+spacing = 0.1
+travel_angle_deg = 180.0
+spread_deg = 90.0
+spawn_distance = -1.0
+end_speed_multiplier = 0.0
+delay_time = 0.8
+bullet_data = ExtResource("5_vw5s2")
+fire_interval = 3.2
+parryable_frequeuncy = 7
+metadata/_custom_type_script = "uid://4q5s3c1ocpbh"
+
+[resource]
+script = ExtResource("2_w7arv")
+patterns = Array[ExtResource("1_gsomk")]([SubResource("Resource_lpvio"), SubResource("Resource_amrvv"), SubResource("Resource_vw5s2"), SubResource("Resource_cmpir")])
+pattern_positions = Array[Vector2]([Vector2(0, -5), Vector2(0, -5), Vector2(-4, 0), Vector2(4, 0)])
+metadata/_custom_type_script = "uid://dyoedp32mh0ce"

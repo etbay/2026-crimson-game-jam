@@ -28,5 +28,5 @@ class_name LinePattern extends BulletPattern
 
 # --- Per-shot change (walls that sweep or rotate) ---
 @export var angle_step_deg: float = 0.0       # rotate travel direction each shot
-@export var random_angle_change: bool = false
 @export var offset_step: float = 0.0          # slide the line sideways each shot
+@export var max_angle_deg: float = 360

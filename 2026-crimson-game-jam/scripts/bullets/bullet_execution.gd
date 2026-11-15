@@ -8,10 +8,12 @@ var _finished: bool = false
 var _volleys_fired: int = 0
 var _timer: float = 0.0
 var _bullets_spawned: int = 0
+var _started: bool = false
 
 func _init(pattern: BulletPattern = null, spawn: Vector2 = Vector2.ZERO):
 	pat = pattern
 	_spawn_pos = spawn
+	_timer = 0
 
 func execute() -> void:
 	if (not _active):
@@ -24,7 +26,10 @@ func increment_pattern(delta : float, center: Vector2) -> void:
 	if not _active or _finished:
 		return
 	_timer += delta
-	if _timer > pat.fire_interval:
+	if _timer < pat.delay_time and !_started:
+		return
+	if _timer > pat.fire_interval or !_started:
+		_started = true
 		if (pat.volley_count <= 0):
 			_active = false
 			_finished = true
@@ -44,7 +49,7 @@ func _fire_burst(center: Vector2):
 
 func _line_burst(center: Vector2):
 	var linepat = pat as LinePattern
-	var travel := deg_to_rad(linepat.travel_angle_deg + linepat.angle_step_deg * _volleys_fired)
+	var travel: float = deg_to_rad(linepat.travel_angle_deg + linepat.angle_step_deg * _volleys_fired)
 	var forward := Vector2.from_angle(travel)
 	var axis := Vector2.from_angle(travel + PI / 2.0 + deg_to_rad(linepat.tilt_deg))
 
@@ -63,11 +68,14 @@ func _line_burst(center: Vector2):
 		var t : float = float(i) / max(linepat.bullet_count - 1, 1)          # 0..1 across the line
 		var pos: Vector2 = start + axis * (linepat.spacing * i)
 		var angle: float = travel + deg_to_rad(linepat.spread_deg * (t - 0.5))
+		print("deg: %f" % (linepat.spread_deg * (t - 0.5)))
 		var pos2d := Vector2.from_angle(angle)
 		var b := BulletPool.instance.get_bullet()
 		b.define_bullet_from_data(linepat.bullet_data)
 		b.position = Vector3(pos.x, 0.5, pos.y)
 		b.angle = angle
+		b._initial_angle = b.angle
+		b.max_angle_deg = linepat.max_angle_deg
 		if (not linepat.center_end_speed_mult):
 			b.speed = ((linepat.end_speed_multiplier * (float(i) / linepat.bullet_count)) + 1) * b.speed
 		else:
@@ -97,20 +105,24 @@ func _ring_burst(center: Vector2):
 	var ringpat = pat as RingPattern
 	var start := deg_to_rad(ringpat.start_angle_deg + (ringpat.angle_step_deg * _volleys_fired))
 	var arc := deg_to_rad(ringpat.arc_deg)
-	# Full circle: divide by count so the last bullet doesn't overlap the first.
-	# Partial arc: divide by count - 1 so both ends get a bullet.
 	var is_full := is_equal_approx(ringpat.arc_deg, 360.0)
 	var divisions: int = ringpat.bullet_count if (is_full or ringpat.bullet_count < 2) else ringpat.bullet_count - 1
 	var step := arc / divisions
 
+	# Clamp the heading tilt so bullets can't point further inward than allowed
+	var offset_deg := clampf(ringpat.heading_offset_deg, -ringpat.max_inward_deg, ringpat.max_inward_deg)
+	var heading_offset := deg_to_rad(offset_deg)
+
 	for i in ringpat.bullet_count:
-		var angle : float = start + step * i
+		var angle : float = start + step * i                 # where the bullet spawns on the ring
 		var pos2d := Vector2.from_angle(angle)
 		var pos: Vector3 = Vector3(_spawn_pos.x, 0.5, _spawn_pos.y) + Vector3(pos2d.x, 0, pos2d.y) * ringpat.spawn_radius
 		var b := BulletPool.instance.get_bullet()
 		b.define_bullet_from_data(ringpat.bullet_data)
 		b.position = pos
-		b.angle = angle
+		b.angle = angle + heading_offset                     # where it travels
+		b._initial_angle = b.angle
+		b.max_angle_deg = ringpat.max_inward_deg
 		_bullets_spawned += 1
 		if (_bullets_spawned % ringpat.parryable_frequeuncy == 0):
 			b.parryable = true
