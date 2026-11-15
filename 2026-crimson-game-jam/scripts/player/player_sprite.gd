@@ -29,7 +29,6 @@ func _update_arms() -> void:
 	var direction_frame: String
 	
 	var angle: float = int(rad_to_deg(player.mouse_dir.angle()))
-	print(angle)
 	# Point gun
 	if player.mouse_dir.x < 0:
 		if angle >= 90 and angle <= 120:

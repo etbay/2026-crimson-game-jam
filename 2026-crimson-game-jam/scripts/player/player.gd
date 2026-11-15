@@ -14,14 +14,22 @@ const PLAYER_BULLET = preload("uid://cgs6fx8lp6hdl")
 # State bools
 var dashing: bool
 var beast_mode: bool
-var vulnerable: bool
+var vulnerable: bool = true
 
 # Player values
-var health: int
+var health: int = 3
 var beast_meter: float = 10
 var move_dir: Vector2
 var mouse_dir: Vector2
 var movement_locked: bool = false
+
+func damage() -> void:
+	if vulnerable:
+		# Delete nearby bullets
+		# Give immunity frames
+		health -= 1
+		if health == 0:
+			get_tree().quit()
 
 func _physics_process(delta: float) -> void:
 	_update_move_dir(delta)
@@ -50,12 +58,12 @@ func _process_input() -> void:
 		bullet.angle = mouse_dir.angle()
 		bullet.position = Vector3(bullet_spawn.global_position.x, 0, bullet_spawn.global_position.z)
 		bullet.update_sprite()
+		bullet.bullet_owner = self
 	
 	if Input.is_action_just_pressed("parry") and not beast_mode:
 		# TODO: Parry stuff
 		
 		# Enter parry state
-		
 		
 		pass
 	

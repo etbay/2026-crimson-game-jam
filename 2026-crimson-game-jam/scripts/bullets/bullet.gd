@@ -4,6 +4,8 @@ class_name Bullet extends Area3D
 @onready var sprite : Sprite3D = $BulletSprite
 var size : float
 
+var bullet_owner: Node3D
+
 # Parameters for actions
 # scalars
 var angle : float
@@ -24,7 +26,7 @@ func _ready() -> void:
 	collision_layer = 0
 	set_collision_layer_value(2, true)
 	sprite.texture = TextureLibrary.BULLET_SPRITE
-	area_entered.connect(_on_area_entered)
+	body_entered.connect(_on_body_entered)
 	update_sprite()
 	self.visible = false
 	_active = false
@@ -91,9 +93,11 @@ func update_position(delta : float) -> void:
 	var direction : Vector2 = Vector2.from_angle(angle) * speed * delta
 	self.position += Vector3(direction.x, 0, direction.y)	
 
-func _on_area_entered(area : Area3D) -> void:
-	if (_active):
-		pass
+func _on_body_entered(body : Node3D) -> void:
+	if _active and body is Player and body != bullet_owner:
+		var player: Player = body as Player
+		player.damage()
+		kill_bullet()
 
 func activate() -> void:
 	visible = true
