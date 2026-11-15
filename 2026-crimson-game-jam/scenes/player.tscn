@@ -9,18 +9,17 @@
 [ext_resource type="Texture2D" uid="uid://co8hrl1g3mlcl" path="res://assets/animations/arms/gun45.png" id="6_31cv2"]
 [ext_resource type="Texture2D" uid="uid://c5nafbj80fsn0" path="res://assets/animations/arms/gun90.png" id="7_pf23h"]
 [ext_resource type="Texture2D" uid="uid://dsh2w54om083y" path="res://assets/animations/legs/dash/dashing.png" id="8_4ni07"]
-[ext_resource type="Texture2D" uid="uid://db6pv27jse6k5" path="res://assets/animations/legs/walk/Walk clean_001.png" id="8_60mlk"]
-[ext_resource type="Texture2D" uid="uid://bn8l1xsicy4wf" path="res://assets/animations/legs/walk/Walk clean_002.png" id="9_i4ail"]
-[ext_resource type="Texture2D" uid="uid://cvyt7fo4hcbug" path="res://assets/animations/legs/walk/Walk clean_003.png" id="10_a38lo"]
-[ext_resource type="Texture2D" uid="uid://br4imkayivb0l" path="res://assets/animations/legs/walk/Walk clean_004.png" id="11_4ni07"]
-[ext_resource type="Texture2D" uid="uid://bd5iddbhus3ne" path="res://assets/animations/legs/walk/Walk clean_005.png" id="12_l71n6"]
-[ext_resource type="Texture2D" uid="uid://bp7sy2c5wnpb3" path="res://assets/animations/legs/walk/Walk clean_006.png" id="13_ke2ow"]
-[ext_resource type="Texture2D" uid="uid://dw35xk82aocvn" path="res://assets/animations/legs/walk/Walk clean_007.png" id="14_ujl30"]
-[ext_resource type="Texture2D" uid="uid://dpo1i6a2oibex" path="res://assets/animations/legs/walk/Walk clean_008.png" id="15_31cv2"]
-[ext_resource type="Texture2D" uid="uid://b5lg1x42bwlgd" path="res://assets/animations/legs/walk/Walk clean_009.png" id="16_pf23h"]
-[ext_resource type="Texture2D" uid="uid://dsvry2i5vt1hi" path="res://assets/animations/legs/walk/Walk clean_010.png" id="17_dt7fs"]
-[ext_resource type="Texture2D" uid="uid://4i4lipffa3kc" path="res://assets/animations/legs/walk/Walk clean_011.png" id="18_wqfne"]
-[ext_resource type="Texture2D" uid="uid://ojvq2xf7yd0k" path="res://assets/animations/legs/walk/Walk clean_012.png" id="19_wnwbv"]
+[ext_resource type="Texture2D" uid="uid://dmo2j8j1shc10" path="res://assets/animations/legs/walk/Walk color_001.png" id="9_3v2ag"]
+[ext_resource type="Texture2D" uid="uid://c23rueh1pbtdf" path="res://assets/animations/legs/walk/Walk color_002.png" id="10_a38lo"]
+[ext_resource type="Texture2D" uid="uid://jdgn4tepsdu0" path="res://assets/animations/legs/walk/Walk color_003.png" id="11_4ni07"]
+[ext_resource type="Texture2D" uid="uid://b8yr6gg4s6lpu" path="res://assets/animations/legs/walk/Walk color_004.png" id="12_l71n6"]
+[ext_resource type="Texture2D" uid="uid://btajerkocl1a2" path="res://assets/animations/legs/walk/Walk color_005.png" id="13_ke2ow"]
+[ext_resource type="Texture2D" uid="uid://510ro7dojb1i" path="res://assets/animations/legs/walk/Walk color_006.png" id="14_ujl30"]
+[ext_resource type="Texture2D" uid="uid://3ao6v6rqmy46" path="res://assets/animations/legs/walk/Walk color_007.png" id="15_31cv2"]
+[ext_resource type="Texture2D" uid="uid://dw4anwdh5y0xu" path="res://assets/animations/legs/walk/Walk color_008.png" id="16_pf23h"]
+[ext_resource type="Texture2D" uid="uid://d0von0087kcyc" path="res://assets/animations/legs/walk/Walk color_009.png" id="17_dt7fs"]
+[ext_resource type="Texture2D" uid="uid://dxtfkokdhtgrb" path="res://assets/animations/legs/walk/Walk color_010.png" id="18_wqfne"]
+[ext_resource type="Texture2D" uid="uid://gv25u83cbqrg" path="res://assets/animations/legs/walk/Walk color_011.png" id="19_wnwbv"]
 [ext_resource type="Texture2D" uid="uid://7ejo5yebx6m0" path="res://assets/art/parry_curve.png" id="21_i4ail"]
 [ext_resource type="Script" uid="uid://cjguahoyl58xu" path="res://scenes/player_hurtbox.gd" id="22_a38lo"]
 
@@ -83,7 +82,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("8_60mlk")
+"texture": ExtResource("9_3v2ag")
 }],
 "loop": 1,
 "name": &"idle",
@@ -91,10 +90,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("8_60mlk")
-}, {
-"duration": 1.0,
-"texture": ExtResource("9_i4ail")
+"texture": ExtResource("9_3v2ag")
 }, {
 "duration": 1.0,
 "texture": ExtResource("10_a38lo")
@@ -170,7 +166,7 @@ animation = &"gun-90"
 transform = Transform3D(0.04, 0, 0, 0, 0.039999995, 0, 0, 0, 0.039999995, 0, 0, 0)
 render_priority = 3
 sprite_frames = SubResource("SpriteFrames_dqkch")
-animation = &"idle"
+animation = &"dashing"
 
 [node name="BodySprite" type="AnimatedSprite3D" parent="PlayerSprite" unique_id=311546419]
 transform = Transform3D(0.04, 0, 0, 0, 0.039999995, 0, 0, 0, 0.039999995, 0, 0, 0)

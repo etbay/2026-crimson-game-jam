@@ -134,7 +134,7 @@ func _process_input() -> void:
 		bullet.angle = mouse_dir.angle()
 		bullet.position = Vector3(bullet_spawn.global_position.x, 0, bullet_spawn.global_position.z)
 		bullet.update_sprite()
-		bullet.bullet_owner = self
+		bullet.bullet_owner = "Player"
 		shoot_timer.start(shoot_cooldown)
 	
 	if Input.is_action_just_pressed("parry") and not beast_mode and not parrying:

@@ -2,21 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://4i4lipffa3kc"
-path.s3tc="res://.godot/imported/Walk clean_011.png-35958c7e8837de75993f881d6585afc6.s3tc.ctex"
+uid="uid://dxtfkokdhtgrb"
+path="res://.godot/imported/Walk color_010.png-50856a1f5455835583fe4c77a4539351.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/animations/legs/walk/Walk clean_011.png"
-dest_files=["res://.godot/imported/Walk clean_011.png-35958c7e8837de75993f881d6585afc6.s3tc.ctex"]
+source_file="res://assets/animations/legs/walk/Walk color_010.png"
+dest_files=["res://.godot/imported/Walk color_010.png-50856a1f5455835583fe4c77a4539351.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0
@@ -24,7 +23,7 @@ compress/rdo_quality_loss=0.0
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=true
+mipmaps/generate=false
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""
@@ -38,4 +37,4 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=0
+detect_3d/compress_to=1

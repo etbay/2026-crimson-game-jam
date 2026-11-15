@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://cdr18k5sh7365"]
 
+[ext_resource type="PackedScene" uid="uid://dtj585chb8ulb" path="res://scenes/enemy.tscn" id="1_5vw27"]
 [ext_resource type="Texture2D" uid="uid://b6463lhp65gd3" path="res://assets/art/test_arena.jpg" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://27eut258tv7t" path="res://scenes/player.tscn" id="2_0xm2m"]
 [ext_resource type="Script" uid="uid://dbkj3qoa8l0kv" path="res://scripts/bullets/bullet_pool.gd" id="3_h2yge"]
@@ -9,6 +10,8 @@
 [ext_resource type="PackedScene" uid="uid://dg4s3l487twfo" path="res://scenes/hud.tscn" id="7_272bh"]
 
 [node name="Node3D" type="Node3D" unique_id=71333522]
+
+[node name="HUD" parent="." unique_id=966798296 instance=ExtResource("7_272bh")]
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=342016900]
 transform = Transform3D(1, 0, 0, 0, 0.25881907, 0.9659258, 0, -0.9659258, 0.25881907, 9.536743e-07, 4.5982347, -1.649106)
@@ -28,10 +31,12 @@ transform = Transform3D(1, 0, 0, 0, 0.25881907, 0.9659258, 0, -0.9659258, 0.2588
 script = ExtResource("3_h2yge")
 metadata/_custom_type_script = "uid://dbkj3qoa8l0kv"
 
-[node name="Boss" type="Node3D" parent="." unique_id=352413808]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -6.3424554)
+[node name="Boss Position" type="Node3D" parent="." unique_id=170016067]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4)
+
+[node name="Boss" type="Node3D" parent="Boss Position" unique_id=352413808]
 script = ExtResource("4_7mycd")
 attacks = Array[ExtResource("5_272bh")]([ExtResource("6_5vw27")])
 metadata/_custom_type_script = "uid://c1xw7eo4un7k8"
 
-[node name="HUD" parent="." unique_id=966798296 instance=ExtResource("7_272bh")]
+[node name="Enemy" parent="Boss Position" unique_id=433226092 instance=ExtResource("1_5vw27")]
