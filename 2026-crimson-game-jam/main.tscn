@@ -21,7 +21,7 @@ render_priority = -100
 texture = ExtResource("1_ig7tw")
 
 [node name="CharacterBody3D" parent="." unique_id=32883367 instance=ExtResource("2_0xm2m")]
-transform = Transform3D(1, 0, 0, 0, 0.25881907, 0.9659258, 0, -0.9659258, 0.25881907, 0, 0.5, 0)
+transform = Transform3D(1, 0, 0, 0, 0.25881907, 0.9659258, 0, -0.9659258, 0.25881907, 0, 0, 0)
 
 [node name="BulletPool" type="Node3D" parent="." unique_id=1749775153]
 script = ExtResource("3_h2yge")

@@ -32,6 +32,7 @@ func _ready() -> void:
 	update_sprite()
 	self.visible = false
 	_active = false
+	
 
 func _init(_size : float = 1, _angle : float = 0, _speed : float = 0, _accel : float = 0, _turn_rate : float = 0, _turn_rate_accel : float = 0, _lifetime : float = -1, _parryable : bool = false) -> void:
 	define_bullet(_size, _angle, _speed, _accel, _turn_rate, _turn_rate_accel, _lifetime, _parryable)
@@ -91,6 +92,8 @@ func _physics_process(delta : float) -> void:
 		turn_rate += turn_rate_accel * delta
 		angle = clampf(angle + turn_rate * delta, _initial_angle - (max_angle_deg * PI/180), _initial_angle + (max_angle_deg * PI/180))
 		update_position(delta)
+		if global_position.y != 0:
+			global_position.y = 0
 
 func update_position(delta : float) -> void:
 	var direction : Vector2 = Vector2.from_angle(angle) * speed * delta
