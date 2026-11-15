@@ -146,6 +146,8 @@ func parry_successful() -> void:
 	# Resume the game
 	get_tree().paused = false
 	player.movement_locked = false
+	print("ScreenShake triggered!")
+	ScreenShake.shake(.2, 0.3)
 	show_wasd_tutorial()
 	print("Successful Parry!")
 

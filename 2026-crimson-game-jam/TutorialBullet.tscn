@@ -1,15 +1,15 @@
 [gd_scene format=3 uid="uid://4untts65i8q2"]
 
 [ext_resource type="Script" uid="uid://bjufgxvxa1bfe" path="res://scripts/bullets/tutorial_bullet.gd" id="1_tuuan"]
-[ext_resource type="Texture2D" uid="uid://dglwa448xf8hv" path="res://icon.svg" id="2_oaowl"]
+[ext_resource type="Texture2D" uid="uid://bhbi5njw5s6xr" path="res://assets/art/better_bullet.png" id="2_tuuan"]
 
 [node name="TutorialBullet" type="Node3D" unique_id=31780710]
 script = ExtResource("1_tuuan")
-start_speed = 19.0
-end_speed = 2.0
-slowdown_distance = 4.0
-stop_distance = 2.0
+start_speed = 10.0
+end_speed = 0.5
+slowdown_distance = 2.0
+stop_distance = 0.35
 
 [node name="Sprite3D" type="Sprite3D" parent="." unique_id=910332635]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
-texture = ExtResource("2_oaowl")
+transform = Transform3D(0.005, 0, 0, 0, -2.1855694e-10, 0.005, 0, -0.005, -2.1855694e-10, 0, 0, 0)
+texture = ExtResource("2_tuuan")

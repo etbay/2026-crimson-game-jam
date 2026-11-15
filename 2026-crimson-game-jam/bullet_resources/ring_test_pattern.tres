@@ -6,9 +6,9 @@
 [resource]
 script = ExtResource("1_tuevl")
 bullet_count = 15
-arc_deg = 200.0
 angle_step_deg = 15.0
 bullet_data = ExtResource("1_mvnbu")
-volley_count = 10
-parryable_frequeuncy = 8
+fire_interval = 1.5
+volley_count = 5
+parryable_frequeuncy = 3
 metadata/_custom_type_script = "uid://bm6p0a3odsqfk"
