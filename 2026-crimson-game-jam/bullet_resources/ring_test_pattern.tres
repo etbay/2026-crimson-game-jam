@@ -9,6 +9,6 @@ bullet_count = 40
 arc_deg = 200.0
 angle_step_deg = 15.0
 bullet_data = ExtResource("1_mvnbu")
-volley_count = 10
+volley_count = 0
 parryable_frequeuncy = 8
 metadata/_custom_type_script = "uid://bm6p0a3odsqfk"
