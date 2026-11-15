@@ -1,0 +1,127 @@
+[gd_scene format=3 uid="uid://csbw1y7e0bwqp"]
+
+[ext_resource type="Environment" uid="uid://bxt2rowih751w" path="res://scenes/camera_env.tres" id="1_b5spy"]
+[ext_resource type="Texture2D" uid="uid://b6463lhp65gd3" path="res://assets/art/test_arena.jpg" id="1_kk2rg"]
+[ext_resource type="PackedScene" uid="uid://27eut258tv7t" path="res://scenes/player.tscn" id="2_b5spy"]
+[ext_resource type="Script" uid="uid://b737qjmuwdsq2" path="res://scenes/player_cam.gd" id="2_mw25s"]
+[ext_resource type="Script" uid="uid://dbkj3qoa8l0kv" path="res://scripts/bullets/bullet_pool.gd" id="3_utbpp"]
+[ext_resource type="Script" uid="uid://c1xw7eo4un7k8" path="res://scripts/boss/boss.gd" id="4_mw25s"]
+[ext_resource type="Script" uid="uid://dyoedp32mh0ce" path="res://scripts/bullets/bullet_attack.gd" id="5_tcjrq"]
+[ext_resource type="PackedScene" uid="uid://dg4s3l487twfo" path="res://scenes/hud.tscn" id="7_tqxxy"]
+[ext_resource type="Script" uid="uid://c5lctqqcx3p2n" path="res://scripts/tutorialboss.gd" id="8_rvs2r"]
+[ext_resource type="PackedScene" uid="uid://4untts65i8q2" path="res://TutorialBullet.tscn" id="9_tqxxy"]
+[ext_resource type="Script" uid="uid://b3dlknyc4cmm5" path="res://scenes/tutorial_trigger.gd" id="9_utbpp"]
+[ext_resource type="Texture2D" uid="uid://cva02g8cm4i2r" path="res://assets/art/Guardian_Sprite.png" id="10_5ay1a"]
+[ext_resource type="Resource" uid="uid://b3bbq60noqe05" path="res://bullet_resources/bullet_patterns/ring_test_pattern.tres" id="12_liy57"]
+[ext_resource type="Script" uid="uid://dayx2jy8tp802" path="res://scripts/bullets/bullet_pattern.gd" id="13_5ay1a"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qi5dk"]
+size = Vector3(100, 20, 1)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mwyo0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_5ay1a")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="SystemFont" id="SystemFont_s76x2"]
+subpixel_positioning = 0
+
+[sub_resource type="SystemFont" id="SystemFont_77hjl"]
+subpixel_positioning = 0
+
+[sub_resource type="Resource" id="Resource_rvs2r"]
+script = ExtResource("5_tcjrq")
+patterns = Array[ExtResource("13_5ay1a")]([ExtResource("12_liy57")])
+pattern_positions = Array[Vector2]([Vector2(0, 0)])
+metadata/_custom_type_script = "uid://dyoedp32mh0ce"
+
+[node name="GameScene" type="Node3D" unique_id=962368027]
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1730521585]
+transform = Transform3D(1, 0, 0, 0, 0.25881907, 0.9659258, 0, -0.9659258, 0.25881907, 9.536743e-07, 7.0793605, -2.6826966)
+environment = ExtResource("1_b5spy")
+fov = 90.0
+script = ExtResource("2_mw25s")
+target_cam_position = Vector3(0, 7.479, -2.661)
+
+[node name="Sprite3D" type="Sprite3D" parent="." unique_id=393587440]
+transform = Transform3D(0.265, 0, 0, 0, -1.1583517e-08, -0.265, 0, 0.265, -1.1583517e-08, 0, 0, -0.07299042)
+pixel_size = 0.1
+render_priority = -100
+texture = ExtResource("1_kk2rg")
+
+[node name="CharacterBody3D" parent="." unique_id=32883367 instance=ExtResource("2_b5spy")]
+transform = Transform3D(1, 0, 0, 0, 0.25881907, 0.9659258, 0, -0.9659258, 0.25881907, 0, 0, 6.568077)
+
+[node name="BulletPool" type="Node3D" parent="." unique_id=12835276]
+script = ExtResource("3_utbpp")
+metadata/_custom_type_script = "uid://dbkj3qoa8l0kv"
+
+[node name="HUD" parent="." unique_id=966798296 instance=ExtResource("7_tqxxy")]
+
+[node name="TutorialTrigger" type="Area3D" parent="." unique_id=663094941]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TutorialTrigger" unique_id=1457655851]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.6088696)
+shape = SubResource("BoxShape3D_qi5dk")
+script = ExtResource("9_utbpp")
+
+[node name="TutorialBossNode3D" type="Node3D" parent="." unique_id=274485581 node_paths=PackedStringArray("player", "parry_prompt", "wasd_prompt", "entrance_end")]
+process_mode = 3
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -34.01161)
+script = ExtResource("8_rvs2r")
+bullet_scene = ExtResource("9_tqxxy")
+player = NodePath("../CharacterBody3D")
+parry_prompt = NodePath("ParryPrompt")
+wasd_prompt = NodePath("WASDPrompt")
+entrance_end = NodePath("EntranceEnd")
+shoot_delay = 0.5
+wasd_delay = 0.5
+wasd_duration = 3.5
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="TutorialBossNode3D" unique_id=328339890]
+process_mode = 1
+transform = Transform3D(0.08, 0, 0, 0, 0.0771412, 0.021195156, 0, -0.021195156, 0.0771412, 0, 0.474, 26.583)
+render_priority = 1
+sprite_frames = SubResource("SpriteFrames_mwyo0")
+
+[node name="ShotOrigin" type="Marker3D" parent="TutorialBossNode3D" unique_id=519351495]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.10494816, 0.10854626, 27.199917)
+
+[node name="EntranceEnd" type="Marker3D" parent="TutorialBossNode3D" unique_id=1120125022]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.123, 0, 31.555538)
+
+[node name="ParryPrompt" type="Label3D" parent="TutorialBossNode3D" unique_id=2095669175]
+transform = Transform3D(1.31, 0, 0, 0, 1.31, 0, 0, 0, 1.31, 1.9741156, 0.674685, 28.995338)
+pixel_size = 0.01
+billboard = 1
+render_priority = 2
+outline_render_priority = 0
+text = "Press Right Click to Parry Yellow Bullets!"
+font = SubResource("SystemFont_s76x2")
+font_size = 13
+outline_size = 15
+
+[node name="WASDPrompt" type="Label3D" parent="TutorialBossNode3D" unique_id=665860429]
+transform = Transform3D(1.47, 0, 0, 0, 1.47, 0, 0, 0, 1.47, 1.8549118, 0.674685, 28.196098)
+pixel_size = 0.01
+billboard = 1
+render_priority = 1
+outline_render_priority = 0
+text = "WASD to move!"
+font = SubResource("SystemFont_77hjl")
+font_size = 13
+outline_size = 15
+
+[node name="Boss" type="Node3D" parent="TutorialBossNode3D" unique_id=294833269]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 26.46262)
+script = ExtResource("4_mw25s")
+attacks = Array[ExtResource("5_tcjrq")]([SubResource("Resource_rvs2r")])
+_attack_delay = 3.0
+metadata/_custom_type_script = "uid://c1xw7eo4un7k8"

@@ -18,6 +18,7 @@ var stopped: bool = false
 func _ready() -> void:
 	current_speed = start_speed
 	apply_parry_visuals()
+	self.scale = Vector3(3, 1, 3)
 
 func _physics_process(delta: float) -> void:
 	if stopped:
@@ -70,12 +71,8 @@ func _physics_process(delta: float) -> void:
 		global_position += direction * start_speed * delta
 
 func apply_parry_visuals() -> void:
-   
 	sprite.texture = TextureLibrary.BULLET_PARRYABLE_2
-
 	var parry_color = Color("a99000ff")
-
-	
 	var mat = StandardMaterial3D.new()
 
 	mat.cull_mode = BaseMaterial3D.CULL_DISABLED

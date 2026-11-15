@@ -3,10 +3,10 @@ class_name Boss extends Node3D
 @export var attacks: Array[BulletAttack]
 
 var _attacking: bool = false
-var _attack_delay: float = 6
+@export var _attack_delay: float = 6
 var _current_attack: BulletAttack = null
 var _prev_attack: BulletAttack = null
-var _timer: float = 100;
+var _timer: float = 1000;
 var executer: BulletAttackExecution = null
 
 func _process(delta: float) -> void:
