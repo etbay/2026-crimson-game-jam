@@ -1,10 +1,21 @@
 class_name Player extends CharacterBody3D
 
 const PLAYER_BULLET = preload("uid://cgs6fx8lp6hdl")
+const BULLET_SPAWN_0 := Vector2(0.3,0.03)
+const BULLET_SPAWN_45 := Vector2(0.17,0.23)
+const BULLET_SPAWN_80 := Vector2(0.015,0.45)
+const BULLET_SPAWN_100 := Vector2(-0.015,0.45)
+const BULLET_SPAWN_135 := Vector2(-0.17,0.23)
+const BULLET_SPAWN_180 := Vector2(-0.3,0.03)
 
-@export var walk_speed: float = 5
-@export var beast_speed: float = 10
-@export var dash_length: float = 30
+const BULLET_SPAWN_225 := Vector2(-0.15,-0.22)
+const BULLET_SPAWN_250 := Vector2(-0.014,-0.31)
+const BULLET_SPAWN_260 := Vector2(0.014,-0.31)
+const BULLET_SPAWN_315 := Vector2(0.15,-0.22)
+
+@export var walk_speed: float = 3
+@export var beast_speed: float = 6
+@export var dash_length: float = 18
 
 @onready var player_sprite: PlayerSprite = $PlayerSprite
 @onready var bullet_spawn: Node3D = $BulletSpawn
@@ -36,14 +47,45 @@ func damage() -> void:
 			get_tree().quit()
 
 func _ready() -> void:
-	parry_curve.visible = false
 	parry_radius.area_entered.connect(_on_parry_area_entered)
+	player_sprite.aim_direction_changed.connect(_on_aim_direction_changed)
 
 func _physics_process(delta: float) -> void:
 	_update_move_dir(delta)
 	_update_mouse_dir()
 	_process_input()
 	player_sprite.update_sprite()
+
+func _on_aim_direction_changed(direction: String) -> void:
+	match(direction):
+		"gun-90_false":
+			pass
+		"gun-45_false":
+			bullet_spawn.position.x = BULLET_SPAWN_315.x
+			bullet_spawn.position.y = BULLET_SPAWN_315.y
+		"gun0_false":
+			bullet_spawn.position.x = BULLET_SPAWN_0.x
+			bullet_spawn.position.y = BULLET_SPAWN_0.y
+		"gun45_false":
+			bullet_spawn.position.x = BULLET_SPAWN_45.x
+			bullet_spawn.position.y = BULLET_SPAWN_45.y
+		"gun90_false":
+			bullet_spawn.position.x = BULLET_SPAWN_80.x
+			bullet_spawn.position.y = BULLET_SPAWN_80.y
+		"gun-90_true":
+			pass
+		"gun-45_true":
+			bullet_spawn.position.x = BULLET_SPAWN_225.x
+			bullet_spawn.position.y = BULLET_SPAWN_225.y
+		"gun0_true":
+			bullet_spawn.position.x = BULLET_SPAWN_180.x
+			bullet_spawn.position.y = BULLET_SPAWN_180.y
+		"gun45_true":
+			bullet_spawn.position.x = BULLET_SPAWN_135.x
+			bullet_spawn.position.y = BULLET_SPAWN_135.y
+		"gun90_true":
+			bullet_spawn.position.x = BULLET_SPAWN_100.x
+			bullet_spawn.position.y = BULLET_SPAWN_100.y
 
 func _update_move_dir(_delta: float) -> void:
 	if movement_locked:

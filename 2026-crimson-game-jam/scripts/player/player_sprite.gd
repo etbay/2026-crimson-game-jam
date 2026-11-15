@@ -1,9 +1,13 @@
 class_name PlayerSprite extends Node3D
 
+signal aim_direction_changed(String)
+
 @export var player: Player
 @onready var body_sprite: AnimatedSprite3D = $BodySprite
 @onready var arm_sprite: AnimatedSprite3D = $ArmSprite
 @onready var legs_sprite: AnimatedSprite3D = $LegsSprite
+
+var direction_frame: String = ""
 
 func update_sprite() -> void:
 	_update_body()
@@ -26,7 +30,8 @@ func _update_body() -> void:
 	#body_sprite.play("%s_%s" % [facing, state])
 
 func _update_arms() -> void:
-	var direction_frame: String
+	var prev_direction_frame = direction_frame
+	var prev_flip_h = arm_sprite.flip_h
 	
 	var angle: float = int(rad_to_deg(player.mouse_dir.angle()))
 	# Point gun
@@ -56,16 +61,27 @@ func _update_arms() -> void:
 	# Flip the sprite if looking left, unflip if right
 	arm_sprite.flip_h = player.mouse_dir.x < 0 
 	
+	if direction_frame != prev_direction_frame or arm_sprite.flip_h != prev_flip_h:
+		aim_direction_changed.emit("%s_%s" % [direction_frame, arm_sprite.flip_h])
+	
 	# Play animation
 	arm_sprite.play(direction_frame)
 
 func _update_legs() -> void:
 	var state: String
 	
+	if player.active_speed == player.walk_speed:
+		legs_sprite.speed_scale = 1
+	elif player.active_speed == player.beast_speed:
+		legs_sprite.speed_scale = 2
+	
 	if player.move_dir == Vector2.ZERO:
 		state = "idle"
 	else:
 		state = "moving"
+	
+	if player.dashing:
+		state = "dashing"
 	
 	# Flip the sprite if looking left, unflip if right
 	legs_sprite.flip_h = player.mouse_dir.x < 0

@@ -8,24 +8,25 @@
 [ext_resource type="Texture2D" uid="uid://1qpl7waqmse8" path="res://assets/animations/arms/gun-90.png" id="5_ke2ow"]
 [ext_resource type="Texture2D" uid="uid://co8hrl1g3mlcl" path="res://assets/animations/arms/gun45.png" id="6_31cv2"]
 [ext_resource type="Texture2D" uid="uid://c5nafbj80fsn0" path="res://assets/animations/arms/gun90.png" id="7_pf23h"]
-[ext_resource type="Texture2D" uid="uid://db6pv27jse6k5" path="res://assets/animations/legs/Walk clean_001.png" id="8_60mlk"]
-[ext_resource type="Texture2D" uid="uid://bn8l1xsicy4wf" path="res://assets/animations/legs/Walk clean_002.png" id="9_i4ail"]
-[ext_resource type="Texture2D" uid="uid://cvyt7fo4hcbug" path="res://assets/animations/legs/Walk clean_003.png" id="10_a38lo"]
-[ext_resource type="Texture2D" uid="uid://br4imkayivb0l" path="res://assets/animations/legs/Walk clean_004.png" id="11_4ni07"]
-[ext_resource type="Texture2D" uid="uid://bd5iddbhus3ne" path="res://assets/animations/legs/Walk clean_005.png" id="12_l71n6"]
-[ext_resource type="Texture2D" uid="uid://bp7sy2c5wnpb3" path="res://assets/animations/legs/Walk clean_006.png" id="13_ke2ow"]
-[ext_resource type="Texture2D" uid="uid://dw35xk82aocvn" path="res://assets/animations/legs/Walk clean_007.png" id="14_ujl30"]
-[ext_resource type="Texture2D" uid="uid://dpo1i6a2oibex" path="res://assets/animations/legs/Walk clean_008.png" id="15_31cv2"]
-[ext_resource type="Texture2D" uid="uid://b5lg1x42bwlgd" path="res://assets/animations/legs/Walk clean_009.png" id="16_pf23h"]
-[ext_resource type="Texture2D" uid="uid://dsvry2i5vt1hi" path="res://assets/animations/legs/Walk clean_010.png" id="17_dt7fs"]
-[ext_resource type="Texture2D" uid="uid://4i4lipffa3kc" path="res://assets/animations/legs/Walk clean_011.png" id="18_wqfne"]
-[ext_resource type="Texture2D" uid="uid://ojvq2xf7yd0k" path="res://assets/animations/legs/Walk clean_012.png" id="19_wnwbv"]
+[ext_resource type="Texture2D" uid="uid://dsh2w54om083y" path="res://assets/animations/legs/dash/dashing.png" id="8_4ni07"]
+[ext_resource type="Texture2D" uid="uid://db6pv27jse6k5" path="res://assets/animations/legs/walk/Walk clean_001.png" id="8_60mlk"]
+[ext_resource type="Texture2D" uid="uid://bn8l1xsicy4wf" path="res://assets/animations/legs/walk/Walk clean_002.png" id="9_i4ail"]
+[ext_resource type="Texture2D" uid="uid://cvyt7fo4hcbug" path="res://assets/animations/legs/walk/Walk clean_003.png" id="10_a38lo"]
+[ext_resource type="Texture2D" uid="uid://br4imkayivb0l" path="res://assets/animations/legs/walk/Walk clean_004.png" id="11_4ni07"]
+[ext_resource type="Texture2D" uid="uid://bd5iddbhus3ne" path="res://assets/animations/legs/walk/Walk clean_005.png" id="12_l71n6"]
+[ext_resource type="Texture2D" uid="uid://bp7sy2c5wnpb3" path="res://assets/animations/legs/walk/Walk clean_006.png" id="13_ke2ow"]
+[ext_resource type="Texture2D" uid="uid://dw35xk82aocvn" path="res://assets/animations/legs/walk/Walk clean_007.png" id="14_ujl30"]
+[ext_resource type="Texture2D" uid="uid://dpo1i6a2oibex" path="res://assets/animations/legs/walk/Walk clean_008.png" id="15_31cv2"]
+[ext_resource type="Texture2D" uid="uid://b5lg1x42bwlgd" path="res://assets/animations/legs/walk/Walk clean_009.png" id="16_pf23h"]
+[ext_resource type="Texture2D" uid="uid://dsvry2i5vt1hi" path="res://assets/animations/legs/walk/Walk clean_010.png" id="17_dt7fs"]
+[ext_resource type="Texture2D" uid="uid://4i4lipffa3kc" path="res://assets/animations/legs/walk/Walk clean_011.png" id="18_wqfne"]
+[ext_resource type="Texture2D" uid="uid://ojvq2xf7yd0k" path="res://assets/animations/legs/walk/Walk clean_012.png" id="19_wnwbv"]
 [ext_resource type="Texture2D" uid="uid://7ejo5yebx6m0" path="res://assets/art/parry_curve.png" id="21_i4ail"]
 [ext_resource type="Script" uid="uid://cjguahoyl58xu" path="res://scenes/player_hurtbox.gd" id="22_a38lo"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_7mycd"]
-radius = 0.41259766
-height = 1.1467285
+radius = 0.2084961
+height = 0.53623044
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_qhqgy"]
 animations = [{
@@ -72,6 +73,14 @@ animations = [{
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_dqkch"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_4ni07")
+}],
+"loop": 1,
+"name": &"dashing",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("8_60mlk")
@@ -134,66 +143,55 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_i4ail"]
-radius = 0.84375
-height = 1.9918599
+radius = 0.4
+height = 1.0
 
 [node name="CharacterBody3D" type="CharacterBody3D" unique_id=32883367]
 script = ExtResource("1_qhqgy")
-walk_speed = 3.0
-dash_length = 18.0
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=356517985]
-transform = Transform3D(1, 0, 0, 0, 0.34202015, 0.9396926, 0, -0.9396926, 0.34202015, -0.08648664, -0.05487658, 0.19735369)
-shape = SubResource("CapsuleShape3D_7mycd")
-disabled = true
 
 [node name="BulletSpawn" type="Node3D" parent="." unique_id=288038477]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.450581e-09, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.014, -0.31, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=356517985]
+shape = SubResource("CapsuleShape3D_7mycd")
 
 [node name="PlayerSprite" type="Sprite3D" parent="." unique_id=1639550142 node_paths=PackedStringArray("player")]
-transform = Transform3D(2, 0, 0, 0, 0.6840403, 1.8793852, 0, -1.8793852, 0.6840403, 0, 0, 0)
 billboard = 1
 script = ExtResource("2_g2els")
 player = NodePath("..")
 
 [node name="ArmSprite" type="AnimatedSprite3D" parent="PlayerSprite" unique_id=2078459426]
 transform = Transform3D(0.04, 0, 0, 0, 0.04, -1.6556848e-09, 0, 1.6556848e-09, 0.04, 0, 0, 0)
-billboard = 1
 render_priority = 4
 sprite_frames = SubResource("SpriteFrames_qhqgy")
-animation = &"gun90"
+animation = &"gun-90"
 
 [node name="LegsSprite" type="AnimatedSprite3D" parent="PlayerSprite" unique_id=1964835705]
 transform = Transform3D(0.04, 0, 0, 0, 0.039999995, 0, 0, 0, 0.039999995, 0, 0, 0)
-billboard = 1
 render_priority = 3
 sprite_frames = SubResource("SpriteFrames_dqkch")
 animation = &"idle"
-frame_progress = 0.045641948
 
 [node name="BodySprite" type="AnimatedSprite3D" parent="PlayerSprite" unique_id=311546419]
 transform = Transform3D(0.04, 0, 0, 0, 0.039999995, 0, 0, 0, 0.039999995, 0, 0, 0)
-billboard = 1
 render_priority = 2
 sprite_frames = SubResource("SpriteFrames_g2els")
 
 [node name="ParryCurve" type="Node3D" parent="." unique_id=1024954468]
-transform = Transform3D(1, 0, 0, 0, 0.25881907, 0.9659258, 0, -0.9659258, 0.25881907, 0, 0, 0)
+visible = false
 
 [node name="Sprite3D" type="Sprite3D" parent="ParryCurve" unique_id=939234199]
-transform = Transform3D(0.05821583, 0.06193477, 0, -0.061934777, 0.058215827, 0, 0, 0, 0.08499999, 0.6393322, 0.12906687, -1.2141533e-07)
+transform = Transform3D(0.027395684, 0.02914578, 0, -0.029145775, 0.027395684, 0, -4.656613e-10, 0, 0.04, 0.325, 0, 0)
 texture = ExtResource("21_i4ail")
 
 [node name="Hurtbox" type="Area3D" parent="." unique_id=788675729]
 script = ExtResource("22_a38lo")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtbox" unique_id=2006309882]
-transform = Transform3D(1, 0, 0, 0, 0.34202015, 0.9396926, 0, -0.9396926, 0.34202015, -0.08648664, -0.05487658, 0.19735369)
 shape = SubResource("CapsuleShape3D_7mycd")
 
 [node name="ParryRadius" type="Area3D" parent="." unique_id=1040401282]
 collision_mask = 3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ParryRadius" unique_id=417462351]
-transform = Transform3D(1, 0, 0, 0, 0.34202015, 0.9396926, 0, -0.9396926, 0.34202015, -0.08648664, 0.018539488, -0.004355274)
 shape = SubResource("CapsuleShape3D_i4ail")

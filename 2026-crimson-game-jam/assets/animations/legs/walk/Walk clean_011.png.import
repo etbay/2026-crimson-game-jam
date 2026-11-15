@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cvyt7fo4hcbug"
-path.s3tc="res://.godot/imported/Walk clean_003.png-ee71c60db0529fd8521568a78b44130c.s3tc.ctex"
+uid="uid://4i4lipffa3kc"
+path.s3tc="res://.godot/imported/Walk clean_011.png-35958c7e8837de75993f881d6585afc6.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/animations/legs/Walk clean_003.png"
-dest_files=["res://.godot/imported/Walk clean_003.png-ee71c60db0529fd8521568a78b44130c.s3tc.ctex"]
+source_file="res://assets/animations/legs/walk/Walk clean_011.png"
+dest_files=["res://.godot/imported/Walk clean_011.png-35958c7e8837de75993f881d6585afc6.s3tc.ctex"]
 
 [params]
 
