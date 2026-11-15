@@ -26,6 +26,7 @@ const BULLET_SPAWN_315 := Vector2(0.15,-0.22)
 @onready var parry_radius: Area3D = $ParryRadius
 @onready var hurtbox: PlayerHurtbox = $Hurtbox
 @onready var hud: HUD = $"../HUD"
+@onready var laser: Node3D = $Laser
 
 @onready var active_speed: float = walk_speed
 
@@ -77,6 +78,7 @@ func _physics_process(delta: float) -> void:
 	_update_move_dir(delta)
 	_update_mouse_dir()
 	_process_input()
+	_update_laser()
 	player_sprite.update_sprite()
 
 func _on_aim_direction_changed(direction: String) -> void:
@@ -124,6 +126,9 @@ func _update_mouse_dir() -> void:
 	var mouse_pos = get_viewport().get_mouse_position()
 	var player_pos = get_viewport().get_camera_3d().unproject_position(global_position)
 	mouse_dir = player_pos.direction_to(mouse_pos)
+
+func _update_laser() -> void:
+	laser.rotation.z = mouse_dir.angle()
 
 func _process_input() -> void:
 	if Input.is_action_just_pressed("shoot") and not beast_mode and not parrying and shoot_timer.is_stopped():

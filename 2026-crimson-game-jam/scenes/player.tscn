@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://27eut258tv7t"]
 
 [ext_resource type="Script" uid="uid://ciyo7tlt0fl5f" path="res://scripts/player/player.gd" id="1_qhqgy"]
+[ext_resource type="PackedScene" uid="uid://n0dm76gobhc2" path="res://scenes/laser_effect.tscn" id="2_4ni07"]
 [ext_resource type="Script" uid="uid://c71prcrukrtcs" path="res://scripts/player/player_sprite.gd" id="2_g2els"]
 [ext_resource type="Texture2D" uid="uid://b6x4wpaiondjv" path="res://assets/animations/body/body.png" id="3_31cv2"]
 [ext_resource type="Texture2D" uid="uid://f0femxjpy70j" path="res://assets/animations/arms/gun-45.png" id="4_l71n6"]
@@ -191,3 +192,8 @@ collision_mask = 3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ParryRadius" unique_id=417462351]
 shape = SubResource("CapsuleShape3D_i4ail")
+
+[node name="Laser" type="Node3D" parent="." unique_id=1886782463]
+
+[node name="Node3D" parent="Laser" unique_id=565735223 instance=ExtResource("2_4ni07")]
+transform = Transform3D(1, 0, 0, 0, -0.9659258, -0.25881913, 0, 0.25881913, -0.9659258, 0, -11.96814, 3.2068546)
