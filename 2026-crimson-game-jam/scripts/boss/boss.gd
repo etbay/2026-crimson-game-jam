@@ -6,14 +6,20 @@ var _attacking: bool = false
 @export var _attack_delay: float = 6
 var _current_attack: BulletAttack = null
 var _prev_attack: BulletAttack = null
-var _timer: float = 1000;
+var _timer: float = 1000
 var executer: BulletAttackExecution = null
+@export var center: Vector3
+
+var started := true
 
 func _process(delta: float) -> void:
+	if (!started):
+		return
+		
 	if(!_attacking):
 		_timer += delta
 	elif (_current_attack != null):
-		executer.increment_patterns(delta, Vector2(global_position.x, global_position.z))
+		executer.increment_patterns(delta, Vector2(global_position.x + center.x, global_position.z + center.z))
 		if (executer.finished):
 			executer.reset()
 			_attacking = false
@@ -28,4 +34,4 @@ func _process(delta: float) -> void:
 		_attacking = true
 		_current_attack = attacks.pop_front()
 		executer = BulletAttackExecution.new(_current_attack)
-		executer.execute_patterns(Vector2(global_position.x, global_position.z))
+		executer.execute_patterns(Vector2(global_position.x + center.x, global_position.z + center.z))

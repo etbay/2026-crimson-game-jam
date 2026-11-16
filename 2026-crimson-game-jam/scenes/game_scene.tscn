@@ -44,6 +44,7 @@ subpixel_positioning = 0
 subpixel_positioning = 0
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_nkavf"]
+size = Vector3(2.5, 5, 2)
 
 [node name="GameScene" type="Node3D" unique_id=962368027]
 
@@ -52,7 +53,7 @@ transform = Transform3D(1, 0, 0, 0, 0.25881907, 0.9659258, 0, -0.9659258, 0.2588
 environment = ExtResource("1_b5spy")
 fov = 90.0
 script = ExtResource("2_mw25s")
-target_cam_position = Vector3(0, 7.479, -2.661)
+target_cam_position = Vector3(0, 7.879, -2.661)
 
 [node name="Sprite3D" type="Sprite3D" parent="." unique_id=393587440]
 transform = Transform3D(0.265, 0, 0, 0, -1.1583517e-08, -0.265, 0, 0.265, -1.1583517e-08, -0.44273525, 0, -0.073)
@@ -88,10 +89,11 @@ entrance_end = NodePath("EntranceEnd")
 shoot_delay = 0.5
 wasd_delay = 0.5
 wasd_duration = 3.5
+c_spawn_pos = Vector3(0, 0, -15)
 
 [node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="TutorialBossNode3D" unique_id=328339890]
 process_mode = 1
-transform = Transform3D(0.08, 0, 0, 0, 0.0771412, 0.021195156, 0, -0.021195156, 0.0771412, 0, 0.474, 0)
+transform = Transform3D(0.08, 0, 0, 0, 0.0771412, 0.021195156, 0, -0.021195156, 0.0771412, 0, 1.374, 0.61753225)
 pixel_size = 0.025
 render_priority = 1
 sprite_frames = SubResource("SpriteFrames_mwyo0")
@@ -104,7 +106,7 @@ _attack_delay = 3.0
 metadata/_custom_type_script = "uid://c1xw7eo4un7k8"
 
 [node name="ShotOrigin" type="Marker3D" parent="TutorialBossNode3D" unique_id=519351495]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.10494816, 0.10854626, -0.1643629)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.10494816, 0.10854626, 0.40539598)
 
 [node name="EntranceEnd" type="Marker3D" parent="TutorialBossNode3D" unique_id=1120125022]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4.191)

@@ -11,7 +11,7 @@ bullet_speed = 2.0
 bullet_accel = -0.1
 bullet_turn_rate_deg = 0.8
 bullet_turn_rate_accel = 0.05
-bullet_size = 0.1
+bullet_size = 0.125
 bullet_lifetime = 7.0
 metadata/_custom_type_script = "uid://c8s5d80ydvhv6"
 

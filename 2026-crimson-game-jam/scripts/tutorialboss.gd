@@ -25,12 +25,13 @@ var tutorial_started := false
 
 @onready var enemy: Enemy = $Enemy
 var cthulhu := preload("uid://qfc4cfst7bte")
+@export var c_spawn_pos: Vector3 
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	parry_prompt.hide()
 	wasd_prompt.hide()
-	
+	enemy.vulnerable = false
 	# Prevent the emitter from shooting during the tutorial
 	bullet_emitter.process_mode = Node.PROCESS_MODE_PAUSABLE
 	bullet_emitter.set_process(false)
@@ -141,6 +142,7 @@ func parry_successful() -> void:
 	# Resume the game
 	get_tree().paused = false
 	player.movement_locked = false
+	enemy.vulnerable = true
 	#print("ScreenShake triggered!")
 	show_wasd_tutorial()
 	#print("Successful Parry!")
@@ -167,5 +169,5 @@ func _on_boss_dead():
 	self.set_process(false)
 	var c: Cthulhu = cthulhu.instantiate()
 	get_tree().root.add_child(c)
-	c.spawn()
+	c.spawn(c_spawn_pos)
 	queue_free()
