@@ -15,10 +15,14 @@ const BULLET_SPAWN_260 := Vector2(-0.014,-0.31)
 const BULLET_SPAWN_280 := Vector2(0.014,-0.31)
 const BULLET_SPAWN_315 := Vector2(0.15,-0.22)
 
+const RIGHT_LASER := Vector2(0.07,0.335)
+const LEFT_LASER := Vector2(-0.07,0.335)
+
 @export var walk_speed: float = 3
 @export var beast_speed: float = 6
 @export var dash_length: float = 18
 @export var shoot_cooldown: float = 0.5
+@export var laser_color_gradient: Gradient
 
 @onready var player_sprite: PlayerSprite = $PlayerSprite
 @onready var bullet_spawn: Node3D = $BulletSpawn
@@ -26,9 +30,12 @@ const BULLET_SPAWN_315 := Vector2(0.15,-0.22)
 @onready var parry_radius: Area3D = $ParryRadius
 @onready var hurtbox: PlayerHurtbox = $Hurtbox
 @onready var hud: HUD = $"../HUD"
-@onready var laser: Node3D = $Laser
+@onready var laser: Area3D = $Laser
+@onready var laser_particles: GPUParticles3D = $Laser/Node3D/GPUParticles3D
 
 @onready var active_speed: float = walk_speed
+
+var material: ShaderMaterial
 
 # State bools
 var dashing: bool = false
@@ -38,13 +45,15 @@ var parrying: bool = false
 
 # Player values
 var health: int = 3
-var beast_meter: float = 0:
+var beast_meter: float = 100:
 	set(value):
 		beast_meter = value
 		hud.set_beast(beast_meter)
 var move_dir: Vector2
 var mouse_dir: Vector2
-var laser_damage: float
+var laser_damage: float = 1
+var max_laser_damage: float = 100
+var hovering_enemy: Enemy = null
 var movement_locked: bool = false
 var tutorial_movement: bool = false
 var input_override_dir : Vector3 = Vector3.ZERO
@@ -68,6 +77,8 @@ func _ready() -> void:
 	shoot_timer = Timer.new()
 	shoot_timer.one_shot = true
 	add_child(shoot_timer)
+	material = laser_particles.material_override as ShaderMaterial
+	#material.set_shader_parameter()
 
 func _process(delta: float) -> void:
 	if beast_mode:
@@ -80,41 +91,8 @@ func _physics_process(delta: float) -> void:
 	_update_move_dir(delta)
 	_update_mouse_dir()
 	_process_input()
-	_update_laser()
+	_update_laser(delta)
 	player_sprite.update_sprite()
-
-func _on_aim_direction_changed(direction: String) -> void:
-	match(direction):
-		"gun-90_false":
-			bullet_spawn.position.x = BULLET_SPAWN_280.x
-			bullet_spawn.position.y = BULLET_SPAWN_280.y
-		"gun-45_false":
-			bullet_spawn.position.x = BULLET_SPAWN_315.x
-			bullet_spawn.position.y = BULLET_SPAWN_315.y
-		"gun0_false":
-			bullet_spawn.position.x = BULLET_SPAWN_0.x
-			bullet_spawn.position.y = BULLET_SPAWN_0.y
-		"gun45_false":
-			bullet_spawn.position.x = BULLET_SPAWN_45.x
-			bullet_spawn.position.y = BULLET_SPAWN_45.y
-		"gun90_false":
-			bullet_spawn.position.x = BULLET_SPAWN_80.x
-			bullet_spawn.position.y = BULLET_SPAWN_80.y
-		"gun-90_true":
-			bullet_spawn.position.x = BULLET_SPAWN_260.x
-			bullet_spawn.position.y = BULLET_SPAWN_260.y
-		"gun-45_true":
-			bullet_spawn.position.x = BULLET_SPAWN_225.x
-			bullet_spawn.position.y = BULLET_SPAWN_225.y
-		"gun0_true":
-			bullet_spawn.position.x = BULLET_SPAWN_180.x
-			bullet_spawn.position.y = BULLET_SPAWN_180.y
-		"gun45_true":
-			bullet_spawn.position.x = BULLET_SPAWN_135.x
-			bullet_spawn.position.y = BULLET_SPAWN_135.y
-		"gun90_true":
-			bullet_spawn.position.x = BULLET_SPAWN_100.x
-			bullet_spawn.position.y = BULLET_SPAWN_100.y
 
 func _update_move_dir(_delta: float) -> void:
 	if tutorial_movement:
@@ -136,8 +114,17 @@ func _update_mouse_dir() -> void:
 	var player_pos = get_viewport().get_camera_3d().unproject_position(global_position)
 	mouse_dir = player_pos.direction_to(mouse_pos)
 
-func _update_laser() -> void:
-	laser.rotation.z = mouse_dir.angle()
+func _update_laser(delta: float) -> void:
+	if beast_mode:
+		material.set_shader_parameter("Color", material.get_shader_parameter("Color").lerp(_get_scale_color(laser_damage), 1.0 - exp(-8.0 * delta)))
+		laser.rotation.z = mouse_dir.angle()
+		for i in laser.get_overlapping_areas():
+			if i is Enemy:
+				var enemy := i as Enemy
+				enemy.damage()
+
+func _get_scale_color(value: float) -> Color:
+	return laser_color_gradient.sample(inverse_lerp(1.0, max_laser_damage, value))
 
 func _process_input() -> void:
 	if (movement_locked):
@@ -164,13 +151,16 @@ func _process_input() -> void:
 
 func _enter_beast_mode() -> void:
 	beast_mode = true
+	laser.visible = true
 	vulnerable = false
 	active_speed = beast_speed
 	await beast_mode_finished
-	vulnerable = true
 	active_speed = walk_speed
 	beast_mode = false
+	laser.visible = false
 	laser_damage = 1
+	await get_tree().create_timer(0.5).timeout
+	vulnerable = true
 
 func _execute_dash() -> void:
 	dashing = true
@@ -227,3 +217,56 @@ func _parry_bullet(bullet: Bullet) -> void:
 func _on_parry_area_entered(area: Area3D) -> void:
 	if parrying and area is Bullet and (area as Bullet)._active and (area as Bullet).parryable:
 		_parry_bullet(area as Bullet)
+
+func _on_aim_direction_changed(direction: String) -> void:
+	match(direction):
+		"gun-90_false":
+			laser.position.x = RIGHT_LASER.x
+			laser.position.y = RIGHT_LASER.y
+			bullet_spawn.position.x = BULLET_SPAWN_280.x
+			bullet_spawn.position.y = BULLET_SPAWN_280.y
+		"gun-45_false":
+			laser.position.x = RIGHT_LASER.x
+			laser.position.y = RIGHT_LASER.y
+			bullet_spawn.position.x = BULLET_SPAWN_315.x
+			bullet_spawn.position.y = BULLET_SPAWN_315.y
+		"gun0_false":
+			laser.position.x = RIGHT_LASER.x
+			laser.position.y = RIGHT_LASER.y
+			bullet_spawn.position.x = BULLET_SPAWN_0.x
+			bullet_spawn.position.y = BULLET_SPAWN_0.y
+		"gun45_false":
+			laser.position.x = RIGHT_LASER.x
+			laser.position.y = RIGHT_LASER.y
+			bullet_spawn.position.x = BULLET_SPAWN_45.x
+			bullet_spawn.position.y = BULLET_SPAWN_45.y
+		"gun90_false":
+			laser.position.x = RIGHT_LASER.x
+			laser.position.y = RIGHT_LASER.y
+			bullet_spawn.position.x = BULLET_SPAWN_80.x
+			bullet_spawn.position.y = BULLET_SPAWN_80.y
+		"gun-90_true":
+			laser.position.x = LEFT_LASER.x
+			laser.position.y = LEFT_LASER.y
+			bullet_spawn.position.x = BULLET_SPAWN_260.x
+			bullet_spawn.position.y = BULLET_SPAWN_260.y
+		"gun-45_true":
+			laser.position.x = LEFT_LASER.x
+			laser.position.y = LEFT_LASER.y
+			bullet_spawn.position.x = BULLET_SPAWN_225.x
+			bullet_spawn.position.y = BULLET_SPAWN_225.y
+		"gun0_true":
+			laser.position.x = LEFT_LASER.x
+			laser.position.y = LEFT_LASER.y
+			bullet_spawn.position.x = BULLET_SPAWN_180.x
+			bullet_spawn.position.y = BULLET_SPAWN_180.y
+		"gun45_true":
+			laser.position.x = LEFT_LASER.x
+			laser.position.y = LEFT_LASER.y
+			bullet_spawn.position.x = BULLET_SPAWN_135.x
+			bullet_spawn.position.y = BULLET_SPAWN_135.y
+		"gun90_true":
+			laser.position.x = LEFT_LASER.x
+			laser.position.y = LEFT_LASER.y
+			bullet_spawn.position.x = BULLET_SPAWN_100.x
+			bullet_spawn.position.y = BULLET_SPAWN_100.y

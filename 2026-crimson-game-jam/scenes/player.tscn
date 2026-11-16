@@ -24,6 +24,10 @@
 [ext_resource type="Texture2D" uid="uid://7ejo5yebx6m0" path="res://assets/art/parry_curve.png" id="21_i4ail"]
 [ext_resource type="Script" uid="uid://cjguahoyl58xu" path="res://scenes/player_hurtbox.gd" id="22_a38lo"]
 
+[sub_resource type="Gradient" id="Gradient_4ni07"]
+offsets = PackedFloat32Array(0, 0.34960422, 0.6741425, 1)
+colors = PackedColorArray(0, 0, 1, 1, 0.8439093, 0.3825628, 1, 1, 1, 0, 0.60038817, 1, 0.976762, 0.14758715, 1.92523e-07, 1)
+
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_7mycd"]
 radius = 0.2084961
 height = 0.53623044
@@ -143,8 +147,12 @@ animations = [{
 radius = 0.4
 height = 1.0
 
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4ni07"]
+height = 24.237915
+
 [node name="CharacterBody3D" type="CharacterBody3D" unique_id=32883367]
 script = ExtResource("1_qhqgy")
+laser_color_gradient = SubResource("Gradient_4ni07")
 
 [node name="BulletSpawn" type="Node3D" parent="." unique_id=288038477]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.014, -0.31, 0)
@@ -193,7 +201,15 @@ collision_mask = 3
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ParryRadius" unique_id=417462351]
 shape = SubResource("CapsuleShape3D_i4ail")
 
-[node name="Laser" type="Node3D" parent="." unique_id=1886782463]
+[node name="Laser" type="Area3D" parent="." unique_id=12844274]
+transform = Transform3D(1, 0, 0, 0, -0.9659258, -0.25881913, 0, 0.25881913, -0.9659258, 0.07, 0.335, 0)
+visible = false
 
 [node name="Node3D" parent="Laser" unique_id=565735223 instance=ExtResource("2_4ni07")]
-transform = Transform3D(1, 0, 0, 0, -0.9659258, -0.25881913, 0, 0.25881913, -0.9659258, 0, -11.96814, 3.2068546)
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 12, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Laser" unique_id=1855497480]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.3711413e-08, 0, 0, -8.881784e-16, 1, 12.1525, 1.1920929e-07, 0)
+shape = SubResource("CapsuleShape3D_4ni07")
+
+[editable path="Laser/Node3D"]
