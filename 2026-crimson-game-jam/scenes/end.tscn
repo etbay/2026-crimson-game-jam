@@ -1,3 +1,38 @@
 [gd_scene format=3 uid="uid://be553pvo1xx11"]
 
+[ext_resource type="Script" uid="uid://cy1f3xkbn7nrr" path="res://scenes/end_timer.gd" id="1_mwn6m"]
+
 [node name="End" type="Node2D" unique_id=491530509]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=485444903]
+
+[node name="Label" type="Label" parent="CanvasLayer" unique_id=1236632506]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -283.0
+offset_top = -97.0
+offset_right = 283.0
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 100
+text = "You winned"
+
+[node name="Label2" type="Label" parent="CanvasLayer" unique_id=392054472]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -71.0
+offset_top = 69.0
+offset_right = 71.0
+offset_bottom = 118.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 35
+text = "Time: 84"
+script = ExtResource("1_mwn6m")
