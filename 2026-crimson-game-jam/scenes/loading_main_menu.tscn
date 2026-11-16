@@ -1,0 +1,84 @@
+[gd_scene format=3 uid="uid://blfv3trm0bt7"]
+
+[ext_resource type="Script" uid="uid://rwo62oi7t4jr" path="res://scenes/loading_scene.gd" id="1_p10eb"]
+[ext_resource type="PackedScene" uid="uid://n0dm76gobhc2" path="res://scenes/laser_effect.tscn" id="2_m280c"]
+[ext_resource type="Script" uid="uid://c1xw7eo4un7k8" path="res://scripts/boss/boss.gd" id="3_ghobg"]
+[ext_resource type="Script" uid="uid://dyoedp32mh0ce" path="res://scripts/bullets/bullet_attack.gd" id="4_es0x1"]
+[ext_resource type="Script" uid="uid://dayx2jy8tp802" path="res://scripts/bullets/bullet_pattern.gd" id="5_snt8p"]
+[ext_resource type="Script" uid="uid://c8s5d80ydvhv6" path="res://scripts/bullets/bullet_data.gd" id="6_63lmo"]
+[ext_resource type="Script" uid="uid://bm6p0a3odsqfk" path="res://scripts/bullets/ring_pattern.gd" id="6_es0x1"]
+[ext_resource type="Script" uid="uid://dbkj3qoa8l0kv" path="res://scripts/bullets/bullet_pool.gd" id="8_snt8p"]
+[ext_resource type="Environment" uid="uid://bxt2rowih751w" path="res://scenes/camera_env.tres" id="9_63lmo"]
+
+[sub_resource type="SystemFont" id="SystemFont_xtlra"]
+
+[sub_resource type="Resource" id="Resource_snt8p"]
+script = ExtResource("6_63lmo")
+bullet_size = 1.0
+metadata/_custom_type_script = "uid://c8s5d80ydvhv6"
+
+[sub_resource type="Resource" id="Resource_63lmo"]
+script = ExtResource("6_es0x1")
+bullet_data = SubResource("Resource_snt8p")
+parryable_frequeuncy = 8
+metadata/_custom_type_script = "uid://bm6p0a3odsqfk"
+
+[sub_resource type="Resource" id="Resource_j5e6f"]
+script = ExtResource("4_es0x1")
+patterns = Array[ExtResource("5_snt8p")]([SubResource("Resource_63lmo")])
+pattern_positions = Array[Vector2]([Vector2(0, 0)])
+metadata/_custom_type_script = "uid://dyoedp32mh0ce"
+
+[node name="LoadingScene" type="Node3D" unique_id=1620341752]
+script = ExtResource("1_p10eb")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=437763197]
+
+[node name="Control" type="Control" parent="CanvasLayer" unique_id=1174121696]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/Control" unique_id=572473958]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.17402825, 0.17402825, 0.17402825, 1)
+
+[node name="Title" type="Label" parent="CanvasLayer/Control/ColorRect" unique_id=2100676255]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -228.5
+offset_top = -60.5
+offset_right = 228.5
+offset_bottom = 60.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = SubResource("SystemFont_xtlra")
+theme_override_font_sizes/font_size = 88
+text = "Loading..."
+
+[node name="Node3D" parent="." unique_id=565735223 instance=ExtResource("2_m280c")]
+
+[node name="Boss" type="Node3D" parent="." unique_id=113575392]
+script = ExtResource("3_ghobg")
+attacks = Array[ExtResource("4_es0x1")]([SubResource("Resource_j5e6f")])
+metadata/_custom_type_script = "uid://c1xw7eo4un7k8"
+
+[node name="BulletPool" type="Node3D" parent="." unique_id=1431368770]
+script = ExtResource("8_snt8p")
+metadata/_custom_type_script = "uid://dbkj3qoa8l0kv"
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1243417637]
+transform = Transform3D(1, 0, 0, 0, 0.9024243, 0.4308486, 0, -0.4308486, 0.9024243, -1.73771, 22.837399, 42.13254)
+environment = ExtResource("9_63lmo")

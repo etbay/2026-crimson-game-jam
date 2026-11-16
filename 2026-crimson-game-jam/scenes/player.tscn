@@ -157,6 +157,7 @@ height = 24.237915
 
 [node name="CharacterBody3D" type="CharacterBody3D" unique_id=32883367]
 script = ExtResource("1_qhqgy")
+main_menu = "uid://c776ctit8px67"
 laser_color_gradient = SubResource("Gradient_4ni07")
 
 [node name="BulletSpawn" type="Node3D" parent="." unique_id=288038477]

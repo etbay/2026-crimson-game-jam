@@ -2,6 +2,7 @@ class_name Player extends CharacterBody3D
 
 signal beast_mode_finished
 
+@export_file("*.tscn") var main_menu: String
 const PLAYER_BULLET = preload("uid://cgs6fx8lp6hdl")
 const BULLET_SPAWN_0 := Vector2(0.3,0.03)
 const BULLET_SPAWN_45 := Vector2(0.17,0.23)
@@ -29,7 +30,6 @@ const LEFT_LASER := Vector2(-0.07,0.335)
 @onready var parry_curve: Node3D = $ParryCurve
 @onready var parry_radius: Area3D = $ParryRadius
 @onready var hurtbox: PlayerHurtbox = $Hurtbox
-@onready var hud: HUD = $"../HUD"
 @onready var laser: Area3D = $Laser
 @onready var laser_particles: GPUParticles3D = $Laser/Node3D/GPUParticles3D
 @onready var bullet_destroy_radius: Area3D = $BulletDestroyRadius
@@ -37,6 +37,7 @@ const LEFT_LASER := Vector2(-0.07,0.335)
 @onready var active_speed: float = walk_speed
 
 var material: ShaderMaterial
+var hud: HUD
 
 # State bools
 var dashing: bool = false
@@ -69,7 +70,8 @@ func damage() -> void:
 		health -= 1
 		GlobalStats.hits += 1
 		if health == 0:
-			get_tree().quit()
+			get_tree().call_deferred("change_scene_to_file", main_menu)
+			return
 		hud.set_health(health)
 		MusicMan.play_sound(AudioDict.sfx["player_hurt"])
 		vulnerable = false
@@ -95,6 +97,7 @@ func _ready() -> void:
 	shoot_timer.one_shot = true
 	add_child(shoot_timer)
 	material = laser_particles.material_override as ShaderMaterial
+	hud = HUD.instance
 
 func _process(delta: float) -> void:
 	if beast_mode:
