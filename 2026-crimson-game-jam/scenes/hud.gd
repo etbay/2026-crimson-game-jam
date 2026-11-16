@@ -19,6 +19,7 @@ class_name HUD extends CanvasLayer
 @onready var fill: ColorRect = $Control/MarginContainer/VBoxContainer/BeastBar/Fill
 @onready var frame: TextureRect = $Control/MarginContainer/VBoxContainer/BeastBar/Frame
 @onready var glow: ColorRect = $Control/MarginContainer/VBoxContainer/BeastBar/Glow
+@onready var pause_menu: ColorRect = $Control/PauseMenu
 
 @export var glow_padding: float = 18.0
 
@@ -29,7 +30,11 @@ class_name HUD extends CanvasLayer
 @export var boss_normal_color: Color = Color(0.7, 0.7, 0.7, 1.0)
 @export var boss_damage_color: Color = Color(1.0, 1.0, 1.0, 1.0)
 
+var paused: bool = false
+
+
 var boss_health_tween: Tween
+
 var fill_tween: Tween
 
 static var instance : HUD = null
@@ -44,6 +49,16 @@ func _ready() -> void:
 	else:
 		queue_free()
 
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("pause"):
+		if paused:
+			paused = false
+			pause_menu.visible = false
+			Engine.time_scale = 1
+		else:
+			paused = true
+			pause_menu.visible = true
+			Engine.time_scale = 0
 
 # HEART SYSTEM
 func set_health(value: int) -> void:

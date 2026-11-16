@@ -8,6 +8,8 @@
 [ext_resource type="Shader" uid="uid://dw4l8enejourc" path="res://assets/Shader/BeastBarGlow.gdshader" id="6_5pdws"]
 [ext_resource type="Shader" uid="uid://cl1uplqkiaalw" path="res://assets/Shader/BeastFill.gdshader" id="6_047uy"]
 [ext_resource type="Texture2D" uid="uid://cayiaf4vc2xgv" path="res://assets/art/BossBar.png" id="8_hd3ao"]
+[ext_resource type="Script" uid="uid://b42f87i0ci6gy" path="res://scenes/music_slider.gd" id="9_0i1j5"]
+[ext_resource type="Script" uid="uid://d0n1mshntv1c" path="res://scenes/sfx_volume.gd" id="10_mphia"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_kmlok"]
 shader = ExtResource("6_5pdws")
@@ -163,3 +165,59 @@ value = 100.0
 texture_over = ExtResource("8_hd3ao")
 texture_progress = SubResource("GradientTexture2D_0i1j5")
 texture_progress_offset = Vector2(13.7, 20.93)
+
+[node name="PauseMenu" type="ColorRect" parent="Control" unique_id=401141748]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.63900006)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/PauseMenu" unique_id=619658716]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/PauseMenu/VBoxContainer" unique_id=892505200]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Music Volume" type="Label" parent="Control/PauseMenu/VBoxContainer/HBoxContainer" unique_id=577357015]
+layout_mode = 2
+text = "Music Volume"
+
+[node name="HSlider" type="HSlider" parent="Control/PauseMenu/VBoxContainer/HBoxContainer" unique_id=2120642090]
+custom_minimum_size = Vector2(174.515, 0)
+layout_mode = 2
+size_flags_vertical = 4
+max_value = 1.0
+step = 0.05
+script = ExtResource("9_0i1j5")
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Control/PauseMenu/VBoxContainer" unique_id=1834751947]
+layout_mode = 2
+theme_override_constants/separation = 34
+
+[node name="SFX Volume" type="Label" parent="Control/PauseMenu/VBoxContainer/HBoxContainer2" unique_id=1757650804]
+layout_mode = 2
+text = "SFX Volume"
+
+[node name="HSlider" type="HSlider" parent="Control/PauseMenu/VBoxContainer/HBoxContainer2" unique_id=1951869936]
+custom_minimum_size = Vector2(174.515, 0)
+layout_mode = 2
+size_flags_vertical = 4
+max_value = 1.0
+step = 0.05
+script = ExtResource("10_mphia")
