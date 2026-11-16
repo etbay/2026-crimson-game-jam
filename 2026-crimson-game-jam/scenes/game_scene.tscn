@@ -47,8 +47,6 @@ subpixel_positioning = 0
 [sub_resource type="SystemFont" id="SystemFont_77hjl"]
 subpixel_positioning = 0
 
-[sub_resource type="SystemFont" id="SystemFont_6aqbo"]
-
 [sub_resource type="BoxShape3D" id="BoxShape3D_nkavf"]
 size = Vector3(2.5, 5, 2)
 
@@ -128,7 +126,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.6088696)
 shape = SubResource("BoxShape3D_qi5dk")
 script = SubResource("GDScript_tqxxy")
 
-[node name="TutorialBossNode3D" type="Node3D" parent="." unique_id=274485581 node_paths=PackedStringArray("player", "parry_prompt", "wasd_prompt", "shoot_prompt", "beast_prompt", "entrance_end", "entrance_wall_collision")]
+[node name="TutorialBossNode3D" type="Node3D" parent="." unique_id=274485581 node_paths=PackedStringArray("player", "parry_prompt", "wasd_prompt", "entrance_end")]
 process_mode = 3
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -7.8080864)
 script = ExtResource("8_rvs2r")
@@ -136,14 +134,11 @@ bullet_scene = ExtResource("9_tqxxy")
 player = NodePath("../CharacterBody3D")
 parry_prompt = NodePath("ParryPrompt")
 wasd_prompt = NodePath("WASDPrompt")
-shoot_prompt = NodePath("ShootPrompt")
-beast_prompt = NodePath("BeastPrompt")
 entrance_end = NodePath("EntranceEnd")
 shoot_delay = 0.5
 wasd_delay = 0.5
 wasd_duration = 3.5
 c_spawn_pos = Vector3(0, 0, -13)
-entrance_wall_collision = NodePath("../Modifiable Wall/CollisionShape3D")
 
 [node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="TutorialBossNode3D" unique_id=328339890]
 process_mode = 1
@@ -177,7 +172,7 @@ font_size = 30
 outline_size = 15
 
 [node name="WASDPrompt" type="Label3D" parent="TutorialBossNode3D" unique_id=665860429]
-transform = Transform3D(1.47, 0, 0, 0, 1.47, 0, 0, 0, 1.47, 1.8549118, 0.674685, 2.929707)
+transform = Transform3D(1.47, 0, 0, 0, 1.47, 0, 0, 0, 1.47, 1.8549118, 0.674685, 1.8698311)
 pixel_size = 0.01
 billboard = 1
 render_priority = 1
@@ -186,20 +181,6 @@ text = "WASD to move!"
 font = SubResource("SystemFont_77hjl")
 font_size = 30
 outline_size = 15
-
-[node name="ShootPrompt" type="Label3D" parent="TutorialBossNode3D" unique_id=77567289]
-transform = Transform3D(2.84, 0, 0, 0, 2.84, 0, 0, 0, 2.84, 1.8549118, 0.6238824, 2.6888046)
-billboard = 1
-text = "Left Click To Shoot!"
-font = SubResource("SystemFont_6aqbo")
-font_size = 30
-outline_size = 15
-
-[node name="BeastPrompt" type="Label3D" parent="TutorialBossNode3D" unique_id=676105591]
-transform = Transform3D(2.07, 0, 0, 0, 2.07, 0, 0, 0, 2.07, 2.4265692, 0, 2.4357638)
-billboard = 1
-text = "Press Q to enter BEAST MODE!
-Absorb bullets and automatically fire a laser!"
 
 [node name="Enemy" type="Area3D" parent="TutorialBossNode3D" unique_id=1137512781]
 script = ExtResource("14_5ay1a")
