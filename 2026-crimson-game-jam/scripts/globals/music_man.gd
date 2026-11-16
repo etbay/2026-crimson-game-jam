@@ -7,7 +7,7 @@ var music_volume: float = 0.5:
 		music_volume = value
 		AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Music"), linear_to_db(value))
 
-var sfx_volume: float = 0.5:
+var sfx_volume: float = 0.25:
 	set(value):
 		sfx_volume = value
 		AudioServer.set_bus_volume_db(AudioServer.get_bus_index("SFX"), linear_to_db(value))
