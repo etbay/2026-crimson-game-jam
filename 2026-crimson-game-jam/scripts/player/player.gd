@@ -62,7 +62,6 @@ var input_override_dir : Vector3 = Vector3.ZERO
 
 var laser_sound: AudioStreamPlayer3D
 var shoot_timer: Timer
-
 func damage() -> void:
 	if vulnerable:
 		# Delete nearby bullets

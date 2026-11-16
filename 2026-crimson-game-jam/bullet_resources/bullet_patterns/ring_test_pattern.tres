@@ -5,7 +5,7 @@
 
 [resource]
 script = ExtResource("1_tuevl")
-bullet_count = 15
+bullet_count = 17
 angle_step_deg = 15.0
 bullet_data = ExtResource("1_mvnbu")
 fire_interval = 2.0

@@ -2,7 +2,8 @@
 
 [resource]
 glow_enabled = true
-glow_intensity = 1.2
+glow_intensity = 0.8
+glow_strength = 0.6
 glow_bloom = 0.15
 glow_blend_mode = 0
 glow_hdr_threshold = 1.3

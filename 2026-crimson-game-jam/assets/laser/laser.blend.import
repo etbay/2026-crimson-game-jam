@@ -4,12 +4,11 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://ctiwv2dkgr6io"
-path="res://.godot/imported/laser.blend-a0ce6557d4ce78c3b8c15aa72a8dfc63.scn"
+valid=false
 
 [deps]
 
 source_file="res://assets/laser/laser.blend"
-dest_files=["res://.godot/imported/laser.blend-a0ce6557d4ce78c3b8c15aa72a8dfc63.scn"]
 
 [params]
 
