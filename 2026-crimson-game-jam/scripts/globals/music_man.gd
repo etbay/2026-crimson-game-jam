@@ -5,6 +5,17 @@ var music_player: AudioStreamPlayer
 func _process(_delta: float) -> void:
 	pass
 
+func play_looped_sound(audio: AudioStream) -> AudioStreamPlayer3D:
+	var player: AudioStreamPlayer3D = AudioStreamPlayer3D.new()
+	player.stream = audio
+	get_tree().root.add_child(player)
+	player.play()
+	return player
+
+func free_looped_sound(audio_player: AudioStreamPlayer3D) -> void:
+	audio_player.stop()
+	audio_player.queue_free()
+
 func play_sound(audio: AudioStream) -> void:
 	var player: AudioStreamPlayer3D = AudioStreamPlayer3D.new()
 	player.stream = audio

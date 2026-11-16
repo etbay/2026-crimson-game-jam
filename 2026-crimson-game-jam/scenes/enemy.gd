@@ -5,12 +5,12 @@ signal dead
 @export var max_health: int = 1000
 @onready var hud: HUD = HUD.instance
 
-var health: int
+var health: float
 var vulnerable: bool = true
 
-func damage() -> void:
+func damage(value: float) -> void:
 	if vulnerable:
-		health -= 1
+		health -= value
 		ScreenShake.shake(0.05, .1)
 		hud.update_boss_health(health)
 		if (health <= 0):

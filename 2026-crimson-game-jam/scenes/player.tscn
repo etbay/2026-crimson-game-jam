@@ -147,6 +147,10 @@ animations = [{
 radius = 0.4
 height = 1.0
 
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_l71n6"]
+radius = 0.54833984
+height = 1.3689575
+
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4ni07"]
 height = 24.237915
 
@@ -200,6 +204,13 @@ collision_mask = 3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ParryRadius" unique_id=417462351]
 shape = SubResource("CapsuleShape3D_i4ail")
+
+[node name="BulletDestroyRadius" type="Area3D" parent="." unique_id=2042477695]
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BulletDestroyRadius" unique_id=1327865097]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.03225708, 0)
+shape = SubResource("CapsuleShape3D_l71n6")
 
 [node name="Laser" type="Area3D" parent="." unique_id=12844274]
 transform = Transform3D(1, 0, 0, 0, -0.9659258, -0.25881913, 0, 0.25881913, -0.9659258, 0.07, 0.335, 0)
