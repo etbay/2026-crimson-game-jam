@@ -11,6 +11,7 @@ var vulnerable: bool = true
 func damage() -> void:
 	if vulnerable:
 		health -= 1
+		ScreenShake.shake(0.05, .1)
 		hud.update_boss_health(health)
 		if (health <= 0):
 			dead.emit()
