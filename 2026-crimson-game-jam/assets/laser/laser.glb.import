@@ -3,7 +3,7 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://ml0alewfyomi"
+uid="uid://cxsp7qfwkmrtq"
 path="res://.godot/imported/laser.glb-ccaea3e7c6da8ee1d175cdba31caeb67.scn"
 
 [deps]
@@ -48,16 +48,7 @@ _subresources={
 "lods/normal_merge_angle": 20.0,
 "save_to_file/enabled": true,
 "save_to_file/fallback_path": "res://assets/laser/laser_Cylinder.tres",
-"save_to_file/path": "uid://c3f7whvol6mwv"
-},
-"laser_Cylinder_001": {
-"generate/lightmap_uv": 0,
-"generate/lods": 0,
-"generate/shadow_meshes": 0,
-"lods/normal_merge_angle": 20.0,
-"save_to_file/enabled": true,
-"save_to_file/fallback_path": "res://assets/laser/laser_Cylinder_001.tres",
-"save_to_file/path": "uid://dv7xtodw6rvp2"
+"save_to_file/path": "uid://cqutheobxs7wd"
 }
 }
 }
