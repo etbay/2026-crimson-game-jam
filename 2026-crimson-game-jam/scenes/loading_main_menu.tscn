@@ -14,12 +14,15 @@
 
 [sub_resource type="Resource" id="Resource_snt8p"]
 script = ExtResource("6_63lmo")
+bullet_speed = 10.0
 bullet_size = 1.0
 metadata/_custom_type_script = "uid://c8s5d80ydvhv6"
 
 [sub_resource type="Resource" id="Resource_63lmo"]
 script = ExtResource("6_es0x1")
+bullet_count = 30
 bullet_data = SubResource("Resource_snt8p")
+volley_count = 5
 parryable_frequeuncy = 8
 metadata/_custom_type_script = "uid://bm6p0a3odsqfk"
 
