@@ -15,6 +15,7 @@ var entrance_start: Vector3
 @export var wasd_delay: float = 2.0
 @export var wasd_duration: float = 3.0
 
+@onready var animated_sprite_3d: AnimatedSprite3D = $AnimatedSprite3D
 @onready var bullet_emitter: Boss = $AnimatedSprite3D/Boss
 @onready var tutorial_trigger: Area3D = $"../TutorialTrigger"
 
@@ -22,17 +23,21 @@ var current_bullet: TutorialBullet
 var waiting_for_parry: bool = false
 var tutorial_started := false
 
+@onready var enemy: Enemy = $Enemy
+var cthulhu := preload("uid://qfc4cfst7bte")
+@export var c_spawn_pos: Vector3 
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	parry_prompt.hide()
 	wasd_prompt.hide()
-	
+	enemy.vulnerable = false
 	# Prevent the emitter from shooting during the tutorial
 	bullet_emitter.process_mode = Node.PROCESS_MODE_PAUSABLE
 	bullet_emitter.set_process(false)
 	
 	# connect signal
+	enemy.dead.connect(_on_boss_dead)
 	tutorial_trigger.area_entered.connect(_on_tutorial_trigger)
 
 func _on_tutorial_trigger(_area: Area3D) -> void:
@@ -137,6 +142,7 @@ func parry_successful() -> void:
 	# Resume the game
 	get_tree().paused = false
 	player.movement_locked = false
+	enemy.vulnerable = true
 	#print("ScreenShake triggered!")
 	show_wasd_tutorial()
 	#print("Successful Parry!")
@@ -153,3 +159,15 @@ func show_wasd_tutorial() -> void:
 	await get_tree().create_timer(wasd_duration).timeout
 	# Hide the instructions
 	wasd_prompt.hide()
+
+func _on_boss_dead():
+	# spawn cthulhu
+	ScreenShake.shake(.4, 3)
+	animated_sprite_3d.queue_free()
+	enemy.queue_free()
+	await get_tree().create_timer(4).timeout
+	self.set_process(false)
+	var c: Cthulhu = cthulhu.instantiate()
+	get_tree().root.add_child(c)
+	c.spawn(c_spawn_pos)
+	queue_free()

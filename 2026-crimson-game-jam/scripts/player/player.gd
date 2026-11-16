@@ -65,6 +65,7 @@ func damage() -> void:
 		# Delete nearby bullets
 		# Give immunity frames
 		health -= 1
+		GlobalStats.hits += 1
 		if health == 0:
 			get_tree().quit()
 		hud.set_health(health)
@@ -108,6 +109,7 @@ func _update_move_dir(_delta: float) -> void:
 		move_dir = Input.get_vector("left", "right", "up", "down")
 	velocity = Vector3(move_dir.x, 0, move_dir.y) * active_speed
 	move_and_slide()
+	GlobalStats.time += _delta
 
 func _update_mouse_dir() -> void:
 	var mouse_pos = get_viewport().get_mouse_position()
@@ -136,8 +138,8 @@ func _process_input() -> void:
 		bullet._initial_angle = mouse_dir.angle()
 		bullet.angle = mouse_dir.angle()
 		bullet.position = Vector3(bullet_spawn.global_position.x, 0, bullet_spawn.global_position.z)
-		bullet.update_sprite()
 		bullet.bullet_owner = "Player"
+		bullet.update_sprite()
 		shoot_timer.start(shoot_cooldown)
 	
 	if Input.is_action_just_pressed("parry") and not beast_mode and not parrying:

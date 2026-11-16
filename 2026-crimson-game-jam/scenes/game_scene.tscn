@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://csbw1y7e0bwqp"]
 
 [ext_resource type="Environment" uid="uid://bxt2rowih751w" path="res://scenes/camera_env.tres" id="1_b5spy"]
-[ext_resource type="Texture2D" uid="uid://b6463lhp65gd3" path="res://assets/art/test_arena.jpg" id="1_kk2rg"]
 [ext_resource type="PackedScene" uid="uid://27eut258tv7t" path="res://scenes/player.tscn" id="2_b5spy"]
 [ext_resource type="Script" uid="uid://b737qjmuwdsq2" path="res://scenes/player_cam.gd" id="2_mw25s"]
+[ext_resource type="Texture2D" uid="uid://b820emx60by1" path="res://assets/art/floorarena.png" id="3_ldkr4"]
 [ext_resource type="Script" uid="uid://dbkj3qoa8l0kv" path="res://scripts/bullets/bullet_pool.gd" id="3_utbpp"]
 [ext_resource type="Script" uid="uid://c1xw7eo4un7k8" path="res://scripts/boss/boss.gd" id="4_mw25s"]
 [ext_resource type="Script" uid="uid://dyoedp32mh0ce" path="res://scripts/bullets/bullet_attack.gd" id="5_tcjrq"]
@@ -13,6 +13,8 @@
 [ext_resource type="Texture2D" uid="uid://cva02g8cm4i2r" path="res://assets/art/Guardian_Sprite.png" id="10_5ay1a"]
 [ext_resource type="Resource" uid="uid://b3bbq60noqe05" path="res://bullet_resources/bullet_patterns/ring_test_pattern.tres" id="12_liy57"]
 [ext_resource type="Script" uid="uid://dayx2jy8tp802" path="res://scripts/bullets/bullet_pattern.gd" id="13_5ay1a"]
+[ext_resource type="Script" uid="uid://wk62nldfqpek" path="res://scenes/enemy.gd" id="14_5ay1a"]
+[ext_resource type="Texture2D" uid="uid://bfnme04cuogh2" path="res://assets/art/cthulhutemp.png" id="15_ldkr4"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_qi5dk"]
 size = Vector3(100, 20, 1)
@@ -42,6 +44,9 @@ subpixel_positioning = 0
 [sub_resource type="SystemFont" id="SystemFont_77hjl"]
 subpixel_positioning = 0
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_nkavf"]
+size = Vector3(2.5, 5, 2)
+
 [node name="GameScene" type="Node3D" unique_id=962368027]
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1730521585]
@@ -49,16 +54,16 @@ transform = Transform3D(1, 0, 0, 0, 0.25881907, 0.9659258, 0, -0.9659258, 0.2588
 environment = ExtResource("1_b5spy")
 fov = 90.0
 script = ExtResource("2_mw25s")
-target_cam_position = Vector3(0, 7.479, -2.661)
+target_cam_position = Vector3(0, 7.879, -2.661)
 
 [node name="Sprite3D" type="Sprite3D" parent="." unique_id=393587440]
-transform = Transform3D(0.265, 0, 0, 0, -1.1583517e-08, -0.265, 0, 0.265, -1.1583517e-08, -0.31, 0, -0.073)
+transform = Transform3D(0.1, 0, 0, 0, -4.371139e-09, -0.1, 0, 0.1, -4.371139e-09, 0, 0, -6.85)
 pixel_size = 0.1
-render_priority = -100
-texture = ExtResource("1_kk2rg")
+render_priority = -10
+texture = ExtResource("3_ldkr4")
 
 [node name="CharacterBody3D" parent="." unique_id=32883367 instance=ExtResource("2_b5spy")]
-transform = Transform3D(1, 0, 0, 0, 0.25881907, 0.9659258, 0, -0.9659258, 0.25881907, 0, 0, 6.568077)
+transform = Transform3D(1.2, 0, 0, 0, 0.3105829, 1.159111, 0, -1.159111, 0.3105829, 0, 0, 6.568077)
 
 [node name="BulletPool" type="Node3D" parent="." unique_id=12835276]
 script = ExtResource("3_utbpp")
@@ -75,7 +80,7 @@ script = SubResource("GDScript_tqxxy")
 
 [node name="TutorialBossNode3D" type="Node3D" parent="." unique_id=274485581 node_paths=PackedStringArray("player", "parry_prompt", "wasd_prompt", "entrance_end")]
 process_mode = 3
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -6.973691)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -7.8080864)
 script = ExtResource("8_rvs2r")
 bullet_scene = ExtResource("9_tqxxy")
 player = NodePath("../CharacterBody3D")
@@ -85,10 +90,12 @@ entrance_end = NodePath("EntranceEnd")
 shoot_delay = 0.5
 wasd_delay = 0.5
 wasd_duration = 3.5
+c_spawn_pos = Vector3(0, 0, -15)
 
 [node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="TutorialBossNode3D" unique_id=328339890]
 process_mode = 1
-transform = Transform3D(0.08, 0, 0, 0, 0.0771412, 0.021195156, 0, -0.021195156, 0.0771412, 0, 0.474, 0)
+transform = Transform3D(0.08, 0, 0, 0, 0.0771412, 0.021195156, 0, -0.021195156, 0.0771412, 0, 1.374, 0.61753225)
+pixel_size = 0.025
 render_priority = 1
 sprite_frames = SubResource("SpriteFrames_mwyo0")
 
@@ -100,7 +107,7 @@ _attack_delay = 3.0
 metadata/_custom_type_script = "uid://c1xw7eo4un7k8"
 
 [node name="ShotOrigin" type="Marker3D" parent="TutorialBossNode3D" unique_id=519351495]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.10494816, 0.10854626, -0.1643629)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.10494816, 0.10854626, 0.40539598)
 
 [node name="EntranceEnd" type="Marker3D" parent="TutorialBossNode3D" unique_id=1120125022]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4.191)
@@ -126,3 +133,17 @@ text = "WASD to move!"
 font = SubResource("SystemFont_77hjl")
 font_size = 13
 outline_size = 15
+
+[node name="Enemy" type="Area3D" parent="TutorialBossNode3D" unique_id=1137512781]
+script = ExtResource("14_5ay1a")
+max_health = 100
+metadata/_custom_type_script = "uid://wk62nldfqpek"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TutorialBossNode3D/Enemy" unique_id=441900840]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.41965604, -0.19181919)
+shape = SubResource("BoxShape3D_nkavf")
+
+[node name="Sprite3D2" type="Sprite3D" parent="." unique_id=528281402]
+transform = Transform3D(0.5, 0, 0, 0, 0.48129284, 0.13548875, 0, -0.13548875, 0.48129284, 0, 4.5469418, -13.71707)
+render_priority = -9
+texture = ExtResource("15_ldkr4")
