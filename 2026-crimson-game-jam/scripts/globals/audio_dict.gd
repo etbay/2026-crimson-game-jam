@@ -20,5 +20,6 @@ var sfx: Dictionary[String, AudioStream] = {
 
 var music: Dictionary[String, AudioStream] = {
 	"cthulu_fight_theme": preload("uid://8tak7dptne0d"),
+	"tutorial_theme": preload("uid://djjv2dfhpgeou"),
 	"title_theme": preload("uid://cyyeexrpl0ptb")
 }

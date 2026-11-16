@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://dg4s3l487twfo"]
 
-[ext_resource type="Texture2D" uid="uid://b4wk6ep1fdc0t" path="res://assets/art/heart_32x32.png" id="1_oo0fn"]
 [ext_resource type="Script" uid="uid://beabsmy6wbgy3" path="res://scenes/hud.gd" id="1_uo2fv"]
-[ext_resource type="Texture2D" uid="uid://mn0khmvw175f" path="res://assets/art/EmptyHeart.png" id="3_047uy"]
+[ext_resource type="Texture2D" uid="uid://dlaqq2mtobxdc" path="res://assets/art/heart_empty.png" id="3_mphia"]
 [ext_resource type="Texture2D" uid="uid://dv7084iiv0e86" path="res://assets/art/BeastBar.png" id="4_5pdws"]
 [ext_resource type="Texture2D" uid="uid://bg6egdfhq8kr6" path="res://assets/art/BeastBarBroken.png" id="5_hd3ao"]
+[ext_resource type="Texture2D" uid="uid://cbbhmlpjljtbr" path="res://assets/art/heart_full.png" id="6_0m4u7"]
 [ext_resource type="Shader" uid="uid://dw4l8enejourc" path="res://assets/Shader/BeastBarGlow.gdshader" id="6_5pdws"]
 [ext_resource type="Shader" uid="uid://cl1uplqkiaalw" path="res://assets/Shader/BeastFill.gdshader" id="6_047uy"]
 [ext_resource type="Texture2D" uid="uid://cayiaf4vc2xgv" path="res://assets/art/BossBar.png" id="8_hd3ao"]
@@ -41,8 +41,8 @@ fill_from = Vector2(0.011254019, 0.02165059)
 
 [node name="HUD" type="CanvasLayer" unique_id=966798296]
 script = ExtResource("1_uo2fv")
-full_heart = ExtResource("1_oo0fn")
-empty_heart = ExtResource("3_047uy")
+full_heart = ExtResource("6_0m4u7")
+empty_heart = ExtResource("3_mphia")
 normal_frame = ExtResource("4_5pdws")
 broken_frame = ExtResource("5_hd3ao")
 full_fill_width = 340.0
@@ -85,7 +85,7 @@ offset_bottom = 36.0
 texture_filter = 1
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
-texture = ExtResource("1_oo0fn")
+texture = ExtResource("6_0m4u7")
 expand_mode = 1
 stretch_mode = 5
 
@@ -93,7 +93,7 @@ stretch_mode = 5
 texture_filter = 1
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
-texture = ExtResource("1_oo0fn")
+texture = ExtResource("6_0m4u7")
 expand_mode = 1
 stretch_mode = 5
 
@@ -101,7 +101,7 @@ stretch_mode = 5
 texture_filter = 1
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
-texture = ExtResource("1_oo0fn")
+texture = ExtResource("6_0m4u7")
 expand_mode = 1
 stretch_mode = 5
 

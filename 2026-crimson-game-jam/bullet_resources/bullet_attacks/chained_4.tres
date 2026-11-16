@@ -7,7 +7,7 @@
 
 [sub_resource type="Resource" id="Resource_ww5pd"]
 script = ExtResource("2_yt8ht")
-bullet_speed = 3.7
+bullet_speed = 2.8
 bullet_accel = -0.2
 bullet_turn_rate_deg = 0.8
 bullet_turn_rate_accel = 0.05

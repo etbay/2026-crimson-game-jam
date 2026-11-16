@@ -19,6 +19,7 @@ func spawn(pos: Vector3):
 
 func _on_boss_dead() -> void:
 	if (phase == 0):
+		MusicMan.play_sound(AudioDict.sfx["cthulu_death"])
 		ScreenShake.shake(1, 5)
 		phase1.started = false
 		await get_tree().create_timer(5).timeout
