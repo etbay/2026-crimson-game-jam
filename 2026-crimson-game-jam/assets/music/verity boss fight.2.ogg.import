@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://8tak7dptne0d"
+path="res://.godot/imported/verity boss fight.2.ogg-3d2097c9934e751c5236d8e1eb98eb5b.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/music/verity boss fight.2.ogg"
+dest_files=["res://.godot/imported/verity boss fight.2.ogg-3d2097c9934e751c5236d8e1eb98eb5b.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
