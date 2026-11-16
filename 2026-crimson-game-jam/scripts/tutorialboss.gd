@@ -27,6 +27,9 @@ var tutorial_started := false
 var cthulhu := preload("uid://qfc4cfst7bte")
 @export var c_spawn_pos: Vector3 
 
+
+@export var entrance_wall_collision: CollisionShape3D
+
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	parry_prompt.hide()
@@ -61,12 +64,17 @@ func start_tutorial() -> void:
 		await get_tree().physics_frame
 
 	# Stop and hand control back
+	
 	player.input_override_dir = Vector3.ZERO
 	await get_tree().physics_frame
 	player.tutorial_movement = false
 
+
+	# Wait before the statue shoots
 	await get_tree().create_timer(shoot_delay).timeout
 	shoot()
+	close_wall()
+
 # Move player to the entrance starting position
 	#entrance_start = player.global_position
 	#
@@ -171,3 +179,5 @@ func _on_boss_dead():
 	get_tree().root.add_child(c)
 	c.spawn(c_spawn_pos)
 	queue_free()
+func close_wall() -> void:
+	entrance_wall_collision.set_deferred("disabled", false)
