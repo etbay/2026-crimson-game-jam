@@ -48,6 +48,7 @@ subpixel_positioning = 0
 subpixel_positioning = 0
 
 [sub_resource type="SystemFont" id="SystemFont_6aqbo"]
+subpixel_positioning = 0
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_nkavf"]
 size = Vector3(2.5, 5, 2)
