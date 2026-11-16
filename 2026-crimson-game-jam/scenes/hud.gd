@@ -37,11 +37,17 @@ var boss_health_tween: Tween
 
 var fill_tween: Tween
 
+static var instance : HUD = null
 
 func _ready() -> void:
 	# Set initial HUD values
 	set_health(3)
 	set_beast(0, false)
+	
+	if (instance == null):
+		instance = self
+	else:
+		queue_free()
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("pause"):

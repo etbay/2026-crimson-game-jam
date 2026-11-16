@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://qfc4cfst7bte"]
+
+[ext_resource type="Script" uid="uid://c1jhef8xoh3j" path="res://scenes/cthulhu.gd" id="1_eb8ft"]
+[ext_resource type="Script" uid="uid://wk62nldfqpek" path="res://scenes/enemy.gd" id="2_0c4al"]
+[ext_resource type="Script" uid="uid://c1xw7eo4un7k8" path="res://scripts/boss/boss.gd" id="3_6t8ut"]
+[ext_resource type="Script" uid="uid://dyoedp32mh0ce" path="res://scripts/bullets/bullet_attack.gd" id="4_0d1ap"]
+[ext_resource type="Resource" uid="uid://wsw2i826fhlt" path="res://bullet_resources/bullet_attacks/chained_1.tres" id="5_i4ntx"]
+[ext_resource type="Resource" uid="uid://c1r65thke3oe0" path="res://bullet_resources/bullet_attacks/chained_2.tres" id="6_6qg0e"]
+[ext_resource type="Resource" uid="uid://bxbsuw8kwbt02" path="res://bullet_resources/bullet_attacks/chained_3.tres" id="7_g3332"]
+[ext_resource type="Resource" uid="uid://cx4sjuqsb7osy" path="res://bullet_resources/bullet_attacks/chained_4.tres" id="8_fn2yk"]
+[ext_resource type="Resource" uid="uid://dj3o8vn4hto8f" path="res://bullet_resources/bullet_attacks/chained_5.tres" id="9_tnm61"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ldkr4"]
+size = Vector3(40, 10, 1)
+
+[node name="Cthulhu" type="Node3D" unique_id=1259814776]
+script = ExtResource("1_eb8ft")
+
+[node name="Enemy" type="Area3D" parent="." unique_id=1366831083]
+script = ExtResource("2_0c4al")
+metadata/_custom_type_script = "uid://wk62nldfqpek"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Enemy" unique_id=433222524]
+shape = SubResource("BoxShape3D_ldkr4")
+
+[node name="Phase1" type="Node3D" parent="." unique_id=675144167]
+script = ExtResource("3_6t8ut")
+attacks = Array[ExtResource("4_0d1ap")]([ExtResource("5_i4ntx"), ExtResource("6_6qg0e"), ExtResource("7_g3332"), ExtResource("8_fn2yk"), ExtResource("9_tnm61")])
+center = Vector3(0, 0, 10)
+metadata/_custom_type_script = "uid://c1xw7eo4un7k8"
+
+[node name="Phase2" type="Node3D" parent="." unique_id=1659034627]
+script = ExtResource("3_6t8ut")
+attacks = Array[ExtResource("4_0d1ap")]([ExtResource("5_i4ntx"), ExtResource("6_6qg0e"), ExtResource("7_g3332"), ExtResource("8_fn2yk"), ExtResource("9_tnm61")])
+center = Vector3(0, 0, 10)
+metadata/_custom_type_script = "uid://c1xw7eo4un7k8"
