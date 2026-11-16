@@ -1,0 +1,19 @@
+
+extends Control
+
+#start scene
+@export var game_scene: PackedScene
+
+@onready var start_button: Button = $CenterContainer/VBoxContainer/StartButton
+
+
+func _ready() -> void:
+	start_button.pressed.connect(_on_start_pressed)
+
+
+func _on_start_pressed() -> void:
+	if game_scene == null:
+		push_error("Main Menu: No game scene assigned!")
+		return
+
+	get_tree().change_scene_to_packed(game_scene)

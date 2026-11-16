@@ -7,6 +7,11 @@ extends Node3D
 
 @export var parry_prompt: Label3D
 @export var wasd_prompt: Label3D
+@export var shoot_prompt: Label3D
+@export var shoot_prompt_duration: float = 4.0
+@export var beast_prompt: Label3D
+@export var beast_prompt_duration: float = 5.0
+
 
 var entrance_start: Vector3
 @export var entrance_end: Marker3D
@@ -27,10 +32,15 @@ var tutorial_started := false
 var cthulhu := preload("uid://qfc4cfst7bte")
 @export var c_spawn_pos: Vector3 
 
+
+@export var entrance_wall_collision: CollisionShape3D
+
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	parry_prompt.hide()
 	wasd_prompt.hide()
+	shoot_prompt.hide()
+	beast_prompt.hide()
 	enemy.vulnerable = false
 	# Prevent the emitter from shooting during the tutorial
 	bullet_emitter.process_mode = Node.PROCESS_MODE_PAUSABLE
@@ -61,12 +71,17 @@ func start_tutorial() -> void:
 		await get_tree().physics_frame
 
 	# Stop and hand control back
+	
 	player.input_override_dir = Vector3.ZERO
 	await get_tree().physics_frame
 	player.tutorial_movement = false
 
+
+	# Wait before the statue shoots
 	await get_tree().create_timer(shoot_delay).timeout
 	shoot()
+	close_wall()
+
 # Move player to the entrance starting position
 	#entrance_start = player.global_position
 	#
@@ -157,11 +172,25 @@ func show_wasd_tutorial() -> void:
 
 	# Keep them visible for a few seconds
 	await get_tree().create_timer(wasd_duration).timeout
-	# Hide the instructions
 	wasd_prompt.hide()
+	
+	# Show shooting instructions
+	shoot_prompt.show()
+
+	# Keep shooting instructions visible
+	await get_tree().create_timer(shoot_prompt_duration).timeout
+	shoot_prompt.hide()
+	
+	 # Beast Mode tutorial
+	beast_prompt.show()
+
+	await get_tree().create_timer(beast_prompt_duration).timeout
+	beast_prompt.hide()
 
 func _on_boss_dead():
 	# spawn cthulhu
+	shoot_prompt.hide()
+	wasd_prompt.hide()
 	ScreenShake.shake(.4, 3)
 	animated_sprite_3d.queue_free()
 	enemy.queue_free()
@@ -171,3 +200,5 @@ func _on_boss_dead():
 	get_tree().root.add_child(c)
 	c.spawn(c_spawn_pos)
 	queue_free()
+func close_wall() -> void:
+	entrance_wall_collision.set_deferred("disabled", false)
