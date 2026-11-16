@@ -56,16 +56,16 @@ size = Vector3(2.5, 5, 2)
 size = Vector3(20, 2, 1)
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_qi5dk"]
-radius = 0.95458984
+radius = 0.8
 
 [node name="GameScene" type="Node3D" unique_id=962368027]
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1730521585]
-transform = Transform3D(1, 0, 0, 0, 0.34202015, 0.9396926, 0, -0.9396926, 0.34202015, 9.536743e-07, 7.0793605, -2.6826966)
+transform = Transform3D(1, 0, 0, 0, 0.4067366, 0.9135455, 0, -0.9135455, 0.4067366, 9.536743e-07, 7.0793605, -2.6826966)
 environment = ExtResource("1_b5spy")
 fov = 90.0
 script = ExtResource("2_mw25s")
-target_cam_position = Vector3(0, 7, -2.661)
+target_cam_position = Vector3(0, 7, -1.261)
 
 [node name="Floor" type="Sprite3D" parent="." unique_id=393587440]
 transform = Transform3D(0.095, 0, 0, 0, -4.152582e-09, -0.095, 0, 0.095, -4.152582e-09, 0, 0, -6.85)
@@ -116,7 +116,7 @@ render_priority = -10
 texture = ExtResource("6_mwyo0")
 
 [node name="CharacterBody3D" parent="." unique_id=32883367 instance=ExtResource("2_b5spy")]
-transform = Transform3D(1, 0, 0, 0, 0.49999997, 0.86602545, 0, -0.86602545, 0.49999997, 0, 0, 16.096731)
+transform = Transform3D(1, 0, 0, 0, 0.4067366, 0.9135455, 0, -0.9135455, 0.4067366, 0, 0, 16.096731)
 
 [node name="BulletPool" type="Node3D" parent="." unique_id=12835276]
 script = ExtResource("3_utbpp")
@@ -133,7 +133,7 @@ script = SubResource("GDScript_tqxxy")
 
 [node name="TutorialBossNode3D" type="Node3D" parent="." unique_id=274485581 node_paths=PackedStringArray("player", "parry_prompt", "wasd_prompt", "shoot_prompt", "beast_prompt", "entrance_end", "entrance_wall_collision")]
 process_mode = 3
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -7.8080864)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -6.936247)
 script = ExtResource("8_rvs2r")
 bullet_scene = ExtResource("9_tqxxy")
 player = NodePath("../CharacterBody3D")
@@ -150,7 +150,7 @@ entrance_wall_collision = NodePath("../Modifiable Wall/CollisionShape3D")
 
 [node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="TutorialBossNode3D" unique_id=328339890]
 process_mode = 1
-transform = Transform3D(0.08, 0, 0, 0, 0.039999995, 0.06928203, 0, -0.06928203, 0.039999995, 0, 1.374, 0.61753225)
+transform = Transform3D(0.08, 0, 0, 0, 0.032538928, 0.07308364, 0, -0.07308364, 0.032538928, 0, 1.374, 0.61753225)
 pixel_size = 0.025
 render_priority = 1
 sprite_frames = SubResource("SpriteFrames_mwyo0")
@@ -291,5 +291,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.080599, 0, 9.24795)
 shape = SubResource("CylinderShape3D_qi5dk")
 
 [node name="Sprite3D" type="Sprite3D" parent="." unique_id=950833331]
-transform = Transform3D(0.6, 0, 0, 0, 0.2052121, 0.5638156, 0, -0.5638156, 0.2052121, 0, -0.16044712, -18.029816)
+transform = Transform3D(0.6, 0, 0, 0, 0.24404198, 0.5481273, 0, -0.5481273, 0.24404198, 0, -0.16044712, -16.455688)
 texture = ExtResource("18_s76x2")
