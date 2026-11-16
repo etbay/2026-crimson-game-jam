@@ -7,12 +7,12 @@
 
 [sub_resource type="Resource" id="Resource_ww5pd"]
 script = ExtResource("2_yt8ht")
-bullet_speed = 2.0
-bullet_accel = -0.1
+bullet_speed = 2.8
+bullet_accel = -0.2
 bullet_turn_rate_deg = 0.8
 bullet_turn_rate_accel = 0.05
-bullet_size = 0.125
-bullet_lifetime = 7.0
+bullet_size = 0.25
+bullet_lifetime = 8.0
 metadata/_custom_type_script = "uid://c8s5d80ydvhv6"
 
 [sub_resource type="Resource" id="Resource_s21tg"]
@@ -28,8 +28,29 @@ parryable_frequeuncy = 8
 deterministic = false
 metadata/_custom_type_script = "uid://bm6p0a3odsqfk"
 
+[sub_resource type="Resource" id="Resource_yt8ht"]
+script = ExtResource("2_yt8ht")
+bullet_speed = 5.0
+bullet_size = 0.2
+bullet_lifetime = 8.0
+metadata/_custom_type_script = "uid://c8s5d80ydvhv6"
+
+[sub_resource type="Resource" id="Resource_3m376"]
+script = ExtResource("3_3m376")
+bullet_count = 32
+angle_step_deg = 30.0
+heading_offset_deg = 90.0
+max_inward_deg = 360.0
+delay_time = 3.0
+bullet_data = SubResource("Resource_yt8ht")
+fire_interval = 3.5
+volley_count = 4
+parryable_frequeuncy = 20
+deterministic = false
+metadata/_custom_type_script = "uid://bm6p0a3odsqfk"
+
 [resource]
 script = ExtResource("2_ylhca")
-patterns = Array[ExtResource("1_hgqw0")]([SubResource("Resource_s21tg")])
-pattern_positions = Array[Vector2]([Vector2(0, 0)])
+patterns = Array[ExtResource("1_hgqw0")]([SubResource("Resource_s21tg"), SubResource("Resource_3m376")])
+pattern_positions = Array[Vector2]([Vector2(0, 0), Vector2(0, 0)])
 metadata/_custom_type_script = "uid://dyoedp32mh0ce"

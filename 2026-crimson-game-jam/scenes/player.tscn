@@ -228,7 +228,7 @@ shape = SubResource("CapsuleShape3D_4ni07")
 
 [node name="Hitbox Indicator" type="Sprite3D" parent="." unique_id=251789229]
 transform = Transform3D(0.02, 0, 0, 0, -0.019318515, -0.0051763826, 0, 0.0051763826, -0.019318515, 0, 0, 0)
-modulate = Color(0.5673491, 1, 0.4890517, 0.27450982)
+modulate = Color(0.5686275, 1, 0.49019608, 0.043137256)
 render_priority = 100
 texture = ExtResource("24_l71n6")
 

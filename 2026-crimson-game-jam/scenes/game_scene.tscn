@@ -7,7 +7,9 @@
 [ext_resource type="Script" uid="uid://dbkj3qoa8l0kv" path="res://scripts/bullets/bullet_pool.gd" id="3_utbpp"]
 [ext_resource type="Texture2D" uid="uid://cbfry63n61gu5" path="res://assets/art/dominik-redmer-arena-sml.png" id="4_liy57"]
 [ext_resource type="Script" uid="uid://c1xw7eo4un7k8" path="res://scripts/boss/boss.gd" id="4_mw25s"]
+[ext_resource type="Texture2D" uid="uid://cd6y3qfet554x" path="res://assets/art/leadup.png" id="5_mwyo0"]
 [ext_resource type="Script" uid="uid://dyoedp32mh0ce" path="res://scripts/bullets/bullet_attack.gd" id="5_tcjrq"]
+[ext_resource type="Texture2D" uid="uid://3x16012q7u50" path="res://assets/art/void.png" id="6_mwyo0"]
 [ext_resource type="PackedScene" uid="uid://dg4s3l487twfo" path="res://scenes/hud.tscn" id="7_tqxxy"]
 [ext_resource type="Script" uid="uid://c5lctqqcx3p2n" path="res://scripts/tutorialboss.gd" id="8_rvs2r"]
 [ext_resource type="PackedScene" uid="uid://4untts65i8q2" path="res://TutorialBullet.tscn" id="9_tqxxy"]
@@ -15,7 +17,7 @@
 [ext_resource type="Resource" uid="uid://b3bbq60noqe05" path="res://bullet_resources/bullet_patterns/ring_test_pattern.tres" id="12_liy57"]
 [ext_resource type="Script" uid="uid://dayx2jy8tp802" path="res://scripts/bullets/bullet_pattern.gd" id="13_5ay1a"]
 [ext_resource type="Script" uid="uid://wk62nldfqpek" path="res://scenes/enemy.gd" id="14_5ay1a"]
-[ext_resource type="Texture2D" uid="uid://bfnme04cuogh2" path="res://assets/art/cthulhutemp.png" id="15_ldkr4"]
+[ext_resource type="Texture2D" uid="uid://crbch6up0tv80" path="res://assets/art/Cthulhu squint new/Cthulhu squint new _01.png" id="18_s76x2"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_qi5dk"]
 size = Vector3(100, 20, 1)
@@ -45,13 +47,18 @@ subpixel_positioning = 0
 [sub_resource type="SystemFont" id="SystemFont_77hjl"]
 subpixel_positioning = 0
 
+[sub_resource type="SystemFont" id="SystemFont_6aqbo"]
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_nkavf"]
 size = Vector3(2.5, 5, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_a6liq"]
+size = Vector3(20, 2, 1)
 
 [node name="GameScene" type="Node3D" unique_id=962368027]
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1730521585]
-transform = Transform3D(1, 0, 0, 0, 0.25881907, 0.9659258, 0, -0.9659258, 0.25881907, 9.536743e-07, 7.0793605, -2.6826966)
+transform = Transform3D(1, 0, 0, 0, 0.34202015, 0.9396926, 0, -0.9396926, 0.34202015, 9.536743e-07, 7.0793605, -2.6826966)
 environment = ExtResource("1_b5spy")
 fov = 90.0
 script = ExtResource("2_mw25s")
@@ -81,26 +88,32 @@ pixel_size = 0.1
 render_priority = -11
 texture = ExtResource("4_liy57")
 
-[node name="Floor5" type="Sprite3D" parent="." unique_id=1627597956]
-transform = Transform3D(0.1, 0, 0, 0, -4.371139e-09, -0.1, 0, 0.1, -4.371139e-09, 1.0001602, 0, 26.542776)
+[node name="Floor8" type="Sprite3D" parent="." unique_id=1902578967]
+transform = Transform3D(-0.1, 8.742278e-09, 0, 3.821371e-16, 4.371139e-09, -0.1, -8.742278e-09, -0.1, -4.371139e-09, 0, 0, 11.204271)
 pixel_size = 0.1
-render_priority = -11
-texture = ExtResource("4_liy57")
+render_priority = -9
+texture = ExtResource("5_mwyo0")
 
-[node name="Floor6" type="Sprite3D" parent="." unique_id=2123239952]
-transform = Transform3D(0.1, 0, 0, 0, -4.371139e-09, -0.1, 0, 0.1, -4.371139e-09, -28.947153, 0, 26.542776)
+[node name="Floor9" type="Sprite3D" parent="." unique_id=1507386719]
+transform = Transform3D(-0.1, 8.742278e-09, 0, 3.821371e-16, 4.371139e-09, -0.1, -8.742278e-09, -0.1, -4.371139e-09, 15.53552, 0, 10.372114)
 pixel_size = 0.1
-render_priority = -11
-texture = ExtResource("4_liy57")
+render_priority = -9
+texture = ExtResource("6_mwyo0")
 
-[node name="Floor7" type="Sprite3D" parent="." unique_id=506306604]
-transform = Transform3D(0.1, 0, 0, 0, -4.371139e-09, -0.1, 0, 0.1, -4.371139e-09, 30.0248, 0, 26.542776)
+[node name="Floor10" type="Sprite3D" parent="." unique_id=498924489]
+transform = Transform3D(-0.1, 8.742278e-09, 0, 3.821371e-16, 4.371139e-09, -0.1, -8.742278e-09, -0.1, -4.371139e-09, -15.787274, 0, 10.036133)
 pixel_size = 0.1
-render_priority = -11
-texture = ExtResource("4_liy57")
+render_priority = -9
+texture = ExtResource("6_mwyo0")
+
+[node name="Floor11" type="Sprite3D" parent="." unique_id=1479329355]
+transform = Transform3D(-1, 3.019916e-08, -6.600236e-15, 0, -8.742278e-09, -1, -1.509958e-07, -0.2, 4.371139e-08, 8.097766, 0, 19.053118)
+pixel_size = 0.1
+render_priority = -10
+texture = ExtResource("6_mwyo0")
 
 [node name="CharacterBody3D" parent="." unique_id=32883367 instance=ExtResource("2_b5spy")]
-transform = Transform3D(1, 0, 0, 0, 0.25881907, 0.9659258, 0, -0.9659258, 0.25881907, 0, 0, 6.568077)
+transform = Transform3D(1, 0, 0, 0, 0.49999997, 0.86602545, 0, -0.86602545, 0.49999997, 0, 0, 16.096731)
 
 [node name="BulletPool" type="Node3D" parent="." unique_id=12835276]
 script = ExtResource("3_utbpp")
@@ -115,7 +128,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.6088696)
 shape = SubResource("BoxShape3D_qi5dk")
 script = SubResource("GDScript_tqxxy")
 
-[node name="TutorialBossNode3D" type="Node3D" parent="." unique_id=274485581 node_paths=PackedStringArray("player", "parry_prompt", "wasd_prompt", "entrance_end")]
+[node name="TutorialBossNode3D" type="Node3D" parent="." unique_id=274485581 node_paths=PackedStringArray("player", "parry_prompt", "wasd_prompt", "shoot_prompt", "beast_prompt", "entrance_end", "entrance_wall_collision")]
 process_mode = 3
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -7.8080864)
 script = ExtResource("8_rvs2r")
@@ -123,15 +136,18 @@ bullet_scene = ExtResource("9_tqxxy")
 player = NodePath("../CharacterBody3D")
 parry_prompt = NodePath("ParryPrompt")
 wasd_prompt = NodePath("WASDPrompt")
+shoot_prompt = NodePath("ShootPrompt")
+beast_prompt = NodePath("BeastPrompt")
 entrance_end = NodePath("EntranceEnd")
 shoot_delay = 0.5
 wasd_delay = 0.5
 wasd_duration = 3.5
-c_spawn_pos = Vector3(0, 0, -15)
+c_spawn_pos = Vector3(0, 0, -13)
+entrance_wall_collision = NodePath("../Modifiable Wall/CollisionShape3D")
 
 [node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="TutorialBossNode3D" unique_id=328339890]
 process_mode = 1
-transform = Transform3D(0.08, 0, 0, 0, 0.0771412, 0.021195156, 0, -0.021195156, 0.0771412, 0, 1.374, 0.61753225)
+transform = Transform3D(0.08, 0, 0, 0, 0.039999995, 0.06928203, 0, -0.06928203, 0.039999995, 0, 1.374, 0.61753225)
 pixel_size = 0.025
 render_priority = 1
 sprite_frames = SubResource("SpriteFrames_mwyo0")
@@ -150,7 +166,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.10494816, 0.10854626, 0.405
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4.191)
 
 [node name="ParryPrompt" type="Label3D" parent="TutorialBossNode3D" unique_id=2095669175]
-transform = Transform3D(1.31, 0, 0, 0, 1.31, 0, 0, 0, 1.31, 1.9741156, 0.674685, 2.6690712)
+transform = Transform3D(1.31, 0, 0, 0, 1.31, 0, 0, 0, 1.31, 3.480737, 0.674685, 3.5528278)
 pixel_size = 0.01
 billboard = 1
 render_priority = 2
@@ -161,7 +177,7 @@ font_size = 30
 outline_size = 15
 
 [node name="WASDPrompt" type="Label3D" parent="TutorialBossNode3D" unique_id=665860429]
-transform = Transform3D(1.47, 0, 0, 0, 1.47, 0, 0, 0, 1.47, 1.8549118, 0.674685, 1.8698311)
+transform = Transform3D(1.47, 0, 0, 0, 1.47, 0, 0, 0, 1.47, 3.3615332, 0.674685, 1.8698311)
 pixel_size = 0.01
 billboard = 1
 render_priority = 1
@@ -170,6 +186,20 @@ text = "WASD to move!"
 font = SubResource("SystemFont_77hjl")
 font_size = 30
 outline_size = 15
+
+[node name="ShootPrompt" type="Label3D" parent="TutorialBossNode3D" unique_id=1271861956]
+transform = Transform3D(2.84, 0, 0, 0, 2.84, 0, 0, 0, 2.84, -3.6386452, 0.6238824, 2.6888046)
+billboard = 1
+text = "Left Click To Shoot!"
+font = SubResource("SystemFont_6aqbo")
+font_size = 30
+outline_size = 15
+
+[node name="BeastPrompt" type="Label3D" parent="TutorialBossNode3D" unique_id=395936665]
+transform = Transform3D(2.07, 0, 0, 0, 2.07, 0, 0, 0, 2.07, -3.066988, 0, 4.726414)
+billboard = 1
+text = "Press Q to enter BEAST MODE!
+Absorb bullets and automatically fire a laser!"
 
 [node name="Enemy" type="Area3D" parent="TutorialBossNode3D" unique_id=1137512781]
 script = ExtResource("14_5ay1a")
@@ -180,7 +210,62 @@ metadata/_custom_type_script = "uid://wk62nldfqpek"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.41965604, -0.19181919)
 shape = SubResource("BoxShape3D_nkavf")
 
-[node name="Sprite3D2" type="Sprite3D" parent="." unique_id=528281402]
-transform = Transform3D(0.5, 0, 0, 0, 0.48129284, 0.13548875, 0, -0.13548875, 0.48129284, 0, 4.5469418, -13.71707)
-render_priority = -9
-texture = ExtResource("15_ldkr4")
+[node name="Wall" type="StaticBody3D" parent="." unique_id=785827816]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 21.556843)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall" unique_id=820663768]
+shape = SubResource("BoxShape3D_a6liq")
+
+[node name="Wall6" type="StaticBody3D" parent="." unique_id=1682705503]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.618716, 0, 1.0649207)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall6" unique_id=1756933203]
+shape = SubResource("BoxShape3D_a6liq")
+
+[node name="Wall7" type="StaticBody3D" parent="." unique_id=1777159580]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.92859, 0, 1.0649207)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall7" unique_id=1411112749]
+shape = SubResource("BoxShape3D_a6liq")
+
+[node name="Modifiable Wall" type="StaticBody3D" parent="." unique_id=770276145]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.7251465)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Modifiable Wall" unique_id=768535746]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.7812381)
+shape = SubResource("BoxShape3D_a6liq")
+disabled = true
+
+[node name="Wall8" type="StaticBody3D" parent="." unique_id=267289525]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -13.127464)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall8" unique_id=1860123732]
+shape = SubResource("BoxShape3D_a6liq")
+
+[node name="Wall2" type="StaticBody3D" parent="." unique_id=1056034256]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 5.447275, 0, 11.267907)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall2" unique_id=322317145]
+shape = SubResource("BoxShape3D_a6liq")
+
+[node name="Wall3" type="StaticBody3D" parent="." unique_id=766648241]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.1669135, 0, 11.267907)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall3" unique_id=1930529284]
+shape = SubResource("BoxShape3D_a6liq")
+
+[node name="Wall4" type="StaticBody3D" parent="." unique_id=1551126470]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -7.2204595, 0, -9.150179)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall4" unique_id=562712352]
+shape = SubResource("BoxShape3D_a6liq")
+
+[node name="Wall5" type="StaticBody3D" parent="." unique_id=1960747302]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 7.378044, 0, -9.150179)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall5" unique_id=911543467]
+shape = SubResource("BoxShape3D_a6liq")
+
+[node name="Sprite3D" type="Sprite3D" parent="." unique_id=950833331]
+transform = Transform3D(0.6, 0, 0, 0, 0.2052121, 0.5638156, 0, -0.5638156, 0.2052121, 0, -0.16044712, -16.092888)
+texture = ExtResource("18_s76x2")

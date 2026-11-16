@@ -57,3 +57,9 @@ func play_music(audio: AudioStream) -> void:
 	music_player.bus = "Music"
 	music_player.stream = audio
 	music_player.play()
+
+func stop_music() -> void:
+	if (music_player == null):
+		music_player = AudioStreamPlayer.new()
+		get_tree().root.add_child(music_player)
+	music_player.stop()

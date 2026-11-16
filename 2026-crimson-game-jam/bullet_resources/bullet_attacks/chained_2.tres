@@ -9,7 +9,7 @@
 
 [sub_resource type="Resource" id="Resource_lpvio"]
 script = ExtResource("2_8mf88")
-bullet_count = 6
+bullet_count = 10
 spacing = 0.2
 spread_deg = 110.0
 end_speed_multiplier = 0.0
@@ -22,7 +22,7 @@ metadata/_custom_type_script = "uid://4q5s3c1ocpbh"
 
 [sub_resource type="Resource" id="Resource_amrvv"]
 script = ExtResource("2_8mf88")
-bullet_count = 9
+bullet_count = 15
 spacing = 0.2
 spread_deg = 110.0
 end_speed_multiplier = 0.0
@@ -67,5 +67,5 @@ metadata/_custom_type_script = "uid://4q5s3c1ocpbh"
 [resource]
 script = ExtResource("2_w7arv")
 patterns = Array[ExtResource("1_gsomk")]([SubResource("Resource_lpvio"), SubResource("Resource_amrvv"), SubResource("Resource_vw5s2"), SubResource("Resource_cmpir")])
-pattern_positions = Array[Vector2]([Vector2(0, -5), Vector2(0, -5), Vector2(-4, 0), Vector2(4, 0)])
+pattern_positions = Array[Vector2]([Vector2(0, -2.5), Vector2(0, -2.5), Vector2(-4, 0), Vector2(4, 0)])
 metadata/_custom_type_script = "uid://dyoedp32mh0ce"
