@@ -59,7 +59,6 @@ var tutorial_movement: bool = false
 var input_override_dir : Vector3 = Vector3.ZERO
 
 var shoot_timer: Timer
-
 func damage() -> void:
 	if vulnerable:
 		# Delete nearby bullets

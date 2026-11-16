@@ -23,13 +23,14 @@
 [ext_resource type="Texture2D" uid="uid://gv25u83cbqrg" path="res://assets/animations/legs/walk/Walk color_011.png" id="19_wnwbv"]
 [ext_resource type="Texture2D" uid="uid://7ejo5yebx6m0" path="res://assets/art/parry_curve.png" id="21_i4ail"]
 [ext_resource type="Script" uid="uid://cjguahoyl58xu" path="res://scenes/player_hurtbox.gd" id="22_a38lo"]
+[ext_resource type="Texture2D" uid="uid://bbyq6hqw3uhul" path="res://assets/art/bullet.png" id="24_l71n6"]
 
 [sub_resource type="Gradient" id="Gradient_4ni07"]
 offsets = PackedFloat32Array(0, 0.34960422, 0.6741425, 1)
 colors = PackedColorArray(0, 0, 1, 1, 0.8439093, 0.3825628, 1, 1, 1, 0, 0.60038817, 1, 0.976762, 0.14758715, 1.92523e-07, 1)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_7mycd"]
-radius = 0.2084961
+radius = 0.12
 height = 0.53623044
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_qhqgy"]
@@ -161,6 +162,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.014, -0.31, 0)
 shape = SubResource("CapsuleShape3D_7mycd")
 
 [node name="PlayerSprite" type="Sprite3D" parent="." unique_id=1639550142 node_paths=PackedStringArray("player")]
+transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 0, 0)
 billboard = 1
 script = ExtResource("2_g2els")
 player = NodePath("..")
@@ -211,5 +213,11 @@ transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 12, 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Laser" unique_id=1855497480]
 transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.3711413e-08, 0, 0, -8.881784e-16, 1, 12.1525, 1.1920929e-07, 0)
 shape = SubResource("CapsuleShape3D_4ni07")
+
+[node name="Hitbox Indicator" type="Sprite3D" parent="." unique_id=251789229]
+transform = Transform3D(0.02, 0, 0, 0, -0.019318515, -0.0051763826, 0, 0.0051763826, -0.019318515, 0, 0, 0)
+modulate = Color(0.5673491, 1, 0.4890517, 0.27450982)
+render_priority = 100
+texture = ExtResource("24_l71n6")
 
 [editable path="Laser/Node3D"]

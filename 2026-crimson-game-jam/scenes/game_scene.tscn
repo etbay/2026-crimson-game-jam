@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://b737qjmuwdsq2" path="res://scenes/player_cam.gd" id="2_mw25s"]
 [ext_resource type="Texture2D" uid="uid://b820emx60by1" path="res://assets/art/floorarena.png" id="3_ldkr4"]
 [ext_resource type="Script" uid="uid://dbkj3qoa8l0kv" path="res://scripts/bullets/bullet_pool.gd" id="3_utbpp"]
+[ext_resource type="Texture2D" uid="uid://cbfry63n61gu5" path="res://assets/art/dominik-redmer-arena-sml.png" id="4_liy57"]
 [ext_resource type="Script" uid="uid://c1xw7eo4un7k8" path="res://scripts/boss/boss.gd" id="4_mw25s"]
 [ext_resource type="Script" uid="uid://dyoedp32mh0ce" path="res://scripts/bullets/bullet_attack.gd" id="5_tcjrq"]
 [ext_resource type="PackedScene" uid="uid://dg4s3l487twfo" path="res://scenes/hud.tscn" id="7_tqxxy"]
@@ -54,16 +55,52 @@ transform = Transform3D(1, 0, 0, 0, 0.25881907, 0.9659258, 0, -0.9659258, 0.2588
 environment = ExtResource("1_b5spy")
 fov = 90.0
 script = ExtResource("2_mw25s")
-target_cam_position = Vector3(0, 7.879, -2.661)
+target_cam_position = Vector3(0, 7, -2.661)
 
-[node name="Sprite3D" type="Sprite3D" parent="." unique_id=393587440]
-transform = Transform3D(0.1, 0, 0, 0, -4.371139e-09, -0.1, 0, 0.1, -4.371139e-09, 0, 0, -6.85)
+[node name="Floor" type="Sprite3D" parent="." unique_id=393587440]
+transform = Transform3D(0.095, 0, 0, 0, -4.152582e-09, -0.095, 0, 0.095, -4.152582e-09, 0, 0, -6.85)
 pixel_size = 0.1
 render_priority = -10
 texture = ExtResource("3_ldkr4")
 
+[node name="Floor2" type="Sprite3D" parent="." unique_id=706416309]
+transform = Transform3D(0.1, 0, 0, 0, -4.371139e-09, -0.1, 0, 0.1, -4.371139e-09, 1.0001602, 0, -6.85)
+pixel_size = 0.1
+render_priority = -11
+texture = ExtResource("4_liy57")
+
+[node name="Floor3" type="Sprite3D" parent="." unique_id=1108304030]
+transform = Transform3D(0.1, 0, 0, 0, -4.371139e-09, -0.1, 0, 0.1, -4.371139e-09, -28.947153, 0, -6.85)
+pixel_size = 0.1
+render_priority = -11
+texture = ExtResource("4_liy57")
+
+[node name="Floor4" type="Sprite3D" parent="." unique_id=748527777]
+transform = Transform3D(0.1, 0, 0, 0, -4.371139e-09, -0.1, 0, 0.1, -4.371139e-09, 30.0248, 0, -6.85)
+pixel_size = 0.1
+render_priority = -11
+texture = ExtResource("4_liy57")
+
+[node name="Floor5" type="Sprite3D" parent="." unique_id=1627597956]
+transform = Transform3D(0.1, 0, 0, 0, -4.371139e-09, -0.1, 0, 0.1, -4.371139e-09, 1.0001602, 0, 26.542776)
+pixel_size = 0.1
+render_priority = -11
+texture = ExtResource("4_liy57")
+
+[node name="Floor6" type="Sprite3D" parent="." unique_id=2123239952]
+transform = Transform3D(0.1, 0, 0, 0, -4.371139e-09, -0.1, 0, 0.1, -4.371139e-09, -28.947153, 0, 26.542776)
+pixel_size = 0.1
+render_priority = -11
+texture = ExtResource("4_liy57")
+
+[node name="Floor7" type="Sprite3D" parent="." unique_id=506306604]
+transform = Transform3D(0.1, 0, 0, 0, -4.371139e-09, -0.1, 0, 0.1, -4.371139e-09, 30.0248, 0, 26.542776)
+pixel_size = 0.1
+render_priority = -11
+texture = ExtResource("4_liy57")
+
 [node name="CharacterBody3D" parent="." unique_id=32883367 instance=ExtResource("2_b5spy")]
-transform = Transform3D(1.2, 0, 0, 0, 0.3105829, 1.159111, 0, -1.159111, 0.3105829, 0, 0, 6.568077)
+transform = Transform3D(1, 0, 0, 0, 0.25881907, 0.9659258, 0, -0.9659258, 0.25881907, 0, 0, 6.568077)
 
 [node name="BulletPool" type="Node3D" parent="." unique_id=12835276]
 script = ExtResource("3_utbpp")
@@ -120,7 +157,7 @@ render_priority = 2
 outline_render_priority = 0
 text = "Press Right Click to Parry Yellow Bullets!"
 font = SubResource("SystemFont_s76x2")
-font_size = 13
+font_size = 30
 outline_size = 15
 
 [node name="WASDPrompt" type="Label3D" parent="TutorialBossNode3D" unique_id=665860429]
@@ -131,7 +168,7 @@ render_priority = 1
 outline_render_priority = 0
 text = "WASD to move!"
 font = SubResource("SystemFont_77hjl")
-font_size = 13
+font_size = 30
 outline_size = 15
 
 [node name="Enemy" type="Area3D" parent="TutorialBossNode3D" unique_id=1137512781]

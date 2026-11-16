@@ -26,7 +26,7 @@ shape = SubResource("BoxShape3D_ldkr4")
 [node name="Phase1" type="Node3D" parent="." unique_id=675144167]
 script = ExtResource("3_6t8ut")
 attacks = Array[ExtResource("4_0d1ap")]([ExtResource("5_i4ntx"), ExtResource("6_6qg0e"), ExtResource("7_g3332"), ExtResource("8_fn2yk"), ExtResource("9_tnm61")])
-center = Vector3(0, 0, 10)
+center = Vector3(0, 0, 6.867)
 metadata/_custom_type_script = "uid://c1xw7eo4un7k8"
 
 [node name="Phase2" type="Node3D" parent="." unique_id=1659034627]
