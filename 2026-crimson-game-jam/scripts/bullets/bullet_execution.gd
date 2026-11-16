@@ -74,6 +74,7 @@ func _line_burst(_center: Vector2):
 		b.position = Vector3(pos.x, 0.5, pos.y)
 		b.angle = angle
 		b._initial_angle = b.angle
+		b.bullet_owner = "Enemy"
 		b.max_angle_deg = linepat.max_angle_deg
 		if (not linepat.center_end_speed_mult):
 			b.speed = ((linepat.end_speed_multiplier * (float(i) / linepat.bullet_count)) + 1) * b.speed
@@ -123,6 +124,7 @@ func _ring_burst(_center: Vector2):
 		b.position = pos
 		b.angle = angle + heading_offset                     # where it travels
 		b._initial_angle = b.angle
+		b.bullet_owner = "Enemy"
 		b.max_angle_deg = ringpat.max_inward_deg
 		_bullets_spawned += 1
 		if (ringpat.deterministic and (_bullets_spawned + ringpat.offset_frequency) % ringpat.parryable_frequeuncy == 0):
