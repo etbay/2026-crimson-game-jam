@@ -15,6 +15,7 @@ var entrance_start: Vector3
 @export var wasd_delay: float = 2.0
 @export var wasd_duration: float = 3.0
 
+@onready var animated_sprite_3d: AnimatedSprite3D = $AnimatedSprite3D
 @onready var bullet_emitter: Boss = $AnimatedSprite3D/Boss
 @onready var tutorial_trigger: Area3D = $"../TutorialTrigger"
 
@@ -23,6 +24,7 @@ var waiting_for_parry: bool = false
 var tutorial_started := false
 
 @onready var enemy: Enemy = $Enemy
+var cthulhu := preload("uid://qfc4cfst7bte")
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
@@ -158,5 +160,12 @@ func show_wasd_tutorial() -> void:
 
 func _on_boss_dead():
 	# spawn cthulhu
-	ScreenShake.shake(.5, 1)
+	ScreenShake.shake(.4, 3)
+	animated_sprite_3d.queue_free()
+	enemy.queue_free()
+	await get_tree().create_timer(4).timeout
+	self.set_process(false)
+	var c: Cthulhu = cthulhu.instantiate()
+	get_tree().root.add_child(c)
+	c.spawn()
 	queue_free()

@@ -3,7 +3,7 @@ class_name Enemy extends Area3D
 signal dead
 
 @export var max_health: int = 1000
-@onready var hud: HUD = $"../../HUD"
+@onready var hud: HUD = HUD.instance
 
 var health: int
 var vulnerable: bool = true

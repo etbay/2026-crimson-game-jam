@@ -1,14 +1,13 @@
 
 extends Node
 
-@onready var hud = $HUD
 var test_boss_health: int = 100
 
 var test_health: int = 3
 var test_beast: int = 0
 
 func _ready() -> void:
-	hud.setup_boss(100, "THE STATUE")
+	HUD.instance.setup_boss(100, "THE STATUE")
 
 func _unhandled_key_input(event: InputEvent) -> void:
 	if not event is InputEventKey:

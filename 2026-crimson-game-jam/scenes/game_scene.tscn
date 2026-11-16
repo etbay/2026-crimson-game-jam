@@ -14,7 +14,6 @@
 [ext_resource type="Resource" uid="uid://b3bbq60noqe05" path="res://bullet_resources/bullet_patterns/ring_test_pattern.tres" id="12_liy57"]
 [ext_resource type="Script" uid="uid://dayx2jy8tp802" path="res://scripts/bullets/bullet_pattern.gd" id="13_5ay1a"]
 [ext_resource type="Script" uid="uid://wk62nldfqpek" path="res://scenes/enemy.gd" id="14_5ay1a"]
-[ext_resource type="Script" uid="uid://c1jhef8xoh3j" path="res://scenes/cthulhu.gd" id="15_ldkr4"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_qi5dk"]
 size = Vector3(100, 20, 1)
@@ -45,9 +44,6 @@ subpixel_positioning = 0
 subpixel_positioning = 0
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_nkavf"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_ldkr4"]
-size = Vector3(40, 10, 1)
 
 [node name="GameScene" type="Node3D" unique_id=962368027]
 
@@ -143,14 +139,3 @@ metadata/_custom_type_script = "uid://wk62nldfqpek"
 [node name="CollisionShape3D" type="CollisionShape3D" parent="TutorialBossNode3D/Enemy" unique_id=441900840]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.41965604, -0.19181919)
 shape = SubResource("BoxShape3D_nkavf")
-
-[node name="Cthulhu" type="Node3D" parent="." unique_id=1164301019]
-script = ExtResource("15_ldkr4")
-
-[node name="Enemy" type="Area3D" parent="Cthulhu" unique_id=487097462]
-script = ExtResource("14_5ay1a")
-metadata/_custom_type_script = "uid://wk62nldfqpek"
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Cthulhu/Enemy" unique_id=1281106283]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -17.400454)
-shape = SubResource("BoxShape3D_ldkr4")

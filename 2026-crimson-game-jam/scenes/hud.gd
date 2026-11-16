@@ -29,18 +29,20 @@ class_name HUD extends CanvasLayer
 @export var boss_normal_color: Color = Color(0.7, 0.7, 0.7, 1.0)
 @export var boss_damage_color: Color = Color(1.0, 1.0, 1.0, 1.0)
 
-
 var boss_health_tween: Tween
-
-
 var fill_tween: Tween
 
+static var instance : HUD = null
 
 func _ready() -> void:
 	# Set initial HUD values
 	set_health(3)
 	set_beast(0, false)
 	
+	if (instance == null):
+		instance = self
+	else:
+		queue_free()
 
 
 # HEART SYSTEM

@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://qfc4cfst7bte"]
+
+[ext_resource type="Script" uid="uid://c1jhef8xoh3j" path="res://scenes/cthulhu.gd" id="1_eb8ft"]
+[ext_resource type="Script" uid="uid://wk62nldfqpek" path="res://scenes/enemy.gd" id="2_0c4al"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ldkr4"]
+size = Vector3(40, 10, 1)
+
+[node name="Cthulhu" type="Node3D" unique_id=1259814776]
+script = ExtResource("1_eb8ft")
+
+[node name="Enemy" type="Area3D" parent="." unique_id=1366831083]
+script = ExtResource("2_0c4al")
+metadata/_custom_type_script = "uid://wk62nldfqpek"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Enemy" unique_id=433222524]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -17.400454)
+shape = SubResource("BoxShape3D_ldkr4")
