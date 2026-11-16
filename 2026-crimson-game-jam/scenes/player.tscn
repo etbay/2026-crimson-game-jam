@@ -30,7 +30,7 @@ offsets = PackedFloat32Array(0, 0.34960422, 0.6741425, 1)
 colors = PackedColorArray(0, 0, 1, 1, 0.8439093, 0.3825628, 1, 1, 1, 0, 0.60038817, 1, 0.976762, 0.14758715, 1.92523e-07, 1)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_7mycd"]
-radius = 0.12
+radius = 0.1
 height = 0.53623044
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_qhqgy"]
@@ -166,7 +166,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.014, -0.31, 0)
 shape = SubResource("CapsuleShape3D_7mycd")
 
 [node name="PlayerSprite" type="Sprite3D" parent="." unique_id=1639550142 node_paths=PackedStringArray("player")]
-transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 0, 0)
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)
 billboard = 1
 script = ExtResource("2_g2els")
 player = NodePath("..")
@@ -226,7 +226,7 @@ transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.3711413e-08, 0, 0, -8.881784
 shape = SubResource("CapsuleShape3D_4ni07")
 
 [node name="Hitbox Indicator" type="Sprite3D" parent="." unique_id=251789229]
-transform = Transform3D(0.02, 0, 0, 0, -0.019318515, -0.0051763826, 0, 0.0051763826, -0.019318515, 0, 0, 0)
+transform = Transform3D(0.018, 0, 0, 0, -0.016443819, -0.007321258, 0, 0.007321258, -0.016443819, 0, 0, 0)
 modulate = Color(0.5686275, 1, 0.49019608, 0.043137256)
 render_priority = 100
 texture = ExtResource("24_l71n6")

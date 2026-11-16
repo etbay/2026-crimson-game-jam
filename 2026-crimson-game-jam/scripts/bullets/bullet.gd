@@ -49,6 +49,8 @@ func define_bullet(_size : float = 1, _angle : float = 0, _speed : float = 0, _a
 	age = 0
 	parryable = _parryable
 	size = _size
+	max_angle_deg = 360
+	bullet_owner = "Enemy"
 	_active = true
 
 func define_bullet_from_data(data : BulletData):
@@ -60,6 +62,8 @@ func define_bullet_from_data(data : BulletData):
 	age = 0
 	parryable = false
 	size = data.bullet_size
+	max_angle_deg = 360
+	bullet_owner = "Enemy"
 	_active = true
 
 func update_sprite():
@@ -90,7 +94,7 @@ func _physics_process(delta : float) -> void:
 	if (_active):
 		## update pos, and motion params
 		age += delta
-		if (lifetime > 0 and age >= lifetime):
+		if (lifetime > -1 and age >= lifetime):
 			kill_bullet()
 		speed += acceleration * delta
 		turn_rate += turn_rate_accel * delta
@@ -114,8 +118,9 @@ func _on_area_entered(area : Area3D) -> void:
 		kill_bullet()
 
 func _on_body_entered(body: Node3D) -> void:
-	if body is not Player:
-		kill_bullet()
+	#if body is not Player:
+		#kill_bullet()
+	pass
 
 func activate() -> void:
 	visible = true

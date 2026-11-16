@@ -15,7 +15,8 @@ var sfx: Dictionary[String, AudioStream] = {
 	"player_shoot": preload("uid://dn4totoqav2cy"),
 	"player_hurt": preload("uid://8ljfvd4tlbey"),
 	"dash": preload("uid://di0rl1wvs3vhb"),
-	"laser": preload("uid://bmh5u7v4fu44s")
+	"laser": preload("uid://bmh5u7v4fu44s"),
+	"roar": preload("uid://2uawdr2u2mnx"),
 }
 
 var music: Dictionary[String, AudioStream] = {

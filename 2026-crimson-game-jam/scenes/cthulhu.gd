@@ -12,6 +12,7 @@ func _ready() -> void:
 
 func spawn(pos: Vector3):
 	ScreenShake.shake(0.8, 2)
+	MusicMan.play_sound(AudioDict.sfx["roar"])
 	await get_tree().create_timer(4).timeout
 	global_position = pos
 	phase = 0
