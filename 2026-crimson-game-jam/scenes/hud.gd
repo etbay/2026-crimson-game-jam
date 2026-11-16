@@ -143,18 +143,18 @@ func _set_fill_width(width: float) -> void:
 		mat.set_shader_parameter("overflowing", broken)
 
 
-func setup_boss(max_health: float, name: String = "BOSS") -> void:
+func setup_boss(max_health: float, name_boss: String = "BOSS") -> void:
 	boss_health_bar.min_value = 0
 	boss_health_bar.max_value = max_health
 	boss_health_bar.value = max_health
 	boss_health_bar.step = 0
 	boss_health_bar.tint_progress = boss_normal_color
 
-	boss_name.text = name
+	boss_name.text = name_boss
 
 
 
-func update_boss_health(new_health: int) -> void:
+func update_boss_health(new_health: float) -> void:
 	
 	if boss_health_tween != null and boss_health_tween.is_valid():
 		boss_health_tween.kill()

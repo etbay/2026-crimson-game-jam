@@ -52,7 +52,7 @@ var beast_meter: float = 0:
 		hud.set_beast(beast_meter)
 var move_dir: Vector2
 var mouse_dir: Vector2
-var laser_damage: float = 1
+var laser_damage: float = 0.1
 var max_laser_damage: float = 100
 var hovering_enemy: Enemy = null
 var movement_locked: bool = false
@@ -81,7 +81,7 @@ func damage() -> void:
 		vulnerable = true
 	else:
 		MusicMan.play_sound(AudioDict.sfx["absorb_bullet"])
-		laser_damage += 1
+		laser_damage += 0.1
 
 func heal(amount: int) -> void:
 	health += amount
@@ -98,7 +98,7 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	if beast_mode:
-		beast_meter -= 10 * delta
+		beast_meter -= 5 * delta
 		if beast_meter <= 0:
 			beast_mode = false
 			beast_mode_finished.emit()
@@ -137,7 +137,7 @@ func _update_laser(delta: float) -> void:
 		for i in laser.get_overlapping_areas():
 			if i is Enemy:
 				var enemy := i as Enemy
-				enemy.damage()
+				enemy.damage(laser_damage)
 
 func _get_scale_color(value: float) -> Color:
 	return laser_color_gradient.sample(inverse_lerp(1.0, max_laser_damage, value))
@@ -179,6 +179,7 @@ func _enter_beast_mode() -> void:
 	active_speed = walk_speed
 	beast_mode = false
 	laser.visible = false
+	beast_meter = 0
 	laser_damage = 1
 	MusicMan.free_looped_sound(laser_sound)
 	laser_sound = null

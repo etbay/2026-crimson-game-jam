@@ -107,7 +107,7 @@ func _on_area_entered(area : Area3D) -> void:
 		kill_bullet()
 	elif _active and area is Enemy and bullet_owner != "Enemy":
 		var enemy := area as Enemy
-		enemy.damage()
+		enemy.damage(1)
 		kill_bullet()
 
 func _on_body_entered(body: Node3D) -> void:
