@@ -201,6 +201,7 @@ func _execute_dash() -> void:
 
 func tutorial_parry(b: TutorialBullet) -> void:
 	parry_curve.visible = true
+	MusicMan.play_sound(AudioDict.sfx["parry"])
 	Engine.time_scale = 0
 	# Set parry curve sprite to direction
 	var dir = Vector2(global_position.x, -global_position.z).direction_to(Vector2(b.global_position.x, -b.global_position.z))

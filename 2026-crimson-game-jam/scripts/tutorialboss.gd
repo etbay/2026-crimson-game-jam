@@ -195,6 +195,7 @@ func show_wasd_tutorial() -> void:
 func _on_boss_dead():
 	# spawn cthulhu
 	MusicMan.stop_music()
+	MusicMan.play_sound(AudioDict.sfx["statue_death"])
 	shoot_prompt.hide()
 	wasd_prompt.hide()
 	ScreenShake.shake(.4, 3)
