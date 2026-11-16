@@ -49,6 +49,10 @@ func _ready() -> void:
 	# connect signal
 	enemy.dead.connect(_on_boss_dead)
 	tutorial_trigger.area_entered.connect(_on_tutorial_trigger)
+	call_deferred("_start_music")
+
+func _start_music():
+	MusicMan.play_music(AudioDict.music["title_theme"])
 
 func _on_tutorial_trigger(_area: Area3D) -> void:
 	if (!tutorial_started):
@@ -58,6 +62,7 @@ func _on_tutorial_trigger(_area: Area3D) -> void:
 
 func start_tutorial() -> void:
 	player.tutorial_movement = true
+	MusicMan.play_music(AudioDict.music["tutorial_theme"])
 	# Walk the player in using real physics frames
 	while true:
 		var to_target : Vector3 = entrance_end.global_position - player.global_position
@@ -189,6 +194,7 @@ func show_wasd_tutorial() -> void:
 
 func _on_boss_dead():
 	# spawn cthulhu
+	MusicMan.stop_music()
 	shoot_prompt.hide()
 	wasd_prompt.hide()
 	ScreenShake.shake(.4, 3)
@@ -199,6 +205,8 @@ func _on_boss_dead():
 	var c: Cthulhu = cthulhu.instantiate()
 	get_tree().root.add_child(c)
 	c.spawn(c_spawn_pos)
+	MusicMan.play_music(AudioDict.music["cthulu_fight_theme"])
 	queue_free()
+	
 func close_wall() -> void:
 	entrance_wall_collision.set_deferred("disabled", false)

@@ -203,7 +203,7 @@ Absorb bullets and automatically fire a laser!"
 
 [node name="Enemy" type="Area3D" parent="TutorialBossNode3D" unique_id=1137512781]
 script = ExtResource("14_5ay1a")
-max_health = 1
+max_health = 100
 metadata/_custom_type_script = "uid://wk62nldfqpek"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="TutorialBossNode3D/Enemy" unique_id=441900840]

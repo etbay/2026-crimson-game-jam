@@ -52,7 +52,7 @@ var beast_meter: float = 0:
 		hud.set_beast(beast_meter)
 var move_dir: Vector2
 var mouse_dir: Vector2
-var laser_damage: float = 0.05
+var laser_damage: float = 0.1
 var max_laser_damage: float = 100
 var hovering_enemy: Enemy = null
 var movement_locked: bool = false
@@ -81,7 +81,7 @@ func damage() -> void:
 		vulnerable = true
 	else:
 		MusicMan.play_sound(AudioDict.sfx["absorb_bullet"])
-		laser_damage += 0.01
+		laser_damage += 0.02
 
 func heal(amount: int) -> void:
 	health += amount
