@@ -17,6 +17,7 @@
 [ext_resource type="Resource" uid="uid://b3bbq60noqe05" path="res://bullet_resources/bullet_patterns/ring_test_pattern.tres" id="12_liy57"]
 [ext_resource type="Script" uid="uid://dayx2jy8tp802" path="res://scripts/bullets/bullet_pattern.gd" id="13_5ay1a"]
 [ext_resource type="Script" uid="uid://wk62nldfqpek" path="res://scenes/enemy.gd" id="14_5ay1a"]
+[ext_resource type="Texture2D" uid="uid://crbch6up0tv80" path="res://assets/art/Cthulhu squint new/Cthulhu squint new _01.png" id="18_s76x2"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_qi5dk"]
 size = Vector3(100, 20, 1)
@@ -55,7 +56,7 @@ size = Vector3(20, 2, 1)
 [node name="GameScene" type="Node3D" unique_id=962368027]
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1730521585]
-transform = Transform3D(1, 0, 0, 0, 0.25881907, 0.9659258, 0, -0.9659258, 0.25881907, 9.536743e-07, 7.0793605, -2.6826966)
+transform = Transform3D(1, 0, 0, 0, 0.34202015, 0.9396926, 0, -0.9396926, 0.34202015, 9.536743e-07, 7.0793605, -2.6826966)
 environment = ExtResource("1_b5spy")
 fov = 90.0
 script = ExtResource("2_mw25s")
@@ -183,7 +184,7 @@ outline_size = 15
 
 [node name="Enemy" type="Area3D" parent="TutorialBossNode3D" unique_id=1137512781]
 script = ExtResource("14_5ay1a")
-max_health = 100
+max_health = 1
 metadata/_custom_type_script = "uid://wk62nldfqpek"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="TutorialBossNode3D/Enemy" unique_id=441900840]
@@ -217,7 +218,7 @@ shape = SubResource("BoxShape3D_a6liq")
 disabled = true
 
 [node name="Wall8" type="StaticBody3D" parent="." unique_id=267289525]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -11.925102)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -13.127464)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Wall8" unique_id=1860123732]
 shape = SubResource("BoxShape3D_a6liq")
@@ -245,3 +246,7 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 7.37
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Wall5" unique_id=911543467]
 shape = SubResource("BoxShape3D_a6liq")
+
+[node name="Sprite3D" type="Sprite3D" parent="." unique_id=950833331]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 4.484, -11.719747)
+texture = ExtResource("18_s76x2")

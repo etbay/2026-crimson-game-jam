@@ -5,10 +5,12 @@
 
 [resource]
 script = ExtResource("2_r73cg")
+bullet_count = 32
 heading_offset_deg = -90.0
 delay_time = 0.8
 bullet_data = ExtResource("1_hw0an")
 fire_interval = 1.6
 volley_count = 5
-parryable_frequeuncy = 5
+parryable_frequeuncy = 10
+deterministic = false
 metadata/_custom_type_script = "uid://bm6p0a3odsqfk"
