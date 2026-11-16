@@ -111,7 +111,7 @@ render_priority = -10
 texture = ExtResource("6_mwyo0")
 
 [node name="CharacterBody3D" parent="." unique_id=32883367 instance=ExtResource("2_b5spy")]
-transform = Transform3D(1, 0, 0, 0, 0.25881907, 0.9659258, 0, -0.9659258, 0.25881907, 0, 0, 16.096731)
+transform = Transform3D(1, 0, 0, 0, 0.49999997, 0.86602545, 0, -0.86602545, 0.49999997, 0, 0, 16.096731)
 
 [node name="BulletPool" type="Node3D" parent="." unique_id=12835276]
 script = ExtResource("3_utbpp")
@@ -138,11 +138,11 @@ entrance_end = NodePath("EntranceEnd")
 shoot_delay = 0.5
 wasd_delay = 0.5
 wasd_duration = 3.5
-c_spawn_pos = Vector3(0, 0, -15)
+c_spawn_pos = Vector3(0, 0, -13)
 
 [node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="TutorialBossNode3D" unique_id=328339890]
 process_mode = 1
-transform = Transform3D(0.08, 0, 0, 0, 0.0771412, 0.021195156, 0, -0.021195156, 0.0771412, 0, 1.374, 0.61753225)
+transform = Transform3D(0.08, 0, 0, 0, 0.039999995, 0.06928203, 0, -0.06928203, 0.039999995, 0, 1.374, 0.61753225)
 pixel_size = 0.025
 render_priority = 1
 sprite_frames = SubResource("SpriteFrames_mwyo0")
@@ -248,5 +248,5 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 7.37
 shape = SubResource("BoxShape3D_a6liq")
 
 [node name="Sprite3D" type="Sprite3D" parent="." unique_id=950833331]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 4.484, -11.719747)
+transform = Transform3D(0.6, 0, 0, 0, 0.2052121, 0.5638156, 0, -0.5638156, 0.2052121, 0, -0.16044712, -16.092888)
 texture = ExtResource("18_s76x2")
