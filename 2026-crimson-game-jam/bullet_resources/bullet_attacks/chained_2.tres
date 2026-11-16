@@ -9,9 +9,9 @@
 
 [sub_resource type="Resource" id="Resource_lpvio"]
 script = ExtResource("2_8mf88")
-bullet_count = 10
+bullet_count = 17
 spacing = 0.2
-spread_deg = 110.0
+spread_deg = 190.0
 end_speed_multiplier = 0.0
 bullet_data = ExtResource("2_4kmlp")
 fire_interval = 1.6
@@ -67,5 +67,5 @@ metadata/_custom_type_script = "uid://4q5s3c1ocpbh"
 [resource]
 script = ExtResource("2_w7arv")
 patterns = Array[ExtResource("1_gsomk")]([SubResource("Resource_lpvio"), SubResource("Resource_amrvv"), SubResource("Resource_vw5s2"), SubResource("Resource_cmpir")])
-pattern_positions = Array[Vector2]([Vector2(0, -2.5), Vector2(0, -2.5), Vector2(-4, 0), Vector2(4, 0)])
+pattern_positions = Array[Vector2]([Vector2(0, -6), Vector2(0, -6), Vector2(-7, 0), Vector2(7, 0)])
 metadata/_custom_type_script = "uid://dyoedp32mh0ce"

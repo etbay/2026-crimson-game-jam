@@ -55,6 +55,9 @@ size = Vector3(2.5, 5, 2)
 [sub_resource type="BoxShape3D" id="BoxShape3D_a6liq"]
 size = Vector3(20, 2, 1)
 
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_qi5dk"]
+radius = 0.95458984
+
 [node name="GameScene" type="Node3D" unique_id=962368027]
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1730521585]
@@ -203,7 +206,7 @@ Absorb bullets and automatically fire a laser!"
 
 [node name="Enemy" type="Area3D" parent="TutorialBossNode3D" unique_id=1137512781]
 script = ExtResource("14_5ay1a")
-max_health = 100
+max_health = 1
 metadata/_custom_type_script = "uid://wk62nldfqpek"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="TutorialBossNode3D/Enemy" unique_id=441900840]
@@ -229,7 +232,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.92859, 0, 1.0649207)
 shape = SubResource("BoxShape3D_a6liq")
 
 [node name="Modifiable Wall" type="StaticBody3D" parent="." unique_id=770276145]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.7251465)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.5306313)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Modifiable Wall" unique_id=768535746]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.7812381)
@@ -255,17 +258,38 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.1
 shape = SubResource("BoxShape3D_a6liq")
 
 [node name="Wall4" type="StaticBody3D" parent="." unique_id=1551126470]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -7.2204595, 0, -9.150179)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -7.9231825, 0, -9.150179)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Wall4" unique_id=562712352]
 shape = SubResource("BoxShape3D_a6liq")
 
 [node name="Wall5" type="StaticBody3D" parent="." unique_id=1960747302]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 7.378044, 0, -9.150179)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 8.170091, 0, -9.150179)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Wall5" unique_id=911543467]
 shape = SubResource("BoxShape3D_a6liq")
 
+[node name="Wall9" type="StaticBody3D" parent="." unique_id=1146101447]
+transform = Transform3D(0.7078228, 0, 0.70639, 0, 1, 0, -0.70639, 0, 0.7078228, 11.527966, 0, -6.6867704)
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Wall9" unique_id=2072645445]
+transform = Transform3D(0.9988477, 0, 0.047992557, 0, 1, 0, -0.047992557, 0, 0.9988477, 0, 0, 0)
+shape = SubResource("BoxShape3D_a6liq")
+
+[node name="Wall10" type="StaticBody3D" parent="." unique_id=1617595838]
+transform = Transform3D(-0.7508886, 0, 0.6604289, 0, 1, 0, -0.6604289, 0, -0.7508886, -12.166819, 3.8146973e-06, -5.256118)
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Wall10" unique_id=2035336250]
+transform = Transform3D(0.9988477, 0, 0.047992557, 0, 1, 0, -0.047992557, 0, 0.9988477, 0, 0, 0)
+shape = SubResource("BoxShape3D_a6liq")
+
+[node name="Wall11" type="StaticBody3D" parent="." unique_id=914126963]
+transform = Transform3D(-0.7508886, 0, 0.6604289, 0, 1, 0, -0.6604289, 0, -0.7508886, -12.166819, 3.8146973e-06, -5.256118)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall11" unique_id=888476050]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.080599, 0, 9.24795)
+shape = SubResource("CylinderShape3D_qi5dk")
+
 [node name="Sprite3D" type="Sprite3D" parent="." unique_id=950833331]
-transform = Transform3D(0.6, 0, 0, 0, 0.2052121, 0.5638156, 0, -0.5638156, 0.2052121, 0, -0.16044712, -16.092888)
+transform = Transform3D(0.6, 0, 0, 0, 0.2052121, 0.5638156, 0, -0.5638156, 0.2052121, 0, -0.16044712, -18.029816)
 texture = ExtResource("18_s76x2")

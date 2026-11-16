@@ -7,17 +7,18 @@
 
 [sub_resource type="Resource" id="Resource_yioco"]
 script = ExtResource("2_txnwg")
-bullet_speed = 3.0
-bullet_size = 0.15
+bullet_speed = 1.0
+bullet_accel = 0.5
+bullet_size = 0.14
 bullet_lifetime = 8.0
 metadata/_custom_type_script = "uid://c8s5d80ydvhv6"
 
 [sub_resource type="Resource" id="Resource_lpvio"]
 script = ExtResource("3_1f4ad")
-bullet_count = 7
+bullet_count = 5
 start_angle_deg = 270.0
-arc_deg = 45.0
-angle_step_deg = 3.0
+arc_deg = 38.0
+angle_step_deg = 5.0
 max_inward_deg = 360.0
 bullet_data = SubResource("Resource_yioco")
 fire_interval = 0.07
@@ -27,10 +28,10 @@ metadata/_custom_type_script = "uid://bm6p0a3odsqfk"
 
 [sub_resource type="Resource" id="Resource_txnwg"]
 script = ExtResource("3_1f4ad")
-bullet_count = 7
+bullet_count = 5
 start_angle_deg = 30.0
-arc_deg = 45.0
-angle_step_deg = 3.0
+arc_deg = 38.0
+angle_step_deg = 5.0
 max_inward_deg = 360.0
 bullet_data = SubResource("Resource_yioco")
 fire_interval = 0.07
@@ -40,10 +41,10 @@ metadata/_custom_type_script = "uid://bm6p0a3odsqfk"
 
 [sub_resource type="Resource" id="Resource_1f4ad"]
 script = ExtResource("3_1f4ad")
-bullet_count = 7
+bullet_count = 5
 start_angle_deg = 150.0
-arc_deg = 45.0
-angle_step_deg = 3.0
+arc_deg = 38.0
+angle_step_deg = 5.0
 max_inward_deg = 360.0
 bullet_data = SubResource("Resource_yioco")
 fire_interval = 0.08

@@ -7,12 +7,12 @@
 
 [sub_resource type="Resource" id="Resource_ww5pd"]
 script = ExtResource("2_yt8ht")
-bullet_speed = 2.8
-bullet_accel = -0.2
+bullet_speed = 3.4
+bullet_accel = -0.09
 bullet_turn_rate_deg = 0.8
 bullet_turn_rate_accel = 0.05
 bullet_size = 0.25
-bullet_lifetime = 8.0
+bullet_lifetime = 7.0
 metadata/_custom_type_script = "uid://c8s5d80ydvhv6"
 
 [sub_resource type="Resource" id="Resource_s21tg"]
@@ -30,14 +30,14 @@ metadata/_custom_type_script = "uid://bm6p0a3odsqfk"
 
 [sub_resource type="Resource" id="Resource_yt8ht"]
 script = ExtResource("2_yt8ht")
-bullet_speed = 5.0
+bullet_speed = 4.8
 bullet_size = 0.2
 bullet_lifetime = 8.0
 metadata/_custom_type_script = "uid://c8s5d80ydvhv6"
 
 [sub_resource type="Resource" id="Resource_3m376"]
 script = ExtResource("3_3m376")
-bullet_count = 32
+bullet_count = 28
 angle_step_deg = 30.0
 heading_offset_deg = 90.0
 max_inward_deg = 360.0
