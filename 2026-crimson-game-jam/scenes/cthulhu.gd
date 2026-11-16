@@ -19,14 +19,19 @@ func spawn(pos: Vector3):
 
 func _on_boss_dead() -> void:
 	if (phase == 0):
-		phase = 1
-		enemy.vulnerable = false
 		ScreenShake.shake(1, 5)
-		await get_tree().create_timer(5).timeout
-		enemy.health = 2000
-		enemy.max_health = 2000
 		phase1.started = false
-		phase2.started = true
-	elif (phase == 1):
-		print("dead")
-		queue_free()
+		await get_tree().create_timer(5).timeout
+		get_tree().change_scene_to_file("res://scenes/end.tscn")
+	#if (phase == 0):
+		#phase = 1
+		#enemy.vulnerable = false
+		#ScreenShake.shake(1, 5)
+		#phase1.started = false
+		#await get_tree().create_timer(5).timeout
+		#enemy.health = 2000
+		#enemy.max_health = 2000
+		#phase2.started = true
+	#elif (phase == 1):
+		#print("dead")
+		#queue_free()
